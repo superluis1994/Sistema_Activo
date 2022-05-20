@@ -1,0 +1,7 @@
+<?php
+
+
+
+setcookie("usuarioActivo", "Hola");
+
+?>

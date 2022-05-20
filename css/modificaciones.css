@@ -1,0 +1,20 @@
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+     margin: 0; 
+     background-color: blue;
+}
+@media screen and (max-width: 992px) {
+    .btnOcul{
+    display:none;
+    }
+    }
+    @media screen and (min-width: 992px) {
+        .perfilItem{
+        display:none;
+        }
+        }
+
+
+    
