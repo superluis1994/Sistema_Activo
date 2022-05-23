@@ -10,6 +10,14 @@ class sqlReg extends Principal {
        $count=$sql->fetchColumn();
        return $count;
     }
+    // restablecer contraseña paso1
+    public function restClave($dato){
+        $sql=Principal::conectar()->prepare("SELECT * FROM  usuario WHERE id_user = :CODIGO ");
+        $sql->bindParam(":CODIGO",$dato); 
+       $sql->execute();
+       $dat=$sql->fetch(PDO::FETCH_ASSOC);
+       return $dat;
+    }
  
     //lista de usuarios
     public function ListTipoUsuario(){

@@ -1,3 +1,4 @@
+// validar campos
 document.getElementById("codigo").addEventListener("keyup", function(e){
     if(!e.target.value == ""){
         e.target.classList.remove("is-invalid")
@@ -22,7 +23,7 @@ document.getElementById("pass").addEventListener("keyup", function(e){
     }
     })
 
-
+// funcion para activar el boton 
 function btnActivar(){
 
     if(document.getElementById("pass").classList.contains("is-valid") && 
@@ -35,10 +36,10 @@ function btnActivar(){
     }
 }
 
-
+// envio de datos del formulario de loguin
 dato_loguin=document.getElementById("loguing")
-dato_loguin.addEventListener("submit", function(e){
 
+dato_loguin.addEventListener("submit", function(e){
     e.preventDefault();
     datos_log= new FormData(dato_loguin);
     datos_log.append("accion_logui","loguin")
@@ -70,6 +71,38 @@ fetch('partes/procesoForm/loguin.php',{
 
     })
 }
+
+})
+
+// validar el campo de restablecimeinto este lleno para activar el btn
+$("#modal-rest").find("input[type=number]").on('keyup', function(e) {
+    expresion =new RegExp(/^[0-9]+$/g);
+    if(expresion.test(e.target.value)){
+    
+        document.getElementById("btn_restablecer").disabled=false
+    }else{
+        document.getElementById("btn_restablecer").disabled=true
+  
+    }
+  });
+
+
+// envio de datos para restablecer password
+logui_reset=document.getElementById("restablecer_pass")
+logui_reset.addEventListener("submit", function(e){
+    e.preventDefault()
+
+    datos_res= new FormData(logui_reset);
+    datos_res.append("rest_loguin","loguin")
+    fetch('partes/procesoForm/loguin.php',{
+        method: 'POST',
+        body: datos_res,
+      }).then(res=>res.json())
+        .then(data=>{
+     
+         alert(data)
+    
+        })
 
 })
 

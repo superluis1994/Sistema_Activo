@@ -26,6 +26,25 @@ else{
 }
 
 }
+else if(isset($_POST['rest_loguin'])){
+    if(!$_POST["codigo"]=="" ){
+       
+         $perfil=$procesoDatos->restClave($_POST["codigo"]);
+
+         echo json_encode($perfil["correo"]);
+
+
+    }else{
+
+    }
+    
+}
+
+// $perfil=$procesoDatos->restClave("343566");
+// echo $perfil["correo"]
+// var_dump($perfil)
+
+
 
 // setcookie("usuarioActivo", "Hola");
 
