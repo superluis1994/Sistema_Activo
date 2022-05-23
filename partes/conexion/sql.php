@@ -1,6 +1,15 @@
 <?php
 require_once "conexion.php";
 class sqlReg extends Principal {
+
+    public function loguiar($dato){
+        $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
+        $sql->bindParam(":CODIGO",$dato['codigo']); 
+        $sql->bindParam(":PASSWD",$dato['pass']); 
+       $sql->execute();
+       $count=$sql->fetchColumn();
+       return $count;
+    }
  
     //lista de usuarios
     public function ListTipoUsuario(){

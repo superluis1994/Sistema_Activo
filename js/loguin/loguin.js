@@ -36,7 +36,53 @@ function btnActivar(){
 }
 
 
-document.getElementById("btn_loguin").addEventListener("click", function(){
-alert("loguin")
+dato_loguin=document.getElementById("loguing")
+dato_loguin.addEventListener("submit", function(e){
+
+    e.preventDefault();
+    datos_log= new FormData(dato_loguin);
+    datos_log.append("accion_logui","loguin")
+
+    if( document.getElementById("codigo").classList.contains("is-valid") &&
+    document.getElementById("pass").classList.contains("is-valid")  )
+    {
+
+fetch('partes/procesoForm/loguin.php',{
+    method: 'POST',
+    body: datos_log
+  }).then(res=>res.json())
+    .then(data=>{
+ 
+      if(data==0){
+  
+        alerta("error","Error","Datos incorrectos")
+      }
+      else if(data==1){
+  
+       alerta("success","Correcto","session iniciada en 5 segundos")
+       window.location.href = "index.php";
+  
+      }
+      else if(data=="2"){
+        alerta("error","Error","Llenar los campos")
+
+      }
+
+    })
+}
 
 })
+
+
+
+///////////////alerta////////////////////
+function alerta(icono,title,text){
+    Swal.fire({
+                      
+      icon: icono,
+      title: title,
+      text: text,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
