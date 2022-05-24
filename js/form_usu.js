@@ -46,7 +46,8 @@ formulario.addEventListener("submit", function(e){
 
 if( document.getElementById("nombre").classList.contains("is-valid") &&
    document.getElementById("apellidos").classList.contains("is-valid") &&
-   document.getElementById("codigo").classList.contains("is-valid") )
+   document.getElementById("codigo").classList.contains("is-valid")&&
+   document.getElementById("correo").classList.contains("is-valid") )
    {
 
    fetch('partes/procesoForm/Registrar_usuario.php',{
@@ -74,6 +75,7 @@ if( document.getElementById("nombre").classList.contains("is-valid") &&
 validCampo("nombre","keyup","letras")
 validCampo("apellidos","keyup","letras")
 validCampo("codigo","keyup","numero")
+validCampo("correo","keyup","correo")
 
 
 function validCampo(nom,evento,tipo){
@@ -102,6 +104,17 @@ function validCampo(nom,evento,tipo){
 
       }
     }
+    else if(tipo=="correo"){
+
+      if(!/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+/g.test(e.target.value)){
+        e.target.classList.remove("is-valid")
+        e.target.classList.add("is-invalid")
+      }else{
+        e.target.classList.remove("is-invalid")
+        e.target.classList.add("is-valid")
+
+      }
+    }
   })
 }
 
@@ -116,3 +129,19 @@ function alerta(icono,title,text){
     timer: 1500
   })
 }
+
+
+// contrasena aleatoria
+document.getElementById("btn_generar").addEventListener("click",function(){
+
+  // alert("");
+   gfg_Run()
+  
+})
+function gfg_Run() {
+  var el_down = document.getElementById("passw");
+  el_down.value = 
+                  Math.random().toString(36).slice(2) + 
+                  Math.random().toString(36)
+                      .toUpperCase().slice(2);
+              } 

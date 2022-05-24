@@ -8,7 +8,7 @@
           </button>
           <div class="collapse navbar-collapse " id="navbarNav">
             <ul class="navbar-nav mx-auto" id="menu">
-              <!-- <li class="nav-item dropdown">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Usuario
                 </a>
@@ -17,8 +17,8 @@
                   <li><a class="dropdown-item" href="#">Usuario</a></li>
                   <li><a class="dropdown-item" href="#">Conexiones</a></li>
                 </ul>
-              </li> -->
-              <!-- <li class="nav-item">
+              </li> 
+              <li class="nav-item"> 
                 <a class="nav-link" href="#">Mover</a>
               </li>
              
@@ -54,7 +54,7 @@
               </li>
               <li class="nav-item perfilItem"> 
                 <a class="nav-link" href="#">Perfil</a>
-              </li> -->
+              </li>
             </ul>
           </div>
           <!-- <a class="navbar-brand" href="#"> <button type="submit">enviar</button> </a> -->

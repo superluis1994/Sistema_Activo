@@ -26,9 +26,20 @@
             <label for="apellido" class="form-label">Apellidos</label>
             <input type="text" name='apellidos' class="form-control" id="apellidos"  title="Apellidos" placeholder="Ramirez Juarez" required/>
           </div>
-          <div class="col-5">
+          <div class="col-3">
             <label for="codigo" class="form-label">Codigo</label>
             <input type="text" name="codigo" class="form-control" id="codigo" required/>
+          </div>
+          <div class="col-5">
+            <label for="passw" class="form-label">Contraseña</label>
+            <input type="text" name="passw" class="form-control" id="passw" required/>
+          </div>
+          <div class="col-2 align-middle">
+          <button type="button" id="btn_generar" class="btn btn-primary mt-3">Generar</button>
+          </div>
+          <div class="col-6">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="text" name="correo" class="form-control" id="correo" required/>
           </div>
           <div class="col-4">
             <label for="exampleInputPassword1" class="form-label">Tipo Usuario</label>
