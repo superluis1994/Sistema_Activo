@@ -27,10 +27,10 @@
         <div class="col-lg-10 offset-lg-1">
             <?php 
         if(isset($_GET["pagina"])){
-        include("instalacion/".$_GET["pagina"]);
+        include("instalcion/".$_GET["pagina"]);
         }
         else{
-            include("instalacion/inicio.php");
+            include("instalcion/inicio.php");
         }
     ?>
 
@@ -64,7 +64,7 @@ if(isset($_GET["pagina"])){
 
     }
 }else{
-    echo"<script src='instalacion/js/instalacion.js'></script>";
+    echo"<script src='instalcion/js/instalacion.js'></script>";
 }
 ?>
 </body>
