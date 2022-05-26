@@ -40,14 +40,14 @@ document.getElementById("foto").addEventListener("change", function() {
 formulario = document.getElementById("form")
 formulario.addEventListener("submit", function(e){
   e.preventDefault();
-
   datos= new FormData(formulario);
   datos.append("accion","RegistrarUsuario")
 
 if( document.getElementById("nombre").classList.contains("is-valid") &&
    document.getElementById("apellidos").classList.contains("is-valid") &&
    document.getElementById("codigo").classList.contains("is-valid")&&
-   document.getElementById("correo").classList.contains("is-valid") )
+   document.getElementById("passw").classList.contains("is-valid") &&
+   document.getElementById("correo").classList.contains("is-valid")  )
    {
 
    fetch('partes/procesoForm/Registrar_usuario.php',{
@@ -67,6 +67,9 @@ if( document.getElementById("nombre").classList.contains("is-valid") &&
        }
      })
 
+}else{
+    
+     alerta("error","Error","Hay datos no validos")
 }
 
 
@@ -75,6 +78,8 @@ if( document.getElementById("nombre").classList.contains("is-valid") &&
 validCampo("nombre","keyup","letras")
 validCampo("apellidos","keyup","letras")
 validCampo("codigo","keyup","numero")
+validCampo("passw","keyup","letrasynumeros")
+validCampo("passw","change","letrasynumeros")
 validCampo("correo","keyup","correo")
 
 
@@ -96,6 +101,35 @@ function validCampo(nom,evento,tipo){
     }else if(tipo=="numero"){
 
       if(!/^[0-9\s]+$/g.test(e.target.value)){
+        // validar si el codigo exite
+        e.target.classList.remove("is-valid")
+        e.target.classList.add("is-invalid")
+        
+        
+      } else{
+        codigo= new FormData();
+        codigo.append("accion","validarUser")
+        codigo.append("codigo",e.target.value)
+        fetch('partes/procesoForm/Registrar_usuario.php',{
+          method: 'POST',
+          body: codigo
+        }).then(res=>res.json())
+          .then(data=>{
+
+            // alert(data)
+            if(data==0){
+              e.target.classList.remove("is-invalid")
+              e.target.classList.add("is-valid")
+            }else{
+              e.target.classList.remove("is-valid")
+              e.target.classList.add("is-invalid")
+            }
+          })
+
+      }
+    }
+    else if(tipo=="letrasynumeros"){
+      if(!/^[A-Za-z 0-9\s]+$/g.test(e.target.value)){
         e.target.classList.remove("is-valid")
         e.target.classList.add("is-invalid")
       }else{
@@ -144,4 +178,9 @@ function gfg_Run() {
                   Math.random().toString(36).slice(2) + 
                   Math.random().toString(36)
                       .toUpperCase().slice(2);
+
+                      pas=document.getElementById("passw")
+                      pas.classList.remove("is-invalid")
+                       pas.classList.add("is-valid")
               } 
+//activar el btn de enviorn

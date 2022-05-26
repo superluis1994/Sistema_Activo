@@ -3,9 +3,10 @@ require_once "conexion.php";
 class sqlReg extends Principal {
 
     public function loguiar($dato){
+        $clave=Principal::encryption($dato["pass"]);
         $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
         $sql->bindParam(":CODIGO",$dato['codigo']); 
-        $sql->bindParam(":PASSWD",$dato['pass']); 
+        $sql->bindParam(":PASSWD",$clave); 
        $sql->execute();
        $count=$sql->fetchColumn();
        return $count;
@@ -17,6 +18,14 @@ class sqlReg extends Principal {
        $sql->execute();
        $dat=$sql->fetch(PDO::FETCH_ASSOC);
        return $dat;
+    }
+    // validarUsuario
+    public function validarUsuario($dato){
+        $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  usuario WHERE id_user = :CODIGO ");
+        $sql->bindParam(":CODIGO",$dato); 
+       $sql->execute();
+       $count=$sql->fetchColumn();
+       return $count;
     }
  
     //lista de usuarios
@@ -30,16 +39,21 @@ class sqlReg extends Principal {
         //funcion 1 = insertar
         //funcion 2 = es igual actualizar
         // CALL crubusuario(funcion,codigo,"Contraseña","nombre","foto",estatus,rol o tipo usuario)
-        $sql=Principal::conectar()->prepare("CALL crubusuario(:ACCION,:CODIGO,:PASSW,:NOMBRE,:FOTO,1,:ESTADO)");
+       
+        $clave=Principal::encryption($dato["contrasena"]);
+        $sql=Principal::conectar()->prepare("CALL crubusuario(:ACCION,:CODIGO,:PASSW,:NOMBRE,:APELLIDO,:CORREO,:FOTO,1,:ESTADO)");
         $sql->bindParam(":FOTO",$dato['foto']); 
         $sql->bindParam(":ACCION",$dato['accion']); 
         $sql->bindParam(":NOMBRE",$dato['nombre']);
-        $sql->bindParam(":PASSW",$dato['contrasena']);
+        $sql->bindParam(":APELLIDO",$dato['apellidos']);
+        $sql->bindParam(":CORREO",$dato['correo']);
+        $sql->bindParam(":PASSW",$clave);
         $sql->bindParam(":CODIGO",$dato['codigo']);
         $sql->bindParam(":ESTADO",$dato['estado']);
         $sql->execute();
         return $sql;
         }
+      
 
    
 

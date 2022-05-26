@@ -1,5 +1,5 @@
 <?php
-require_once "../Credenciales/credenciales.php";
+require_once "../credenciale/credenciales.php";
 // require_once "";
 
 class Principal {
@@ -21,17 +21,17 @@ class Principal {
     //Funcion de encriptado para las claves
     public function encryption($string){
     $output=FALSE;
-    $key=hash('sha256', SECRET_KEY);
-    $iv=substr(hash('sha256', SECRET_IV), 0, 16);
-    $output=openssl_encrypt($string, METHOD, $key, 0, $iv);
+    $key=hash('sha256', "superItca");
+    $iv=substr(hash('sha256', "037970"), 0, 16);
+    $output=openssl_encrypt($string,'AES-256-CBC', $key, 0, $iv);
     $output=base64_encode($output);
     return $output;
     }
     //funcion de desencriptar para claves
     public function decryption($string){
-    $key=hash('sha256', SECRET_KEY);
-    $iv=substr(hash('sha256', SECRET_IV), 0, 16);
-    $output=openssl_decrypt(base64_decode($string), METHOD, $key, 0, $iv);
+    $key=hash('sha256',"superItca");
+    $iv=substr(hash('sha256', "037970" ), 0, 16);
+    $output=openssl_decrypt(base64_decode($string), 'AES-256-CBC', $key, 0, $iv);
     return $output;
     }
        

@@ -1,4 +1,4 @@
-<form id="loguing" action="" method="post" enctype="multipart/form">
+<form id="crearUsa" action="" method="post" enctype="multipart/form">
 <div class="row text-center text-muted">
                 <div class="col-lg-6  ">
             <div class="mb-3 ">

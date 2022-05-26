@@ -8,7 +8,6 @@ if(isset($_POST['accion'])){
         $pass=$_POST["pass"];
         $bs=$_POST["baseDatos"];
   
-        // echo json_encode($servidor,$usuario,$pass);
                 //conexion con el servidor MySQL 
          $cnn = mysqli_connect($servidor,$usuario,$pass);
           if ($cnn) {
@@ -20,7 +19,7 @@ if(isset($_POST['accion'])){
                        
                         $cnn->select_db($_POST["baseDatos"]);
         
-                        $sql = explode(";",file_get_contents('../../BaseDatos/db/asset_control_db.sql'));
+                        $sql = explode(";",file_get_contents('http://localhost/Sistema_Activo/BaseDatos/db/asset_control_db.sql'));
                         foreach($sql as $query){
                        //  mysqli_query($query,$cnn);
                             if ($cnn->query($query) === TRUE) {
@@ -31,9 +30,7 @@ if(isset($_POST['accion'])){
                         if($resultado=="204"){ 
         
          //guardar la informacion en el archivo credenciales.php
-         
-         
-        $fp = fopen("../../partes/Credenciales/credenciales.php","w+"); //abrimos el archivo para escritura
+        $fp = fopen("../../partes/credenciale/credenciales.php","w+"); //abrimos el archivo para escritura
         $contenido="<?php".PHP_EOL;
         $contenido.="define(\"SERVIDOR\",\"$servidor\");".PHP_EOL;
         $contenido.="define(\"USUARIO\",\"$usuario\");".PHP_EOL;
@@ -43,23 +40,22 @@ if(isset($_POST['accion'])){
             
         fwrite($fp, "$contenido");
         fclose($fp);
-                            echo $resultado;
+        echo json_encode("error");
+
                         }else{
-                            echo "404";
+                            // echo "404";
                         }
         
                      }else{
-                        //  echo "406";
-                    // echo json_encode("aqui");
+                   
+                    echo json_encode("No se pudo Crear la base de datos ");
 
                      }
-        
-        
                 
                 }
                 else{
                  
-                    echo json_encode("error");
+                    echo json_encode("Conexion");
                 }
             
                 //creacion de la base de datos
@@ -68,22 +64,14 @@ if(isset($_POST['accion'])){
         
 
     }
+    else if($_POST["accion"]=="crearAdmin"){
+
+
+    }
+
 }
- // // echo json_encode("error"); 
 
 
-
-// Crear conexión
-// $conn = new mysqli ("localhost", "root");
-// // La conexión de prueba
-// if ($conn) {
-// echo json_encode("error");
-
-// }else{
-//     echo json_encode("luis");
-    
-// }
-// mysql_close($conn);
 
 
 ?>

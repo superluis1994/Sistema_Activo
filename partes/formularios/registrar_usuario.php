@@ -8,7 +8,7 @@
       <div class="row">
       <div class="col-4">
         <div class="col-12 text-center">
-        <img src="img/recursos/foto_default.jpg" id="img_visual" class="img-thumbnail" width="200" height="200"alt="...">
+        <img src="img/recursos/foto_default.jpg"  id="img_visual" class="img-thumbnail" width="200" height="200"alt="...">
       </div>
       <div class="col-12 text-center">
         <input type="file" name="foto"  class="form-control" id="foto"  aria-label="Upload" hidden>
