@@ -36,7 +36,7 @@
               <input type="password" name="contra" class="form-control" id="pass">
             </div>
             <div class="mb-3 text-center">
-              <button type="submit" class="btn btn-primary mt-4" id="btn_loguin" disabled>Submit</button>
+              <button type="submit" class="btn btn-primary mt-4" id="btn_loguin" disabled>Iniciar</button>
             </div>
             <div class="mb-3 text-center">
               <a class="" data-bs-toggle="modal" data-bs-target="#modal-rest">

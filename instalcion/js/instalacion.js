@@ -8,17 +8,16 @@ formt.addEventListener("submit", function(e){
         body: datos
     }).then(res=>res.json())
     .then(data=>{
-        alert(data);
-    //     if(data=="error"){
-            
-    //         alert("error")
-    //     }
-    //     else if(data=="success"){
-    //         alerta("success","Correcto","Registrado Correctamente")
-    //         document.getElementById("btn-paso").innerHTML=" <a href='instalacion.php?pagina=paso2.php' class='btn btn-primary mt-4'>Siguiente</a>";
+      
+        if(data=="error"){
+            alert("error")
+        }
+        else if(data=="success"){
+            alerta("success","Correcto","Registrado Correctamente")
+            document.getElementById("btn-paso").innerHTML=" <a href='instalacion.php?pagina=paso2.php' class='btn btn-primary mt-4'>Siguiente</a>";
   
   
-    //   }
+      }
     })
 
 })
@@ -47,3 +46,16 @@ formt.addEventListener("submit", function(e){
 //     })
 
 // })
+
+
+///////////////alerta////////////////////
+function alerta(icono,title,text){
+    Swal.fire({
+                      
+      icon: icono,
+      title: title,
+      text: text,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }

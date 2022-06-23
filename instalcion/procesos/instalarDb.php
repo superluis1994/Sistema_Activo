@@ -11,8 +11,7 @@ if(isset($_POST['accion'])){
                 //conexion con el servidor MySQL 
          $cnn = mysqli_connect($servidor,$usuario,$pass);
           if ($cnn) {
-              echo json_encode("sipi");
-              
+            
               //crear tabla
               $sql = "CREATE DATABASE IF NOT EXISTS ".$_POST["baseDatos"];
               if ($cnn->query($sql) === TRUE) {
@@ -38,12 +37,13 @@ if(isset($_POST['accion'])){
         $contenido.="define(\"BASEDATOS\",\"$bs\");".PHP_EOL;
          $contenido.="?>";
             
-        fwrite($fp, "$contenido");
+        fwrite($fp,$contenido);
         fclose($fp);
-        echo json_encode("error");
+        echo json_encode("success");
 
                         }else{
-                            // echo "404";
+                            echo json_encode("Error en la instalacion");
+
                         }
         
                      }else{
@@ -55,14 +55,9 @@ if(isset($_POST['accion'])){
                 }
                 else{
                  
-                    echo json_encode("Conexion");
+                    echo json_encode("Error de Conexion");
                 }
             
-                //creacion de la base de datos
-        
-            
-        
-
     }
     else if($_POST["accion"]=="crearAdmin"){
 

@@ -11,6 +11,16 @@ class sqlReg extends Principal {
        $count=$sql->fetchColumn();
        return $count;
     }
+    // obteneter datos usuario
+    public function Datos_usuario($dato){
+        $clave=Principal::encryption($dato["pass"]);
+        $sql=Principal::conectar()->prepare("SELECT * FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
+        $sql->bindParam(":CODIGO",$dato['codigo']); 
+        $sql->bindParam(":PASSWD",$clave); 
+       $sql->execute();
+       $dat=$sql->fetch(PDO::FETCH_ASSOC);
+       return $dat;
+    }
     // restablecer contraseña paso1
     public function restClave($dato){
         $sql=Principal::conectar()->prepare("SELECT * FROM  usuario WHERE id_user = :CODIGO ");
@@ -29,8 +39,14 @@ class sqlReg extends Principal {
     }
  
     //lista de usuarios
-    public function ListTipoUsuario(){
-        $sql=Principal::conectar()->prepare("SELECT * FROM roles;");
+    public function ListTipoUsuario($dato){
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
+       $sql->execute();
+       $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+       return $dat;
+    }
+    public function ListJefes($dato){
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
        $sql->execute();
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;
@@ -53,10 +69,23 @@ class sqlReg extends Principal {
         $sql->execute();
         return $sql;
         }
+          //insertar permisos
+       public function PermisosInsert($datos){
+       $sql=Principal::conectar()->prepare("INSERT INTO permisos (registrar_usu, list_usu, conexion, mover_activos, list_movimiento_activo, regist_producto, mostr_producto, regist_local,mostr_local, id_user)
+      VALUES ('".$datos['registrar_usu']."','".$datos['list_usu']."','".$datos['conexion']."','".$datos['mover_activo']."','".$datos['list_movimiento_activos']."','".$datos['regist_producto']."','".$datos['mostr_producto']."','".$datos['regist_local']."','".$datos['mostr_local']."','".$datos['codigo']."');");
+       $sql->execute();
+       return $sql;
       
-
+    }
+      
+    public function List($dato){
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]."  WHERE id_user =".$dato["id"]);
+        $sql->execute();
+        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+        return $dat;
+     }
    
-
+    
 }
 
 

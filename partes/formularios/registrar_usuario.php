@@ -51,11 +51,11 @@
           <div class="12 text-center">
             
             <button type="submit" id="btn_form" class="btn btn-primary mt-3 btn-xs">Registrar</button>
-          </form>
           </div>
         </div>
       </div>
-
+      
+    </form>
         <div class="mb-3"></div>
 
       </div>

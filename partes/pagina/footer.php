@@ -8,6 +8,7 @@
     <!-- <script src="js/carousel.js"></script> -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/menu_permisos/menu_permiso.js"></script>
+    <script src="js/dselect.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> -->
     <?php 
@@ -17,7 +18,18 @@
     if($_GET["pagina"] == "registrar_usuario.php"){
 
         echo "<script src='./js/form_usu.js'></script>";
-    } 
+
+    } elseif($_GET["pagina"] == "pefilDatos.php"){
+      echo "<script src='./js/form_datos.js'></script>";
+        
+    }elseif($_GET["pagina"] == "registrar_local.php"){
+     
+      echo "<script src='./js/local/regis_local.js'></script>";
+    }
+    elseif($_GET["pagina"] == "mover_activo.php"){
+     
+      echo "<script src='./js/mover_activos/mover_activo.js'></script>";
+    }
 }
     ?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

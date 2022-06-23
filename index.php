@@ -4,16 +4,6 @@
 
       session_start();
         require_once "partes/menu/menu_admin.php";
-
-      // if(@$_SESSION["session"][7]=="admin"){
-      //   require_once"partes/menu/menu_admin.php";
-
-      // }elseif(@$_SESSION["nombre de la session"][7]=="admin"){
-      //   require_once"partes/menu/menu_admin.php";
-      // }
-      // else{
-      //   require_once"partes/menu/menu_admin.php";
-      // }
       ?>
 
 <div class="container-fluid">

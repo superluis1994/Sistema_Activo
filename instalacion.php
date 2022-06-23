@@ -61,7 +61,7 @@
 if(isset($_GET["pagina"])){
 
     if($_GET["pagina"]=="paso2.php"){
-
+    echo"<script src='instalcion/js/instalacionPaso2.js'></script>";
     }
 }else{
     echo"<script src='instalcion/js/instalacion.js'></script>";

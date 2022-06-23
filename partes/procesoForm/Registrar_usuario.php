@@ -11,7 +11,7 @@ if(isset($_POST["accion"])){
   
   if($_POST["accion"]=='tipoUserLits'){
          
-      $list=$procesoDatos->ListTipoUsuario();
+      $list=$procesoDatos->ListTipoUsuario("roles");
       $resl.="<option selected>Open this select menu</option>";
       foreach($list as $key => $value){
       
@@ -20,9 +20,10 @@ if(isset($_POST["accion"])){
         
       }
       echo json_encode($resl);
-  }
-  else if($_POST["accion"]=='RegistrarUsuario'){
-
+    }
+    else if($_POST["accion"]=='RegistrarUsuario'){
+      
+      
 
        $foto="img/recursos/foto_default.jpg";
     if($_FILES['foto']["name"] != null){
@@ -57,9 +58,49 @@ if(isset($_POST["accion"])){
       'contrasena'=>$_POST["passw"],
       'codigo'=>$_POST["codigo"],
       'estado'=>$_POST["tipo"]
-  ];
-     $insert=$procesoDatos->AddUsuario($dato);
-    echo json_encode($insert);
+    ];
+    $insert=$procesoDatos->AddUsuario($dato);
+
+     $permisosUser=[];
+     if($insert){
+       if($_POST["tipo"]==1){
+         $permisosUser=[
+           'codigo'=>$_POST["codigo"],
+           'registrar_usu'=>"on",
+           'list_usu'=>"on",
+           'conexion'=>"on",
+           'mover_activo'=>"on",
+           'list_movimiento_activos'=>"on",
+           'regist_producto'=>"on",
+           'mostr_producto'=>"on",
+           'regist_local'=>"on",
+           'mostr_local'=>"on"
+          ];
+          
+        }else if($_POST["tipo"]==2){
+      $permisosUser=[
+        'codigo'=>$_POST["codigo"],
+        'registrar_usu'=>"off",
+        'list_usu'=>"off",
+        'conexion'=>"off",
+        'mover_activo'=>"off",
+        'list_movimiento_activos'=>"off",
+        'regist_producto'=>"on",
+        'mostr_producto'=>"on",
+        'regist_local'=>"on",
+        'mostr_local'=>"on"
+      ];
+      
+    }
+
+    $insertPermiso=$procesoDatos->PermisosInsert($permisosUser);
+  }
+
+  
+  echo json_encode("success");
+
+
+   
 
   }
   else if($_POST["accion"]=='validarUser'){

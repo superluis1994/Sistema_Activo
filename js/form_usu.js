@@ -55,7 +55,6 @@ if( document.getElementById("nombre").classList.contains("is-valid") &&
      body: datos
    }).then(res=>res.json())
      .then(data=>{
-       alert(data);
        if(data=="error"){
    
          alerta("error","Error","Llenar todos los campos")

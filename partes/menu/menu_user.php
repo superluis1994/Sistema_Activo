@@ -1,4 +1,8 @@
 <!-- menu inicio -->
+<?php
+require_once "../conexion/sql.php";
+$procesoDatos= new sqlReg ();
+?>
 <h1>user</h1>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg  bg-body rounded">
         <div class="container-fluid">
