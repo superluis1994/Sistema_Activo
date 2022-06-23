@@ -1,5 +1,8 @@
 
       <?php 
+      
+      require_once "partes/credenciale/datos.php";
+    
       require_once "partes/pagina/header.php";
 
       session_start();
