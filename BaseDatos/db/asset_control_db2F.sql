@@ -173,7 +173,7 @@ insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`acc
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`` PROCEDURE `crubusuario`(
+CREATE  PROCEDURE `crubusuario`(
 IN accion INTEGER,
 IN _id_user INT,
 IN _passw VARCHAR(255),
@@ -196,14 +196,14 @@ WHERE id_user = _id_user;
 
 END IF;
 
-END */$$
+END $$
 DELIMITER ;
 
 /* Procedure structure for procedure `Sel_Elim_usuario` */
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`` PROCEDURE `Sel_Elim_usuario`(
+CREATE  PROCEDURE `Sel_Elim_usuario`(
 IN accion INTEGER,
 IN _id_user INT)
 BEGIN
@@ -215,7 +215,7 @@ IF accion = 2 THEN
 SELECT * FROM usuario WHERE id_user = _id_user;
 END IF;
 
-END */$$
+END $$
 DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
