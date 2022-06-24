@@ -30,6 +30,10 @@
      
       echo "<script src='./js/mover_activos/mover_activo.js'></script>";
     }
+    elseif($_GET["pagina"] == "list_usuarios.php"){
+     
+      echo "<script src='./js/usuario/list_usuario.js'></script>";
+    }
 }
     ?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

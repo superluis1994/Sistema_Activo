@@ -4,6 +4,7 @@ $resl="";
 // echo json_encode("si");
 require_once "../conexion/sql.php";
 $procesoDatos= new sqlReg ();
+session_start();
 
 // acciones de registrar usuario
 if(isset($_POST["accion"])){
@@ -109,6 +110,59 @@ if(isset($_POST["accion"])){
       echo json_encode($resul); 
 
   }
+  else if($_POST["accion"]=='list_usuario_table'){
+    $list_user=$procesoDatos->ListTipoUsuario("usuario limit 0,".$_POST["cantida"].";");
+    $res="";
+    foreach($list_user as $key => $value){
+      
+      $res.="<tr>";
+      $res.="<th scope='row' class='text-center'> <img src='".$value["photo"]."' alt='' height='40' width='40'> </th>
+      <td>".$value["id_user"]."</td>
+      <td>".$value["nom"]."</td>
+      <td>".$value["apellidos"]."</td>
+      <td>".$value["correo"]."</td>";
+
+      if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
+
+        if($value["account_status_id"]==1){
+          
+          $res.="<td><button type='button' value='".$value["id_user"].",".$value["account_status_id"]."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>";
+        }
+        else if($value["account_status_id"]==2){
+          $res.="<td><button type='button' value='".$value["id_user"].",".$value["account_status_id"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>";
+
+        }
+        $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"]."' class='btn btn-primary'>Modificar</button></td>";
+
+      }
+     
+      $res.="</tr>";      
+    }
+
+    echo json_encode($res);
+
+  }
+  else if($_POST["accion"]=='estado'){
+
+    $val1=filter_var($_POST["stC"], FILTER_SANITIZE_NUMBER_INT );
+    $val2=filter_var($_POST["stV"], FILTER_SANITIZE_NUMBER_INT );
+    $estatus=0;
+    if($val2==1){
+        $estatus=2;
+    }
+    if($val2==2){
+      $estatus=1;
+  }
+    $datos=[
+      'carnet'=>$val1,
+      'estado'=>$estatus
+    ];
+    $rest=$procesoDatos->actualizarEstadoUser($datos);
+    echo json_encode($rest);
+
+  }
+  
+
 
   
 }

@@ -11,7 +11,10 @@ class sqlReg extends Principal {
        $count=$sql->fetchColumn();
        return $count;
     }
-    // obteneter datos usuario
+/////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////parte del usuario////////////////////////////////////////////////////    
+////////////////////////////////////////////////////////////////////////////////////////////////
+// obteneter datos usuario
     public function Datos_usuario($dato){
         $clave=Principal::encryption($dato["pass"]);
         $sql=Principal::conectar()->prepare("SELECT * FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
@@ -40,7 +43,7 @@ class sqlReg extends Principal {
  
     //lista de usuarios
     public function ListTipoUsuario($dato){
-        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato);
        $sql->execute();
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;
@@ -50,6 +53,14 @@ class sqlReg extends Principal {
        $sql->execute();
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;
+    }
+    public function actualizarEstadoUser($dato){
+       $sql=Principal::conectar()->prepare("UPDATE usuario SET account_status_id = ".$dato["estado"]." WHERE id_user =".$dato["carnet"]." ;");
+    //    $sql->bindParam(":CARNET",$dato['carnet']); 
+    //    $sql->bindParam(":ESTADO",$dato['estado']);
+       $sql->execute();
+    //    $f=$sql->rowCount();
+       return $sql;
     }
     public function AddUsuario($dato){
         //funcion 1 = insertar
@@ -77,7 +88,7 @@ class sqlReg extends Principal {
        return $sql;
       
     }
-      
+     
     public function List($dato){
         $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]."  WHERE id_user =".$dato["id"]);
         $sql->execute();

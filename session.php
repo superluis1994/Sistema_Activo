@@ -4,10 +4,10 @@
 </form>
 <?php
 
-// session_start();
+session_start();
 // echo"<pre>";
 // var_dump($_SESSION["datos"]);
-// var_dump($_SESSION["datos"][$_COOKIE["id"]]);
+    var_dump($_SESSION["datos"][$_COOKIE["id"]][5]);
 // echo"</pre>";
 
 // echo"<br><br>";
