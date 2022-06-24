@@ -44,6 +44,30 @@ $("#list_resul").on ("click","#btn-statu",function(e)
     
     
 })
+///////////buscardor de usuarios con filtros ///////////////////
+document.getElementById("btn-buscar").addEventListener("keyup",function(e){
+fil=document.querySelector('input[name=tipoBus]:checked').value
+ 
+    if(/^[A-Za-z0-9\s]+$/g.test(e.target.value)){
+       
+         //envio los datos para la actualizacion del usario
+         list= new FormData()
+         list.append("accion","buscarUser")
+         list.append("busqueda",e.target.value)
+         list.append("filtro",fil)
+
+         fetch("partes/procesoForm/Registrar_usuario.php",{
+         method: 'POST',
+         body: list
+         }).then(res=>res.json())
+         .then(data=>{
+            document.getElementById("list_resul").innerHTML=data;
+        //    console.log(data);
+         })
+    }else{
+        list_user()
+    }
+})
 
 // contrasena aleatoria
 document.getElementById("btn_generarMob").addEventListener("click",function(){

@@ -48,6 +48,14 @@ class sqlReg extends Principal {
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;
     }
+     //lista de usuarios
+     public function busquedaFiltro($dato){
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["filtro"]." like '".$dato["busqueda"]."%'");
+       $sql->execute();
+       $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+       return $dat;
+  
+    }
     public function ListJefes($dato){
         $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
        $sql->execute();

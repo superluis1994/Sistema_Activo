@@ -9,24 +9,25 @@
                             height="200" alt="...">
                     </div>
                 </div>
+              </form>
 
                 <div class="col-11">
-                    <div class="row justify-content-end">
-                        <div class="row justify-content-end"> 
-                        <div class="col-4">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1" ckeck="checked">Carnet</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Nombre</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox3" value="option3" >
-                                <label class="form-check-label" for="inlineCheckbox3">Apellido</label>
-                              </div>
-                            </div>
+                  <div class="row justify-content-end">
+                    <div class="row justify-content-end"> 
+                      <div class="col-4">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="tipoBus" id="tipoBus" value="carnet" checked>
+                          <label class="form-check-label" for="inlineCheckbox1">Carnet</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="tipoBus" id="tipoBus" value="nombre">
+                          <label class="form-check-label" for="inlineCheckbox2">Nombre</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="tipoBus" id="tipoBus" value="apellido" >
+                          <label class="form-check-label" for="inlineCheckbox3">Apellido</label>
+                        </div>
+                      </div>
                             <div class="col-5">
                                 <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario" required/>
                           </div>
@@ -75,14 +76,10 @@
                 </div>
                 </div>
 
-        </form>
     </div>
 </div>
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button> -->
+
 
 <!-- Modal -->
 <div class="modal fade" id="mdMuser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
