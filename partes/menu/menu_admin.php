@@ -11,10 +11,12 @@
             
           
           </div>
+            
+         
           <!-- <a class='navbar-brand' href='#'> <button type='submit'>enviar</button> </a> -->
           <?php
-          if(isset($_COOKIE["id"])){
-            echo "<a type='button' id='btn_perfil' href='index.php?pagina=pefilDatos.php' class='btn btn-danger btnOcul'>Perfil</a>";
+          if(@isset($_SESSION['datos'][$_COOKIE['id']])){
+            // echo "<a type='button' id='btn_perfil' href='index.php?pagina=pefilDatos.php' class='btn btn-danger btnOcul'>Perfil</a>";
           }else{
             echo "<a type='button' id='' href='loguin.php' class='btn btn-danger btnOcul'>LOGUIN</a>";
 

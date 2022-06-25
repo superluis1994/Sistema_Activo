@@ -89,6 +89,19 @@ foreach($permiso as  $key => $value){
     }
 
 }
+
+if(isset($_COOKIE["id"])){
+
+    $menu.=" <div class='dropdown offset-2' >
+        <button class='btn btn-danger dropdown-toggle' type='button' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'>
+            Perfil
+        </button>
+        <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
+            <li><a class='dropdown-item' href='index.php?pagina=pefilDatos.php'>Datos Perfil</a></li>
+            <li><a class='dropdown-item' id='btn-session' >Logout </a></li>
+        </ul>
+    </div>";
+}
 $menu.="</ul>";
 
 echo json_encode($menu);

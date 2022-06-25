@@ -12,7 +12,12 @@
 
   
     <?php 
-    
+
+
+if(isset($_SESSION['datos'][$_COOKIE['id']])){
+  echo "<script src='./js/cerrarSession.js'></script>";
+      
+}
     if(isset($_GET["pagina"]))
     {
     if($_GET["pagina"] == "registrar_usuario.php"){
@@ -34,6 +39,7 @@
      
       echo "<script src='./js/usuario/list_usuario.js'></script>";
     }
+
 }
     ?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
