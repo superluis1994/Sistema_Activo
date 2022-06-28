@@ -5,10 +5,10 @@
 <?php
 
 session_start();
-// echo'<pre>';
-var_dump($_SESSION['datos']);
+// // echo'<pre>';
+// var_dump($_SESSION['datos']);
 // unset($_SESSION['datos'][$_COOKIE['id']]);
-    // var_dump($_SESSION['datos'][$_COOKIE['id']][5]);
+    var_dump($_SESSION['datos'][$_COOKIE['id']][0]);
 // echo'</pre>';
 
 // if(isset($_SESSION['datos'][$_COOKIE['id']])){
@@ -40,6 +40,18 @@ if(isset($_POST['save'])){
      echo $tt;
 
 }
+
+
+
+// $mainstr = "This: is a sim'ple text;";
+// echo "Text before remove: \n" . $mainstr, "\n";
+// echo"<br>";
+// echo "\n\nText after remove: \n" .$replacestr = remove_sp_chr($mainstr);
+// function remove_Caracteres($str)
+// {
+//     $result = str_replace(array("#", ":","'", ";"), '', $str);
+//     return $result;
+// }
 
 
 ?>

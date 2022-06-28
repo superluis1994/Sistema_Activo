@@ -32,6 +32,23 @@ class sqlReg extends Principal {
        $dat=$sql->fetch(PDO::FETCH_ASSOC);
        return $dat;
     }
+   //  validar clave actual
+   public function valClaveActual($dato){
+      $clave=Principal::encryption($dato["passw"]);
+      $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM usuario  WHERE id_user =".$dato["id"]." && passw = '".$clave."';");
+      $sql->execute();
+      $count=$sql->fetchColumn();
+      return $count;
+   }
+    //  Cambiar  clave actual
+    public function CambiarClaveActual($dato){
+      $clave=Principal::encryption($dato["passw"]);
+      $sql=Principal::conectar()->prepare("UPDATE usuario SET passw = '".$clave."' WHERE id_user = '".$dato["id"]."';");
+      $sql->execute();
+      $count=$sql->rowCount();
+      return $count;
+   }
+
     // validarUsuario
     public function validarUsuario($dato){
         $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  usuario WHERE id_user = :CODIGO ");
