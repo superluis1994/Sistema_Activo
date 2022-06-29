@@ -39,6 +39,10 @@ if(isset($_SESSION['datos'][$_COOKIE['id']])){
      
       echo "<script src='./js/usuario/list_usuario.js'></script>";
     }
+    elseif($_GET["pagina"] == "list_conexiones.php"){
+     
+      echo "<script src='./js/conexiones/list_conexiones.js'></script>";
+    }
 
 }
     ?>

@@ -5,7 +5,7 @@
                 <div class="col-1">
                         <div class="col-12 justify-content-center">
                         <p class="display-5">Conexiones</p>
-                        <img src="img/recursos/users.png" id="img_visual" class="" width="200"
+                        <img src="img/recursos/conexion.png" id="img_visual" class="" width="200"
                             height="200" alt="...">
                     </div>
                 </div>
@@ -37,33 +37,14 @@
                                   <thead>
                                       <tr>
                                           <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Codigo</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Hora</th>
+                              
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                  <th scope="row">1</th>
-                                  <td>Mark</td>
-                                  <td>Otto</td>
-                                  <td>@mdo</td>
-                                  <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                </tr>
+                            <tbody id="listConexiones">
+                              
                             </tbody>
                         </table>
                     </div>

@@ -16,8 +16,9 @@ if(!$_POST["codigo"]=="" && ! $_POST["contra"]=="" ){
 
     $results=$procesoDatos->loguiar($dato);
     if($results==1){
+        // genero el token
         $token=generar_token_seguro(20);
-
+        //genero la session
         if(isset($_SESSION["datos"])){
             $datosUsuario=$procesoDatos->Datos_usuario($dato);
             $user=$_SESSION["datos"];
@@ -42,7 +43,7 @@ if(!$_POST["codigo"]=="" && ! $_POST["contra"]=="" ){
             $user[$token] = $dat;
             $_SESSION["datos"] = $user;
         }
-    // creo el token para identificar los datos de la session 
+    // creo el cookies con el token para identificar los datos de la session 
         setcookie(
             $name= "id",
             $value = $token,
@@ -52,10 +53,27 @@ if(!$_POST["codigo"]=="" && ! $_POST["contra"]=="" ){
             $secure = false,
             $httponly = false);
 
-        
+    // inserto los datos de la conexion del usuario 
+    if(isset($_SESSION['datos'][$_COOKIE['id']])){
 
+        date_default_timezone_set('america/el_salvador');
+      
+        $datoConex=[
+            'codigo'=>$codigo,
+            'fecha'=>date('Y-m-d-'),
+            'hora'=>date('h:i:s')
+        ];
+    
+
+        $regisConex=$procesoDatos->registrarConexion($datoConex);
+
+        // echo json_encode($regisConex);
     }
-    echo json_encode($results);
+    
+    
+    
+}
+echo json_encode($results);
 
    
 }

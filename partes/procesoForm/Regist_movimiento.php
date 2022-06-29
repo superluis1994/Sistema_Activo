@@ -14,7 +14,7 @@ if(isset($_POST["accion"])){
   }
   else if($_POST["accion"]=="tipo_movimiento"){
 
-    $list=$procesoDatos->ListJefes("tipo_movimiento");
+    $list=$procesoDatos->ListGenerica("tipo_movimiento");
     $resl.="<option value='0' selected>SELECCIONAR....</option>";
     foreach($list as $key => $value){
     
@@ -27,7 +27,7 @@ if(isset($_POST["accion"])){
   }
   else if($_POST["accion"]=="user_entrega"){
 
-    $list=$procesoDatos->ListJefes("usuario");
+    $list=$procesoDatos->ListGenerica("usuario");
     $resl.="<option value='0' selected>SELECCIONAR....</option>";
     foreach($list as $key => $value){
     
@@ -40,7 +40,7 @@ if(isset($_POST["accion"])){
   }
   else if($_POST["accion"]=="list_local"){
 
-    $list=$procesoDatos->ListJefes("local");
+    $list=$procesoDatos->ListGenerica("local");
     $resl.="<option value='0' selected>SELECCIONAR....</option>";
     foreach($list as $key => $value){
     

@@ -9,6 +9,16 @@ session_start();
 // var_dump($_SESSION['datos']);
 // unset($_SESSION['datos'][$_COOKIE['id']]);
     var_dump($_SESSION['datos'][$_COOKIE['id']][0]);
+    // if(isset($_SESSION['datos'][$_COOKIE['id']])){
+    //     echo "si existe";
+
+    // }else{
+    //     echo "no existe";
+          
+    // }
+    // date_default_timezone_set('america/el_salvador');
+    // echo date('m-d-Y');
+    // echo "<br> ". date('h:i:s');
 // echo'</pre>';
 
 // if(isset($_SESSION['datos'][$_COOKIE['id']])){

@@ -1,5 +1,6 @@
 
       <?php 
+        date_default_timezone_set('america/el_salvador');
       
       require_once "partes/credenciale/datos.php";
     

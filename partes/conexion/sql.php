@@ -11,6 +11,14 @@ class sqlReg extends Principal {
        $count=$sql->fetchColumn();
        return $count;
     }
+     //  Registrar conexion de usuario loguiado
+     public function registrarConexion($dato){
+      $sql=Principal::conectar()->prepare("INSERT INTO conexiones(id_user, fecha, hora)
+      VALUES('".$dato["codigo"]."','".$dato["fecha"]."','".$dato["hora"]."');");
+      $sql->execute();
+      $count=$sql->rowCount();
+      return $count;
+   }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////parte del usuario////////////////////////////////////////////////////    
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,7 +73,7 @@ class sqlReg extends Principal {
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;
     }
-     //lista de usuarios
+     //lista de usuarios por busqueda de filtros
      public function busquedaFiltro($dato){
         $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["filtro"]." like '".$dato["busqueda"]."%'");
        $sql->execute();
@@ -73,7 +81,7 @@ class sqlReg extends Principal {
        return $dat;
   
     }
-    public function ListJefes($dato){
+    public function ListGenerica($dato){
         $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
        $sql->execute();
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);

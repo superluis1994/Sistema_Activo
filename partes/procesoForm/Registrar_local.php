@@ -14,7 +14,7 @@ if(isset($_POST["accion"])){
   }
   else if($_POST["accion"]=="list_jefes"){
 
-    $list=$procesoDatos->ListJefes("usuario");
+    $list=$procesoDatos->ListGenerica("usuario");
     $resl.="<option selected>SELECCIONAR....</option>";
     foreach($list as $key => $value){
     

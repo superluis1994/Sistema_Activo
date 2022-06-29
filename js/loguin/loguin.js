@@ -53,7 +53,6 @@ fetch('partes/procesoForm/loguin.php',{
     body: datos_log
   }).then(res=>res.json())
     .then(data=>{
- 
       if(data==0){
   
         alerta("error","Error","Datos incorrectos")
