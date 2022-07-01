@@ -18,20 +18,16 @@
           <div class="mb-3 ">
           
             <label for="nombre" class="form-label">Codigo</label>
-            <input type="text" name='Lcodigo' class="form-control " id="Lcodigo"  title="" placeholder="" required/>
+            <input type="text" name='Lcodigo' class="form-control inputLocal" id="Lcodigo"  title="" placeholder="" required/>
           </div>
           <div class="mb-3">
 
             <label for="apellido" class="form-label">Nombre de Local</label>
-            <input type="text" name='Lnombre' class="form-control" id="Lnombre"  title="" placeholder="" required/>
+            <input type="text" name='Lnombre' class="form-control inputLocal" id="Lnombre"  title="" placeholder="" required/>
           </div>
-          <!-- <div class="col-5">
-            <label for="codigo" class="form-label">Ubicacion</label>
-            <input type="text" name="Lubicacion" class="form-control" id="Lubicacion" required/>
-          </div> -->
           <div class="mb-3">
             <label for="text" class="form-label">Resposable de Area</label> 
-            <select name="select_box" class="form-select" id="jef">
+            <select name="select_box" class="form-select inputLocal" id="jef">
           </select>
             
           </div>

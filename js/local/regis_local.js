@@ -18,7 +18,7 @@ formulario.addEventListener("submit", function(e){
 
 if( document.getElementById("Lcodigo").classList.contains("is-valid") &&
    document.getElementById("Lnombre").classList.contains("is-valid") &&
-   document.getElementById("Ljefe").classList.contains("is-valid"))
+   document.getElementById("jef").classList.contains("is-valid") )
    {
 
    fetch('partes/procesoForm/Registrar_local.php',{
@@ -26,15 +26,12 @@ if( document.getElementById("Lcodigo").classList.contains("is-valid") &&
      body: datos
    }).then(res=>res.json())
      .then(data=>{
-       if(data=="error"){
-   
-         alerta("error","Error","Llenar todos los campos")
-       }
-       else if(data=="success"){
-        alerta("success","Correcto","Registrado Correctamente")
-   
-   
-       }
+      alerta(data.icono,data.titulo,data.texto)
+      if(data.icono == "success"){
+        $('.inputLocal').removeClass("is-valid is-invalid")
+        formulario.reset()
+      }
+      
      })
 
 }else{
@@ -46,15 +43,14 @@ if( document.getElementById("Lcodigo").classList.contains("is-valid") &&
 }) 
 validCampo("Lcodigo","keyup","letrasynumeros")
 validCampo("Lnombre","keyup","letras")
-validCampo("Ljefe","keyup","numero")
+validCampo("jef","change","numero")
 
 
 function validCampo(nom,evento,tipo){
   
-    document.getElementById(nom).addEventListener(evento,function(e){
-      // alert(e.target.value)
+    document.getElementById(nom).addEventListener(evento, function(e){
       if(tipo=="letras"){
-            if(!/^[A-Za-z\s]+$/g.test(e.target.value)){
+            if(!/^[A-Za-z0-9\s]+$/g.test(e.target.value) || e.target.value.trim()==""){
               e.target.classList.remove("is-valid")
               e.target.classList.add("is-invalid")
             }else{
@@ -66,56 +62,36 @@ function validCampo(nom,evento,tipo){
   
       }else if(tipo=="numero"){
   
-        if(!/^[0-9\s]+$/g.test(e.target.value)){
-          // validar si el codigo exite
-          e.target.classList.remove("is-valid")
-          e.target.classList.add("is-invalid")
-          
+        if(e.target.value != 0){
+          e.target.classList.add("is-valid")
+          e.target.classList.remove("is-invalid")
           
         } else{
-            
-            e.target.classList.add("is-valid")
-            e.target.classList.remove("is-invalid")
+          e.target.classList.remove("is-valid")
+          e.target.classList.add("is-invalid")
   
         }
       }
-      else if(tipo=="jefe"){
-  
-        if(!/^[0-9\s]+$/g.test(e.target.value)){
-          // validar si el codigo exite
-          e.target.classList.remove("is-valid")
-          e.target.classList.add("is-invalid")
-          
-          
-        } else{
-          codigo= new FormData();
-          codigo.append("accion","validarUser")
-          codigo.append("codigo",e.target.value)
-          fetch('partes/procesoForm/Registrar_usuario.php',{
+      
+      else if(tipo=="letrasynumeros"){
+        if(/^[A-Za-z0-9\-]+$/g.test(e.target.value) || !e.target.value.trim()==""){
+         
+          datos= new FormData();
+          datos.append("accion","validarLocal")
+          datos.append("codigo",e.target.value)
+          fetch('partes/procesoForm/Registrar_local.php',{
             method: 'POST',
-            body: codigo
+            body: datos
           }).then(res=>res.json())
             .then(data=>{
-  
-              // alert(data)
-              if(data==0){
-                e.target.classList.remove("is-invalid")
-                e.target.classList.add("is-valid")
-              }else{
-                e.target.classList.remove("is-valid")
-                e.target.classList.add("is-invalid")
-              }
+              e.target.classList.remove(data.opcion1)
+              e.target.classList.add(data.opcion2)
             })
-  
-        }
-      }
-      else if(tipo=="letrasynumeros"){
-        if(!/^[A-Za-z 0-9\s]+$/g.test(e.target.value)){
-          e.target.classList.remove("is-valid")
-          e.target.classList.add("is-invalid")
+
+
         }else{
-          e.target.classList.remove("is-invalid")
-          e.target.classList.add("is-valid")
+          e.target.classList.add("is-invalid")
+          e.target.classList.remove("is-valid")
   
         }
       }
@@ -129,8 +105,8 @@ function validCampo(nom,evento,tipo){
       icon: icono,
       title: title,
       text: text,
-      showConfirmButton: false,
-      timer: 1500
+      showConfirmButton: true,
+ 
     })
   }
 

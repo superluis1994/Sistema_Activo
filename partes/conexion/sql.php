@@ -22,7 +22,8 @@ class sqlReg extends Principal {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////parte del usuario////////////////////////////////////////////////////    
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// obteneter datos usuario
+
+   // obteneter datos usuario
     public function Datos_usuario($dato){
         $clave=Principal::encryption($dato["pass"]);
         $sql=Principal::conectar()->prepare("SELECT * FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
@@ -89,8 +90,6 @@ class sqlReg extends Principal {
     }
     public function actualizarEstadoUser($dato){
        $sql=Principal::conectar()->prepare("UPDATE usuario SET account_status_id = ".$dato["estado"]." WHERE id_user =".$dato["carnet"]." ;");
-    //    $sql->bindParam(":CARNET",$dato['carnet']); 
-    //    $sql->bindParam(":ESTADO",$dato['estado']);
        $sql->execute();
     //    $f=$sql->rowCount();
        return $sql;
@@ -128,6 +127,22 @@ class sqlReg extends Principal {
         $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
         return $dat;
      }
+   //   seccion local
+   public function insertLocal($dato){
+      $sql=Principal::conectar()->prepare("INSERT INTO `local` (id_local, local_name, jefe_local, estatus, fecha_regis, registradoX)
+      VALUES('".$dato["codigo"]."','".$dato["nombre"]."','".$dato["responsable"]."','".$dato["estatus"]."','".$dato["fecha"]."','".$dato["id_user"]."');");
+      $sql->execute();
+      $dat=$sql->rowCount();
+      return $dat;
+   }
+     // validarUsuario
+     public function validarLocal($dato){
+      $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  local WHERE id_local = :CODIGO ");
+      $sql->bindParam(":CODIGO",$dato); 
+     $sql->execute();
+     $count=$sql->fetchColumn();
+     return $count;
+  }
    
     
 }

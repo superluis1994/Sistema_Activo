@@ -14,7 +14,7 @@
     <?php 
 
 
-if(isset($_SESSION['datos'][$_COOKIE['id']])){
+if(isset($_SESSION['datos'][@$_COOKIE['id']])){
   echo "<script src='./js/cerrarSession.js'></script>";
       
 }

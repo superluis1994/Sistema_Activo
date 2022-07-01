@@ -3,7 +3,7 @@ session_start();
 require_once "../conexion/sql.php";
 $procesoDatos= new sqlReg ();
 
-$rol=$_SESSION["datos"][$_COOKIE["id"]][0];
+@$rol=$_SESSION["datos"][$_COOKIE["id"]][0];
 
 $dato=[
     'tabla'=>"permisos",
