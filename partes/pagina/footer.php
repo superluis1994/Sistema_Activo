@@ -31,6 +31,10 @@ if(isset($_SESSION['datos'][@$_COOKIE['id']])){
      
       echo "<script src='./js/local/regis_local.js'></script>";
     }
+    elseif($_GET["pagina"] == "list_local.php"){
+     
+      echo "<script src='./js/local/list_local.js'></script>";
+    }
     elseif($_GET["pagina"] == "mover_activo.php"){
      
       echo "<script src='./js/mover_activos/mover_activo.js'></script>";
@@ -42,6 +46,10 @@ if(isset($_SESSION['datos'][@$_COOKIE['id']])){
     elseif($_GET["pagina"] == "list_conexiones.php"){
      
       echo "<script src='./js/conexiones/list_conexiones.js'></script>";
+    }
+    elseif($_GET["pagina"] == "list_productos.php"){
+     
+      echo "<script src='./js/list_activos/list_activo.js'></script>";
     }
 
 }

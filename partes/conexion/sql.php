@@ -100,14 +100,15 @@ class sqlReg extends Principal {
         // CALL crubusuario(funcion,codigo,"Contraseña","nombre","foto",estatus,rol o tipo usuario)
        
         $clave=Principal::encryption($dato["contrasena"]);
-        $sql=Principal::conectar()->prepare("CALL crubusuario(:ACCION,:CODIGO,:PASSW,:NOMBRE,:APELLIDO,:CORREO,:FOTO,1,:ESTADO)");
+        $sql=Principal::conectar()->prepare("INSERT INTO usuario (id_user, passw, nom,apellidos,correo, photo, account_status_id, rol_id)
+        VALUES(:CODIGO,:PASSW,:NOMBRE,:APELLIDO,:CORREO,:FOTO,:ESTADO,:TIPO)");
         $sql->bindParam(":FOTO",$dato['foto']); 
-        $sql->bindParam(":ACCION",$dato['accion']); 
         $sql->bindParam(":NOMBRE",$dato['nombre']);
         $sql->bindParam(":APELLIDO",$dato['apellidos']);
         $sql->bindParam(":CORREO",$dato['correo']);
         $sql->bindParam(":PASSW",$clave);
         $sql->bindParam(":CODIGO",$dato['codigo']);
+        $sql->bindParam(":TIPO",$dato['tipo']);
         $sql->bindParam(":ESTADO",$dato['estado']);
         $sql->execute();
         return $sql;
@@ -133,6 +134,12 @@ class sqlReg extends Principal {
       VALUES('".$dato["codigo"]."','".$dato["nombre"]."','".$dato["responsable"]."','".$dato["estatus"]."','".$dato["fecha"]."','".$dato["id_user"]."');");
       $sql->execute();
       $dat=$sql->rowCount();
+      return $dat;
+   }
+   public function tablas($dato){
+      $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." LIMIT ".$dato["inferior"].", ".$dato["superior"].";");
+      $sql->execute();
+      $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
       return $dat;
    }
      // validarUsuario

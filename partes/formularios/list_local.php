@@ -28,7 +28,7 @@
                               </div>
                             </div>
                             <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario" required/>
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario"/>
                           </div>
                         </div>
                           <div class="col-10 mt-2">
@@ -36,51 +36,23 @@
                               <table class="table-bordered table table-striped table-hover">
                                   <thead>
                                       <tr>
-                                          <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Handle</th>
+                                          <th scope="col">Id</th>
+                                <th scope="col">Nombre del local </th>
+                                <th scope="col">Jefe de local</th>
+                                <th scope="col">Fecha de Registro</th>
+                                <th scope="col">Registrado por</th>
+                                <th scope="col">Estado</th>
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                  <th scope="row">1</th>
-                                  <td>Mark</td>
-                                  <td>Otto</td>
-                                  <td>@mdo</td>
-                                  <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                </tr>
+                            <tbody id="lis_local">
+                              
                             </tbody>
                         </table>
                     </div>
                     <div class="col-10 mt-2 text-center">
                         <nav aria-label="...">
-                            <ul class="pagination justify-content-center">
-                              <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                              </li>
+                            <ul class="pagination justify-content-center" id="pagination">
+                             
                             </ul>
                           </nav>
                     </div>

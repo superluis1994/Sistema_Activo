@@ -4,7 +4,7 @@
             <div class="row  mt-5">
                 <div class="col-1">
                         <div class="col-12 justify-content-center">
-                        <p class="display-5">Productos</p>
+                        <p class="display-5">Activos</p>
                         <img src="img/recursos/users.png" id="img_visual" class="" width="200"
                             height="200" alt="...">
                     </div>
@@ -15,20 +15,28 @@
                         <div class="row justify-content-end"> 
                         <div class="col-4">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1" ckeck="checked">Codigo</label>
+                                <input class="form-check-input " type="radio" name="tipoBus" id="op1"  value="option1" checked>
+                                <label class="form-check-label" for="inlineCheckbox1">Codigo</label>
                               </div>
                               <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox2" value="option2">
+                                <input class="form-check-input" type="radio" name="tipoBus" id="op2" value="option2">
                                 <label class="form-check-label" for="inlineCheckbox2">Nombre</label>
                               </div>
                               <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox3" value="option3" >
-                                <label class="form-check-label" for="inlineCheckbox3">Jefe</label>
+                                <input class="form-check-input" type="radio" name="tipoBus" id="opt" value="option3" >
+                                <label class="form-check-label" for="inlineCheckbox3">Tipo Activo</label>
                               </div>
                             </div>
-                            <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario" required/>
+                            <div class="col-5" id="busqueda">
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar" required/>
+                          </div>
+                          <div class="col-5" id="busquedaPer" hidden>
+                          
+                            <select name="select_box" class="form-select inputLocal" id="jef">
+                              <option value="1">fddfgfg</option>
+                              <option value="1">fddfgfg</option>
+                              <option value="1">fddfgfg</option>
+                            </select>
                           </div>
                         </div>
                           <div class="col-10 mt-2">
@@ -36,11 +44,11 @@
                               <table class="table-bordered table table-striped table-hover">
                                   <thead>
                                       <tr>
-                                          <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Handle</th>
+                                          <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Tipo Activo</th>
+                                <th scope="col">Reponsable</th>
+                                <th scope="col">Local</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -50,19 +58,8 @@
                                   <td>Otto</td>
                                   <td>@mdo</td>
                                   <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
+                                  <td><button type="button" class="btn btn-primary">Detalles</button></td>
+                                  <td><button type="button" class="btn btn-primary">Actualizar</button></td>
                                 </tr>
                             </tbody>
                         </table>

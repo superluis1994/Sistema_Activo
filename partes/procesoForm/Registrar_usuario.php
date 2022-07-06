@@ -52,14 +52,14 @@ if(isset($_POST["accion"])){
 
 
     $dato=[
-      'accion'=>1,
       'foto'=>$foto,
       'nombre'=>$_POST["nombre"],
       'apellidos'=>$_POST["apellidos"],
       'correo'=>$_POST["correo"],
       'contrasena'=>$_POST["passw"],
       'codigo'=>$_POST["codigo"],
-      'estado'=>$_POST["tipo"]
+      'tipo'=>$_POST["tipo"],
+      'estado'=>1
     ];
     $insert=$procesoDatos->AddUsuario($dato);
 
