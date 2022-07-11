@@ -42,12 +42,15 @@ formulario.addEventListener("submit", function(e){
   e.preventDefault();
   datos= new FormData(formulario);
   datos.append("accion","RegistrarUsuario")
+  datos.append("pas",$("#passw").val());
 
 if( document.getElementById("nombre").classList.contains("is-valid") &&
    document.getElementById("apellidos").classList.contains("is-valid") &&
    document.getElementById("codigo").classList.contains("is-valid")&&
    document.getElementById("passw").classList.contains("is-valid") &&
-   document.getElementById("correo").classList.contains("is-valid")  )
+   document.getElementById("correo").classList.contains("is-valid")&&
+   document.getElementById("Ccosto").classList.contains("is-valid")&&
+   document.getElementById("tiposUsuL").classList.contains("is-valid")  )
    {
 
    fetch('partes/procesoForm/Registrar_usuario.php',{
@@ -55,15 +58,10 @@ if( document.getElementById("nombre").classList.contains("is-valid") &&
      body: datos
    }).then(res=>res.json())
      .then(data=>{
-       if(data=="error"){
-   
-         alerta("error","Error","Llenar todos los campos")
-       }
-       else if(data=="success"){
-        alerta("success","Correcto","Registrado Correctamente")
-   
-   
-       }
+        alerta(data.icono,data.titulo,data.mensaje)
+        if(data.recargar=="si"){
+          setTimeout('document.location.reload()',2000); 
+        }
      })
 
 }else{
@@ -80,6 +78,8 @@ validCampo("codigo","keyup","numero")
 validCampo("passw","keyup","letrasynumeros")
 validCampo("passw","change","letrasynumeros")
 validCampo("correo","keyup","correo")
+validCampo("Ccosto","keyup","letrasynumeros")
+validCampo("tiposUsuL","change","select")
 
 
 function validCampo(nom,evento,tipo){
@@ -87,7 +87,7 @@ function validCampo(nom,evento,tipo){
   document.getElementById(nom).addEventListener(evento,function(e){
     // alert(e.target.value)
     if(tipo=="letras"){
-          if(!/^[A-Za-z\s]+$/g.test(e.target.value)){
+          if(!/^[A-Za-zñ\s]+$/g.test(e.target.value)){
             e.target.classList.remove("is-valid")
             e.target.classList.add("is-invalid")
           }else{
@@ -97,7 +97,18 @@ function validCampo(nom,evento,tipo){
           }
         
 
-    }else if(tipo=="numero"){
+    }else if(tipo=="select"){
+      if(e.target.value==0){
+        e.target.classList.remove("is-valid")
+        e.target.classList.add("is-invalid")
+      }else{
+        e.target.classList.remove("is-invalid")
+        e.target.classList.add("is-valid")
+
+      }
+    
+
+}else if(tipo=="numero"){
 
       if(!/^[0-9\s]+$/g.test(e.target.value)){
         // validar si el codigo exite
@@ -114,8 +125,6 @@ function validCampo(nom,evento,tipo){
           body: codigo
         }).then(res=>res.json())
           .then(data=>{
-
-            // alert(data)
             if(data==0){
               e.target.classList.remove("is-invalid")
               e.target.classList.add("is-valid")
@@ -128,7 +137,7 @@ function validCampo(nom,evento,tipo){
       }
     }
     else if(tipo=="letrasynumeros"){
-      if(!/^[A-Za-z 0-9\s]+$/g.test(e.target.value)){
+      if(!/^[A-Za-z 0-9.\s]+$/g.test(e.target.value)){
         e.target.classList.remove("is-valid")
         e.target.classList.add("is-invalid")
       }else{

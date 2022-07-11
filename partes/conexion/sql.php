@@ -100,8 +100,8 @@ class sqlReg extends Principal {
         // CALL crubusuario(funcion,codigo,"Contraseña","nombre","foto",estatus,rol o tipo usuario)
        
         $clave=Principal::encryption($dato["contrasena"]);
-        $sql=Principal::conectar()->prepare("INSERT INTO usuario (id_user, passw, nom,apellidos,correo, photo, account_status_id, rol_id)
-        VALUES(:CODIGO,:PASSW,:NOMBRE,:APELLIDO,:CORREO,:FOTO,:ESTADO,:TIPO)");
+        $sql=Principal::conectar()->prepare("INSERT INTO usuario (id_user, passw, nom,apellidos,correo, photo, account_status_id, rol_id,Centro_costo)
+        VALUES(:CODIGO,:PASSW,:NOMBRE,:APELLIDO,:CORREO,:FOTO,:ESTADO,:TIPO,:COSTO)");
         $sql->bindParam(":FOTO",$dato['foto']); 
         $sql->bindParam(":NOMBRE",$dato['nombre']);
         $sql->bindParam(":APELLIDO",$dato['apellidos']);
@@ -110,6 +110,7 @@ class sqlReg extends Principal {
         $sql->bindParam(":CODIGO",$dato['codigo']);
         $sql->bindParam(":TIPO",$dato['tipo']);
         $sql->bindParam(":ESTADO",$dato['estado']);
+        $sql->bindParam(":COSTO",$dato['costo']);
         $sql->execute();
         return $sql;
         }
@@ -149,6 +150,15 @@ class sqlReg extends Principal {
      $sql->execute();
      $count=$sql->fetchColumn();
      return $count;
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////movimiento session////////////////////
+   //lista de usuarios
+   public function busquedInfActi($dato){
+      $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["campo"]." = ".$dato["codigo"]." && id_local = '".$dato["local"]."'");
+     $sql->execute();
+     $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+     return $dat;
   }
    
     

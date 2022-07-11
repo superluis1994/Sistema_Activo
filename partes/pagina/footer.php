@@ -9,6 +9,7 @@
     <!-- <script src="js/carousel.js"></script> -->
     <script src="<?php echo Ruta; ?>js/jquery-3.6.0.min.js"></script>
     <script src="<?php echo Ruta; ?>js/menu_permisos/menu_permiso.js"></script>
+    <script src="<?php echo Ruta; ?>js/dselect.js"></script>
 
   
     <?php 
@@ -38,6 +39,29 @@ if(isset($_SESSION['datos'][@$_COOKIE['id']])){
     elseif($_GET["pagina"] == "mover_activo.php"){
      
       echo "<script src='./js/mover_activos/mover_activo.js'></script>";
+      echo"    <script> 
+      setTimeout(function(){
+        var select_box_element = document.querySelector('#usuarior');
+      
+      dselect(select_box_element, {
+          search: true,
+      });
+      var select_box_element = document.querySelector('#usuarioEntre');
+      
+      dselect(select_box_element, {
+        search: true
+      }); var select_box_element = document.querySelector('#localSali');
+      
+      dselect(select_box_element, {
+        search: true
+      });var select_box_element = document.querySelector('#localDes');
+      
+      dselect(select_box_element, {
+        search: true
+      });
+      }, 200);
+       
+      </script>";
     }
     elseif($_GET["pagina"] == "list_usuarios.php"){
      
@@ -55,6 +79,7 @@ if(isset($_SESSION['datos'][@$_COOKIE['id']])){
 }
     ?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     
   </body>
 </html>

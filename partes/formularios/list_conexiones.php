@@ -33,7 +33,7 @@
                         </div>
                           <div class="col-10 mt-2">
                            
-                              <table class="table-bordered table table-striped table-hover">
+                              <table class="table-bordered table table-striped table-hover scrollspy" height="300" >
                                   <thead>
                                       <tr>
                                           <th scope="col">#</th>
@@ -42,7 +42,7 @@
                                 <th scope="col">Hora</th>
                               
                               </tr>
-                            </thead>
+                            </thead >
                             <tbody id="listConexiones">
                               
                             </tbody>

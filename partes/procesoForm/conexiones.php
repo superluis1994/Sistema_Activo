@@ -10,7 +10,8 @@ if(isset($_POST["accion"])){
     if($_POST["accion"] == "listConexionTable"){
         $resl="";
           $cantidad = $_POST["cantida"];
-        $list=$procesoDatos->ListGenerica("conexiones LIMIT ".$cantidad-$cantidad.",".$cantidad);
+        // $list=$procesoDatos->ListGenerica("conexiones LIMIT ".$cantidad-$cantidad.",".$cantidad);
+        $list=$procesoDatos->ListGenerica("conexiones ");
         
         foreach($list as $key => $value){
         

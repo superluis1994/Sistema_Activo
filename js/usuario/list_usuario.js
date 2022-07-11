@@ -4,7 +4,7 @@ function list_user(){
     list.append("accion","list_usuario_table")
     list.append("cantida","5")
     
-    fetch("partes/procesoForm/Registrar_usuario.php",{
+    fetch("partes/procesoForm/list_usuario.php",{
       method: 'POST',
       body: list
     }).then(res=>res.json())
@@ -23,10 +23,22 @@ $("#list_resul").on ("click","#btn-modificar",function(e)
     $('#mdMuser').modal('show');
      datos=e.target.value.split(",")
      document.getElementById("staticBackdropLabel").innerHTML=datos[2]+" "+datos[3]
-     document.getElementById("Anombre").value=datos[2]
-     document.getElementById("Aapellidos").value=datos[3]
-     document.getElementById("Acodigo").value=datos[1]
-     document.getElementById("Acorreo").value=datos[4]
+     nom=document.getElementById("Anombre")
+     nom.value=datos[2]
+     nom.classList.add("is-valid")
+
+     apellido=document.getElementById("Aapellidos")
+     apellido.value=datos[3]
+     apellido.classList.add("is-valid")
+
+     codigo=document.getElementById("Acodigo")
+     codigo.value=datos[1]
+     codigo.classList.add("is-valid")
+
+     correo=document.getElementById("Acorreo")
+     correo.value=datos[4]
+     correo.classList.add("is-valid")
+
      document.getElementById("img").setAttribute("src",datos[0] );
 })
 ///////////Cambiar el estado del usuario ///////////////////
@@ -56,7 +68,7 @@ fil=document.querySelector('input[name=tipoBus]:checked').value
          list.append("busqueda",e.target.value)
          list.append("filtro",fil)
 
-         fetch("partes/procesoForm/Registrar_usuario.php",{
+         fetch("partes/procesoForm/list_usuario.php",{
          method: 'POST',
          body: list
          }).then(res=>res.json())
@@ -106,7 +118,7 @@ function alertOpt(titulo,mensaje,icono,accion,val1,val2){
             list.append("stC",val1)
             list.append("stV",val2)
 
-            fetch("partes/procesoForm/Registrar_usuario.php",{
+            fetch("partes/procesoForm/list_usuario.php",{
             method: 'POST',
             body: list
             }).then(res=>res.json())
@@ -123,3 +135,96 @@ function alertOpt(titulo,mensaje,icono,accion,val1,val2){
         }
       })
 }
+
+
+//validaciones para actualizar datos del usuario 
+validCampo("Anombre","keyup","letras")
+validCampo("Aapellidos","keyup","letras")
+validCampo("Acodigo","keyup","numero")
+validCampo("Apassw","keyup","letrasynumeros")
+validCampo("Apassw","change","letrasynumeros")
+validCampo("Acorreo","keyup","correo")
+validCampo("Ccosto","keyup","numero")
+validCampo("AtiposUsuL","change","select")
+
+
+
+
+function validCampo(nom,evento,tipo){
+    document.getElementById(nom).addEventListener(evento,function(e)
+    {
+      // alert(e.target.value)
+      if(tipo=="letras"){
+            if(!/^[A-Za-zñ\s]+$/g.test(e.target.value)){
+              e.target.classList.remove("is-valid")
+              e.target.classList.add("is-invalid")
+            }else{
+              e.target.classList.remove("is-invalid")
+              e.target.classList.add("is-valid")
+  
+            }
+          
+  
+      }else if(tipo=="select"){
+        if(e.target.value==0){
+          e.target.classList.remove("is-valid")
+          e.target.classList.add("is-invalid")
+        }else{
+          e.target.classList.remove("is-invalid")
+          e.target.classList.add("is-valid")
+  
+        }
+      
+  
+  }else if(tipo=="numero"){
+  
+        if(!/^[0-9\s]+$/g.test(e.target.value)){
+          // validar si el codigo exite
+          e.target.classList.remove("is-valid")
+          e.target.classList.add("is-invalid")
+          
+          
+        } else{
+          codigo= new FormData();
+          codigo.append("accion","validarUser")
+          codigo.append("codigo",e.target.value)
+          fetch('partes/procesoForm/Registrar_usuario.php',{
+            method: 'POST',
+            body: codigo
+          }).then(res=>res.json())
+            .then(data=>{
+              if(data==0){
+                e.target.classList.remove("is-invalid")
+                e.target.classList.add("is-valid")
+              }else{
+                e.target.classList.remove("is-valid")
+                e.target.classList.add("is-invalid")
+              }
+            })
+  
+        }
+      }
+      else if(tipo=="letrasynumeros"){
+        if(!/^[A-Za-z 0-9.\s]+$/g.test(e.target.value)){
+          e.target.classList.remove("is-valid")
+          e.target.classList.add("is-invalid")
+        }else{
+          e.target.classList.remove("is-invalid")
+          e.target.classList.add("is-valid")
+  
+        }
+      }
+      else if(tipo=="correo"){
+  
+        if(!/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+/g.test(e.target.value)){
+          e.target.classList.remove("is-valid")
+          e.target.classList.add("is-invalid")
+        }else{
+          e.target.classList.remove("is-invalid")
+          e.target.classList.add("is-valid")
+  
+        }
+      }
+    })
+  }
+

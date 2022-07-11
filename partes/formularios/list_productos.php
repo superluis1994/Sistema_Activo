@@ -13,7 +13,7 @@
                 <div class="col-11">
                     <div class="row justify-content-end">
                         <div class="row justify-content-end"> 
-                        <div class="col-4">
+                        <div class="col-5">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input " type="radio" name="tipoBus" id="op1"  value="option1" checked>
                                 <label class="form-check-label" for="inlineCheckbox1">Codigo</label>

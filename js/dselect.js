@@ -93,7 +93,7 @@ function dselect(el, option = {}) {
   const defaultSearch = false
   const defaultCreatable = false
   const defaultClearable = false
-  const defaultMaxHeight = '360px'
+  const defaultMaxHeight = '190px'
   const defaultSize = ''
   const search = attrBool('search') || option.search || defaultSearch
   const creatable = attrBool('creatable') || option.creatable || defaultCreatable
@@ -193,7 +193,7 @@ function dselect(el, option = {}) {
       <button class="${classToggler} ${!el.multiple && clearable ? classTogglerClearable : ''}" data-dselect-text="${!el.multiple && selectedText(el.options)}" type="button" data-bs-toggle="dropdown" aria-expanded="false"${autoclose}>
         ${selectedTag(el.options, el.multiple)}
       </button>
-      <div class="dropdown-menu">
+      <div class="dropdown-menu" style=" min-width:100%;">
         <div class="d-flex flex-column">
           ${searchInput}
           <div class="dselect-items" style="max-height:${maxHeight};overflow:auto">
@@ -223,3 +223,4 @@ function dselect(el, option = {}) {
 
   el.addEventListener('change', updateDom)
 }
+

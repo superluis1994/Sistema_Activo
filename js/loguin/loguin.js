@@ -63,14 +63,14 @@ fetch('partes/procesoForm/loguin.php',{
        window.location.href = "index.php";
   
       }
-      else if(data=="2"){
-        alerta("error","Error","Llenar los campos")
-
-      }
-
+      
     })
-}
+  }
+  else{
+    alerta("error","Error","Llenar los campos")
 
+  }
+  
 })
 
 // validar el campo de restablecimeinto este lleno para activar el btn

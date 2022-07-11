@@ -28,29 +28,32 @@
           </div>
           <div class="col-3">
             <label for="codigo" class="form-label">Codigo</label>
-            <input type="text" name="codigo" class="form-control" id="codigo" required/>
+            <input type="text" name="codigo"   class="form-control" id="codigo" required/>
           </div>
           <div class="col-5">
             <label for="passw" class="form-label">Contraseña</label>
-            <input type="text" name="passw" class="form-control" id="passw" required/>
+            <input type="text" name="passw" class="form-control" id="passw" required disabled/>
           </div>
-          <div class="col-2 align-middle">
+          <div class="col-3 align-middle">
           <button type="button" id="btn_generar" class="btn btn-primary mt-3">Generar</button>
           </div>
-          <div class="col-6">
+          <div class="col-4">
             <label for="correo" class="form-label">Correo</label>
             <input type="text" name="correo" class="form-control" id="correo" required/>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <label for="exampleInputPassword1" class="form-label">Tipo Usuario</label>
-            <select class="form-select" name="tipo" id="tiposUsuL" aria-label="Default select example">
+            <select class="form-select" name="tipo" id="tiposUsuL" aria-label="Default select example" required>
               <option selected>Seleccione Tipo</option>
-              <option value="1">One</option>
             </select>
           </div>
-          <div class="12 text-center">
+          <div class="col-3">
+            <label for="correo" class="form-label">Centro de Costo</label>
+            <input type="decimal" name="Ccosto" class="form-control" id="Ccosto" placeholder="000.00"required/>
+          </div>
+          <div class="col-10 text-center">
             
-            <button type="submit" id="btn_form" class="btn btn-primary mt-3 btn-xs">Registrar</button>
+            <button type="submit" id="btn_form" class="btn btn-primary mt-3">Registrar</button>
           </div>
         </div>
       </div>

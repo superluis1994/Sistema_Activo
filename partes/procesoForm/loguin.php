@@ -5,7 +5,6 @@ $procesoDatos= new sqlReg ();
 
 if(isset($_POST["accion_logui"])){
 
-if(!$_POST["codigo"]=="" && ! $_POST["contra"]=="" ){
     
     $codigo=filter_var($_POST["codigo"], FILTER_SANITIZE_NUMBER_INT );
     $passd=filter_var($_POST["contra"], FILTER_SANITIZE_STRING);
@@ -54,7 +53,7 @@ if(!$_POST["codigo"]=="" && ! $_POST["contra"]=="" ){
             $httponly = false);
 
     // inserto los datos de la conexion del usuario 
-    if(isset($_SESSION['datos'][$_COOKIE['id']])){
+    // if(isset($_SESSION['datos'][$_COOKIE['id']])){
 
         date_default_timezone_set('america/el_salvador');
       
@@ -68,7 +67,7 @@ if(!$_POST["codigo"]=="" && ! $_POST["contra"]=="" ){
         $regisConex=$procesoDatos->registrarConexion($datoConex);
 
         // echo json_encode($regisConex);
-    }
+    // }
     
     
     
@@ -76,12 +75,7 @@ if(!$_POST["codigo"]=="" && ! $_POST["contra"]=="" ){
 echo json_encode($results);
 
    
-}
-else{
-    
-    echo json_encode(2);
-    
-}
+
 
 }
 else if(isset($_POST['rest_loguin'])){

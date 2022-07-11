@@ -14,7 +14,7 @@ if(isset($_POST["accion"])){
   if($_POST["accion"]=='tipoUserLits'){
          
       $list=$procesoDatos->ListTipoUsuario("roles");
-      $resl.="<option selected>Open this select menu</option>";
+      $resl.="<option value='0' selected>Seleccionar</option>";
       foreach($list as $key => $value){
       
         $resl.="<option value='".$value["id_rol"]."'>".strtoupper($value["rol"])."</option>";
@@ -24,7 +24,6 @@ if(isset($_POST["accion"])){
       echo json_encode($resl);
     }
     else if($_POST["accion"]=='RegistrarUsuario'){
-      
       
 
        $foto="img/recursos/foto_default.jpg";
@@ -56,9 +55,10 @@ if(isset($_POST["accion"])){
       'nombre'=>$_POST["nombre"],
       'apellidos'=>$_POST["apellidos"],
       'correo'=>$_POST["correo"],
-      'contrasena'=>$_POST["passw"],
+      'contrasena'=>$_POST["pas"],
       'codigo'=>$_POST["codigo"],
       'tipo'=>$_POST["tipo"],
+      'costo'=>$_POST["Ccosto"],
       'estado'=>1
     ];
     $insert=$procesoDatos->AddUsuario($dato);
@@ -96,13 +96,26 @@ if(isset($_POST["accion"])){
     }
 
     $insertPermiso=$procesoDatos->PermisosInsert($permisosUser);
-  }
-
-  
-  echo json_encode("success");
 
 
    
+    
+    $alerta=["icono"=>"success",
+    "titulo"=>"Correcto",
+    "mensaje"=>"Registrado Correctamente",
+    "recargar"=>"si"
+  ];
+    
+    
+  }else{
+    
+    $alerta=["icono"=>"error",
+    "titulo"=>"Error",
+    "mensaje"=>"Llenar todos los campos",
+    "recargar"=>"no"
+  ];
+  } 
+  echo json_encode($alerta);
 
   }
   else if($_POST["accion"]=='validarUser'){
@@ -111,112 +124,9 @@ if(isset($_POST["accion"])){
       echo json_encode($resul); 
 
   }
-  else if($_POST["accion"]=='list_usuario_table'){
-    $list_user=$procesoDatos->ListTipoUsuario("usuario limit 0,".$_POST["cantida"].";");
-    $res="";
-    foreach($list_user as $key => $value){
-      
-      $res.="<tr>";
-      $res.="<th scope='row' class='text-center'> <img src='".$value["photo"]."' alt='' height='40' width='40'> </th>
-      <td>".$value["id_user"]."</td>
-      <td>".$value["nom"]."</td>
-      <td>".$value["apellidos"]."</td>
-      <td>".$value["correo"]."</td>";
-
-      if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
-
-        if($value["account_status_id"]==1){
-          
-          $res.="<td><button type='button' value='".$value["id_user"].",".$value["account_status_id"]."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>";
-        }
-        else if($value["account_status_id"]==2){
-          $res.="<td><button type='button' value='".$value["id_user"].",".$value["account_status_id"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>";
-
-        }
-        $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"]."' class='btn btn-primary'>Modificar</button></td>";
-
-      }
-     
-      $res.="</tr>";      
-    }
-
-    echo json_encode($res);
-
-  }
-  // cambiar el estado de activo a desactivo o viceversa
-  else if($_POST["accion"]=='estado'){
-
-    $val1=filter_var($_POST["stC"], FILTER_SANITIZE_NUMBER_INT );
-    $val2=filter_var($_POST["stV"], FILTER_SANITIZE_NUMBER_INT );
-    $estatus=0;
-    if($val2==1){
-        $estatus=2;
-    }
-    if($val2==2){
-      $estatus=1;
-  }
-    $datos=[
-      'carnet'=>$val1,
-      'estado'=>$estatus
-    ];
-    $rest=$procesoDatos->actualizarEstadoUser($datos);
-    echo json_encode($rest);
-
-  }
-  else if($_POST["accion"]=='buscarUser'){
-
-    $tipo="";
-    //  evaluar tipo de busqueda
-    if($_POST["filtro"]=="carnet"){
-      $tipo="id_user";
-
-    }else if($_POST["filtro"]=="nombre"){
-      $tipo="nom";
-      
-    }
-    else if($_POST["filtro"]=="apellido"){
-      $tipo="apellidos";
-      
-    }
-
-
-    $datos=[
-      'filtro'=>$tipo,
-      'busqueda'=>$_POST["busqueda"],
-      'tabla'=>"usuario"
-    ];
-
-    $list_user=$procesoDatos->busquedaFiltro($datos);
-    $res="";
-    foreach($list_user as $key => $value){
-      
-      $res.="<tr>";
-      $res.="<th scope='row' class='text-center'> <img src='".$value["photo"]."' alt='' height='40' width='40'> </th>
-      <td>".$value["id_user"]."</td>
-      <td>".$value["nom"]."</td>
-      <td>".$value["apellidos"]."</td>
-      <td>".$value["correo"]."</td>";
-
-      if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
-
-        if($value["account_status_id"]==1){
-          
-          $res.="<td><button type='button' value='".$value["id_user"].",".$value["account_status_id"]."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>";
-        }
-        else if($value["account_status_id"]==2){
-          $res.="<td><button type='button' value='".$value["id_user"].",".$value["account_status_id"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>";
-
-        }
-        $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"]."' class='btn btn-primary'>Modificar</button></td>";
-
-      }
-     
-      $res.="</tr>";      
-    }
-
-    echo json_encode($res);
-
-  }
+ 
+  
+  
   else if($_POST["accion"]=='CerrarSession'){
 
     
@@ -234,6 +144,7 @@ if(isset($_POST["accion"])){
    echo json_encode(Ruta);
 
   }
+  
 
   
 

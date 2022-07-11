@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate
-MySQL - 10.4.20-MariaDB : Database - sistema_activos
+MySQL - 10.4.20-MariaDB : Database - sistema_activos1
 *********************************************************************
 */
 
@@ -33,7 +33,7 @@ CREATE TABLE `conexiones` (
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
   PRIMARY KEY (`id_conexion`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `conexiones` */
 
@@ -54,6 +54,33 @@ insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (14,130
 insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (15,130125,'2022-07-03','09:28:35');
 insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (16,130125,'2022-07-04','02:01:35');
 insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (17,130125,'2022-07-04','02:09:49');
+insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (18,130125,'2022-07-11','11:52:21');
+insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (19,130125,'2022-07-11','03:31:01');
+
+/*Table structure for table `inventario` */
+
+CREATE TABLE `inventario` (
+  `id_activo` int(11) NOT NULL,
+  `codigo_mined` varchar(255) DEFAULT NULL,
+  `codigo_interno` varchar(255) DEFAULT NULL,
+  `nom_activo` varchar(255) NOT NULL,
+  `tipo_activo` int(11) NOT NULL,
+  `descrip_activo` text NOT NULL,
+  `valor_activo` int(11) NOT NULL,
+  `marca` varchar(255) NOT NULL,
+  `modelo` varchar(255) NOT NULL,
+  `dimensiones` varchar(255) NOT NULL,
+  `serie` varchar(255) NOT NULL,
+  `vida_util` int(11) NOT NULL,
+  `id_local` varchar(255) NOT NULL,
+  `id_reposable` int(11) NOT NULL,
+  `foto` text NOT NULL,
+  PRIMARY KEY (`id_activo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `inventario` */
+
+insert  into `inventario`(`id_activo`,`codigo_mined`,`codigo_interno`,`nom_activo`,`tipo_activo`,`descrip_activo`,`valor_activo`,`marca`,`modelo`,`dimensiones`,`serie`,`vida_util`,`id_local`,`id_reposable`,`foto`) values (2324466,'324566777','567788','Mesa',1,'mesa negra hecha de caoba',125,'E/s','E/s','4x4x4','E/s',5,'St-17',130125,'img/recursos/foto_default.jpg');
 
 /*Table structure for table `list_activos_movimiento` */
 
@@ -199,6 +226,7 @@ CREATE TABLE `usuario` (
   `photo` text DEFAULT NULL,
   `account_status_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL,
+  `Centro_costo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `rol_id` (`rol_id`),
   KEY `account_status_id` (`account_status_id`)
@@ -206,59 +234,10 @@ CREATE TABLE `usuario` (
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`) values (130121,'WkpOTWpsUkxCbFR3TENpTVJDWFMyaG9MRVZ3Z0ZJTU1KSVhFakszc3hiVT0=','luis','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1);
-insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`) values (130122,'U0NyaG5Ra2pPYTVWUjQ2OGpwTE9KckxudUhpWWpxOFVtdEdNb0dmMlMzdz0=','frank','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,2);
-insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`) values (130123,'WkpOTWpsUkxCbFR3TENpTVJDWFMyaG9MRVZ3Z0ZJTU1KSVhFakszc3hiVT0=','luis','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1);
-insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`) values (130125,'YWNlOFBaVG5BaTVnZkg2R3dFdjh3Zz09','frank','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',2,1);
-
-/* Procedure structure for procedure `crubusuario` */
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`` PROCEDURE `crubusuario`(
-IN accion INTEGER,
-IN _id_user INT,
-IN _passw VARCHAR(255),
-IN _nom VARCHAR(255),
-IN _apell VARCHAR(255),
-IN _correo VARCHAR(255),
-IN _photo TEXT,
-IN _account_status_id INT,
-IN _rol_id INT)
-BEGIN
-IF accion = 1 THEN
-INSERT INTO usuario (id_user, passw, nom,apellidos,correo, photo, account_status_id, rol_id)
-VALUES(_id_user,_passw,_nom,_apell,_correo,_photo,_account_status_id,_rol_id);
-
-END IF;
-
-IF accion = 2 THEN
-UPDATE usuario SET id_user = _id_user, passw = _passw, nom = _nom,apellidos = _apell, correo = _correo, photo = _photo, account_status_id = _account_status_id, rol_id = _rol_id
-WHERE id_user = _id_user;
-
-END IF;
-
-END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `Sel_Elim_usuario` */
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`` PROCEDURE `Sel_Elim_usuario`(
-IN accion INTEGER,
-IN _id_user INT)
-BEGIN
-IF accion = 1 THEN
-DELETE FROM usuario WHERE id_user = _id_user;
-END IF;
-
-IF accion = 2 THEN
-SELECT * FROM usuario WHERE id_user = _id_user;
-END IF;
-
-END */$$
-DELIMITER ;
+insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130121,'WkpOTWpsUkxCbFR3TENpTVJDWFMyaG9MRVZ3Z0ZJTU1KSVhFakszc3hiVT0=','luis','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1,NULL);
+insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130122,'U0NyaG5Ra2pPYTVWUjQ2OGpwTE9KckxudUhpWWpxOFVtdEdNb0dmMlMzdz0=','frank','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,2,NULL);
+insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130123,'WkpOTWpsUkxCbFR3TENpTVJDWFMyaG9MRVZ3Z0ZJTU1KSVhFakszc3hiVT0=','luis','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1,NULL);
+insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130125,'YWNlOFBaVG5BaTVnZkg2R3dFdjh3Zz09','frank','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
