@@ -139,6 +139,7 @@ fetch('partes/procesoForm/Regist_movimiento.php',{
     // console.log(data)
   })
 
+
 document.getElementById("dat").addEventListener("change",function(e){
    alert(e.target.value)
 }) 
@@ -147,8 +148,7 @@ document.getElementById("dat").addEventListener("change",function(e){
   formT.addEventListener("submit", function(e){
       e.preventDefault()
     // $('#listActi').modal('show');
-    datos= new FormData(formT);
-    datos.append("accion","prueba")
+    
 
 if($("#usuarioEntre").val()!='0' && $("#usuarior").val()!='0' && $("#localDes").val()!='0'
    && $("#localSali").val()!='0' && $("#justificacion").val()!=''){
@@ -166,17 +166,27 @@ if($("#usuarioEntre").val()!='0' && $("#usuarior").val()!='0' && $("#localDes").
   alert('faltan datos')
 
 }
-    // fetch('partes/procesoForm/Regist_movimiento.php',{
-    //        method: 'POST',
-    //        body: datos
-    //      }).then(res=>res.json())
-    //        .then(data=>{
-    //         // alert(data)
-    //         console.log(data)
-    //        })
+    
     // console.log(datos);
   })
-  
+//////////enviar y registrar el movimiento///////////////////////
+  document.getElementById("btn-registrarMov").addEventListener("click",function(e){
+    datos= new FormData(formT);
+    datos.append("accion","RegistrarMovimiento")
+    fetch('partes/procesoForm/Regist_movimiento.php',{
+           method: 'POST',
+           body: datos
+         }).then(res=>res.json())
+           .then(data=>{
+            // alert(data)
+            console.log(data)
+           })
+    
+  })
+
+
+  //////////////input de busqueda de activo para agregar al movimiento////////////
+  resultBusq=document.getElementById("resultado")
   document.getElementById("codigoBusq").addEventListener("keyup",function(e) {
     if(/^[0-9\s]+$/g.test(e.target.value)){
         e.target.classList.remove("is-invalid")
@@ -192,7 +202,7 @@ if($("#usuarioEntre").val()!='0' && $("#usuarior").val()!='0' && $("#localDes").
        }).then(res=>res.json())
        .then(data=>{
      
-        document.getElementById("resultado").innerHTML=data
+        resultBusq.innerHTML=data
        }) 
 
 
@@ -203,32 +213,64 @@ if($("#usuarioEntre").val()!='0' && $("#usuarior").val()!='0' && $("#localDes").
     
   })
 
-
+////////////////agregar activo a la session de tabla//////////////////
+  tabla=document.getElementById("activosList");
   $("#resultado").on ("click","#btn-agre",function(e)
 {   
   dato=e.target.value.split(",")
+  valueAct= new FormData()
+  valueAct.append("accion","addActivoSession")
+  valueAct.append("idAct",dato[1])
+  valueAct.append("nom",dato[0])
+  valueAct.append("serie",dato[2])
 
-    var json={datos:[{codigo :datos[0]},{nombre:datos[1]},{serie:datos[3]}]};
-  var obj = JSON.parse(json);
-  console.log(json)
+  
+  fetch("partes/procesoForm/activoMovimientoList.php",{
+  method: 'POST',
+  body: valueAct
+  }).then(res=>res.json())
+  .then(data=>{
+    tabla.innerHTML=data
+  }) 
+})
+
+////////////////eliminar activo de la session//////////////////////
+$("#activosList").on ("click","#btn-actSession",function(e)
+{
+  valueAct= new FormData()
+  valueAct.append("accion","EliActivoSession")
+  valueAct.append("codigo",e.target.value)
+
+  fetch("partes/procesoForm/activoMovimientoList.php",{
+  method: 'POST',
+  body: valueAct
+  }).then(res=>res.json())
+  .then(data=>{
+    tabla.innerHTML=data
+  }) 
+})
+
+/////////////btn de cancelar/////////////////
+document.getElementById("cancelar").addEventListener("click",function(){
+  cancelarMov()
+})
+document.getElementById("close").addEventListener("click",function(){
+  cancelarMov()
 })
 
 
-// var select_box_element = document.querySelector('#usuarioRecibe');
+function cancelarMov(){
+  valueAct= new FormData()
+  valueAct.append("accion","cancelarMov")
 
-// dselect(select_box_element, {
-//     search: true
-// });
-// var select_box_element = document.querySelector('#usuarioEntre');
-
-// dselect(select_box_element, {
-//   search: true
-// }); var select_box_element = document.querySelector('#localSali');
-
-// dselect(select_box_element, {
-//   search: true
-// });var select_box_element = document.querySelector('#localDes');
-
-// dselect(select_box_element, {
-//   search: true
-// });
+  fetch("partes/procesoForm/activoMovimientoList.php",{
+  method: 'POST',
+  body: valueAct
+  }).then(res=>res.json())
+  .then(data=>{
+    tabla.innerHTML=""
+    resultBusq.innerHTML=""
+    document.getElementById("codigoBusq").value=""
+    $('#listActi').modal('hide');
+  }) 
+}

@@ -65,7 +65,7 @@
           </div>
           
         </div>
-      </form>
+      <!-- </form> -->
       </div>
 
 
@@ -81,8 +81,8 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="staticBackdropLabel">Agregar Activos al Movimiento</h5>
+        <button type="button" class="btn-close" id="close" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="contenedor">
         <form action="" method="post" enctype="multipart/form">
@@ -115,79 +115,8 @@
                         <th></th>
                       </tr>
                     </thead>
-                    <tbody >
-                      <tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr> <tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr> <tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr> <tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr> <tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr> <tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr> <tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr><tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr><tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr><tr>
-                        <td scope="row"></td>
-                        <td>hhh</td>
-                        <td>hhh</td>
-                        <td>
-                          <button type="button" name="" id="" class="btn btn-primary">Eliminar</button>
-                        </td>
-                      </tr>
-                   
+                    <tbody id="activosList">
+                     
                     </tbody>
                   </table>
                 </div>
@@ -199,10 +128,10 @@
        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <button type="button" class="btn btn-secondary" id="cancelar" >Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btn-registrarMov">Registrar</button>
       </div>
-    </form>
+    <!-- </form> -->
     </div>
   </div>
   </form>

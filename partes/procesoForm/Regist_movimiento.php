@@ -4,12 +4,20 @@ $resl="";
 // echo json_encode("si");
 require_once "../conexion/sql.php";
 $procesoDatos= new sqlReg ();
-
+session_start();
 // acciones de registrar usuario
 if(isset($_POST["accion"])){
   if($_POST["accion"]=="RegistrarMovimiento"){
+    //  $ids=[];
+    $lu="";
+    foreach ($_SESSION['actList'] as $key => $value){
+      if($value[0]==$_COOKIE["id"]){
+          // $ids=$_SESSION['actList'][$key];
+          $lu.=$key;
+      }
+    }
 
-    echo json_encode("success");
+    echo json_encode($_POST["usuarioEntre"].",".$_POST["usuarioRecibe"].",".$_POST["localSali"].",".$_POST["localDes"].",".$_POST["Tmov"].",".$_POST["justificacion"].",".$lu);
   
   }
 
@@ -53,48 +61,10 @@ if(isset($_POST["accion"])){
   ];
 
     echo json_encode($SelectRest);
-    // echo json_encode("si entro");
+
   }
 
-  // else if($_POST["accion"]=="tipo_movimiento"){
-
-  //   $list=$procesoDatos->ListGenerica("tipo_movimiento");
-  //   $resl.="<option value='0' selected>SELECCIONAR....</option>";
-  //   foreach($list as $key => $value){
-    
-  //     $resl.="<option value='".$value["id_mov"]."'>".strtoupper($value["tipo_mov"])."</option>";
-    
-      
-  //   }
-  //   echo json_encode($resl);
-
-  // }
-  // else if($_POST["accion"]=="user_entrega"){
-
-  //   $list=$procesoDatos->ListGenerica("usuario");
-  //   $resl.="<option value='0' selected>SELECCIONAR....</option>";
-  //   foreach($list as $key => $value){
-    
-  //     $resl.="<option value='".$value["id_user"]."'>".strtoupper($value["nom"])." ".strtoupper($value["apellidos"])." (".strtoupper($value["id_user"]).") </option>";
-    
-      
-  //   }
-  //   echo json_encode($resl);
-
-  // }
-  // else if($_POST["accion"]=="list_local"){
-
-  //   $list=$procesoDatos->ListGenerica("local");
-  //   $resl.="<option value='0' selected>SELECCIONAR....</option>";
-  //   foreach($list as $key => $value){
-    
-  //     $resl.="<option value='".$value["id_local"]."'>".strtoupper($value["local_name"])." </option>";
-    
-      
-  //   }
-  //   echo json_encode($resl);
-
-  // }
+ 
   elseif($_POST["accion"]=="informacionActivo"){
 
     $cod=remove_Caracteres($_POST["codigoActivo"]);

@@ -63,5 +63,22 @@ if(isset($_POST['save'])){
 //     return $result;
 // }
 
+echo "<br/>";
+echo "<br/>";
+echo "<br/>";
+echo "<br/>";
+echo "<br/>";
+echo "<br/>";
+var_dump($_SESSION['actList']);
+// unset($_SESSION['actList']['232'][$_COOKIE["id"]]);
+
+// foreach ($_SESSION['actList'] as $key => $value){
+//     if($value[0]==$_COOKIE["id"]){
+//         unset($_SESSION['actList'][$key]);
+//     }
+// }
+// session_destroy($_SESSION['actList'])
+// session_destroy()
+
 
 ?>
