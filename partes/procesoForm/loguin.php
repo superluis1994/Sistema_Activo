@@ -59,7 +59,7 @@ if(isset($_POST["accion_logui"])){
       
         $datoConex=[
             'codigo'=>$codigo,
-            'fecha'=>date('Y-m-d-'),
+            'fecha'=>date('Y-m-d'),
             'hora'=>date('h:i:s')
         ];
     

@@ -1,6 +1,7 @@
 <?php
 $resl="";
 
+date_default_timezone_set('america/el_salvador');
 // echo json_encode("si");
 require_once "../conexion/sql.php";
 $procesoDatos= new sqlReg ();
@@ -10,6 +11,21 @@ if(isset($_POST["accion"])){
   if($_POST["accion"]=="RegistrarMovimiento"){
     //  $ids=[];
     $lu="";
+   
+   $dato=[
+    "Entrega"=>$_POST["usuarioEntre"],
+    "Recibe"=>$_POST["usuarioRecibe"],
+    "localSalida"=>$_POST["localSali"],
+    "localDestino"=>$_POST["localDes"],
+    "tipoMovi"=>$_POST["Tmov"],
+    "justificacion"=>$_POST["justificacion"],
+    'fecha'=>date('Y-m-d'),
+    'hora'=>date('h:i:s')
+  ];
+   $idInsert=$procesoDatos->RegdatosMovimiento($dato);
+  echo json_encode($idInsert);
+      
+
     foreach ($_SESSION['actList'] as $key => $value){
       if($value[0]==$_COOKIE["id"]){
           // $ids=$_SESSION['actList'][$key];
@@ -17,13 +33,19 @@ if(isset($_POST["accion"])){
       }
     }
 
-    echo json_encode($_POST["usuarioEntre"].",".$_POST["usuarioRecibe"].",".$_POST["localSali"].",".$_POST["localDes"].",".$_POST["Tmov"].",".$_POST["justificacion"].",".$lu);
   
   }
 
 
   ////////////////////cargar los select////////////////////////////////////////////////
   else if($_POST["accion"]=="select"){
+
+    // eleiminar session deactivos de movimientos
+    foreach ($_SESSION['actList'] as $key => $value){
+      if($value[0]==$_COOKIE["id"]){
+          unset($_SESSION['actList'][$key]);
+      }
+    }
 /////////tipo de movimiento///////////////
     $list1=$procesoDatos->ListGenerica("tipo_movimiento");
     $tipo_movimiento="<option value='0' selected>SELECCIONAR....</option>";

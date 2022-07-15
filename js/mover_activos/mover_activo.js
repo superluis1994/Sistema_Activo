@@ -157,13 +157,13 @@ if($("#usuarioEntre").val()!='0' && $("#usuarior").val()!='0' && $("#localDes").
         $('#listActi').modal('show')
 
       }else{
-        alert('No puede seleccionar el mismo local de salida con el de entrada')
+        alerta('error','Error','No puede seleccionar el mismo local de salida con el de entrada')
 
       }
 
 
   }else{
-  alert('faltan datos')
+  alerta('error','Hay datos vacios','Completar todos los campos')
 
 }
     
@@ -273,4 +273,16 @@ function cancelarMov(){
     document.getElementById("codigoBusq").value=""
     $('#listActi').modal('hide');
   }) 
+}
+
+///////////////alerta////////////////////
+function alerta(icono,title,text){
+  Swal.fire({
+                    
+    icon: icono,
+    title: title,
+    text: text,
+    showConfirmButton: true,
+  
+  })
 }

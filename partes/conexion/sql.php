@@ -160,7 +160,56 @@ class sqlReg extends Principal {
      $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
      return $dat;
   }
-   
+
+
+  ///////////////////////movimientos//////////////////////////////////////////////////////////////////
+  public function RegdatosMovimiento($dato){
+     $sql=Principal::conectar()->prepare("INSERT INTO list_movimientos (id_tipo_mov,id_user_entrega,id_user_recibe,id_local_salida,id_local_destino,justi_mov,fecha_mov,hora_mov)  
+   VALUES('".$dato["tipoMovi"]."','".$dato["Entrega"]."','".$dato["Recibe"]."','".$dato["localSalida"]."','".$dato["localDestino"]."','".$dato["justificacion"]."','".$dato["fecha"]."','".$dato["hora"]."') ;");
+  $sql->execute();
+  //   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+  $dat=Principal::conectar()->lastInsertId();
+  return $dat;
+  
+}
+///////////////////////////////////////parte inventario//////////////////////////////////////////
+
+// validar Activo
+public function validarActivo($dato){
+  $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  inventario WHERE id_activo = :CODIGO ");
+  $sql->bindParam(":CODIGO",$dato); 
+ $sql->execute();
+ $count=$sql->fetchColumn();
+ return $count;
+}
+// Registrar Activo
+public function RegaActivo($dato){
+   $sql=Principal::conectar()->prepare("insert into  inventario  ( id_activo , codigo_mined , codigo_interno ,
+   nom_activo , tipo_activo , descrip_activo , valor_activo , marca ,modelo , dimensiones , serie , vida_util , id_local , id_reposable , foto , fecha_resg )
+	VALUES (:CODIGO, :CODMINED, :CODINTER, :NOM, :TIPOACT, :DESCRIP, :VALORR, 
+           :MARCA, :MODELO, :DIMEN, :SERIE, :VIDA, :LOC_PERTE, :RESPOSABLE, :FOTO, :FECH);");
+   $sql->bindParam(":CODIGO",$dato["codigo"]); 
+   $sql->bindParam(":CODMINED",$dato["CodMined"]); 
+   $sql->bindParam(":CODINTER",$dato["codInterno"]); 
+   $sql->bindParam(":NOM",$dato["nombre"]); 
+   $sql->bindParam(":TIPOACT",$dato["tipoAct"]); 
+   $sql->bindParam(":DESCRIP",$dato["decripcion"]); 
+   $sql->bindParam(":VALORR",$dato["ValorR"]); 
+   $sql->bindParam(":MARCA",$dato["marca"]); 
+   $sql->bindParam(":MODELO",$dato["modelo"]); 
+   $sql->bindParam(":DIMEN",$dato["dimension"]); 
+   $sql->bindParam(":SERIE",$dato["serie"]); 
+   $sql->bindParam(":VIDA",$dato["vidaU"]); 
+   $sql->bindParam(":LOC_PERTE",$dato["localP"]); 
+   $sql->bindParam(":RESPOSABLE",$dato["responsable"]); 
+   $sql->bindParam(":FOTO",$dato["foto"]); 
+   $sql->bindParam(":FECH",$dato["fechaR"]); 
+  
+
+  $sql->execute();
+  $dat=$sql->rowCount();
+      return $dat;
+ }
     
 }
 

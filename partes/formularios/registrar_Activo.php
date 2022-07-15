@@ -3,7 +3,7 @@
     <div class="col-12 text-center">
       <p class="display-5 head">Registrar Activo</p>
     </div>
-    <form  id="form_local" action="" method="post" enctype="multipart/form">
+    <form  id="form_ActRegs" action="" method="post" enctype="multipart/form">
       <div class="row justify-content-center">
       <div class="col-3">
         <div class="col-12 text-center">
@@ -16,62 +16,69 @@
 
           <div class="col-4">
             <label for="nombre" class="form-label">Codigo</label>
-            <input type="text" name='Lcodigo' class="form-control inputLocal" id="Lcodigo"  title="" placeholder="" required/>
+            <input type="text" name='ACcodigo' class="form-control inputAct" id="RAcodigo"  title="" placeholder="permiten 0-9 A-z -" required/>
           </div>
          
           <div class="col-6">
             <label for="apellido" class="form-label">Nombre del Activo</label>
-            <input type="text" name='Lnombre' class="form-control inputLocal" id="Lnombre"  title="" placeholder="" required/>
+            <input type="text" name='ACnombre' class="form-control inputAct" id="RAnombre"  title="" placeholder="" required/>
           </div>
           <div class="col-4">
             <label for="text" class="form-label">Tipo de Activo</label> 
-            <select name="select_box" class="form-select inputLocal" id="jef">
+            <select name="tipoAct" class="form-select inputAct" id="tipoActivo">
           </select>
 
           <label for="apellido" class="form-label">Valor Razonable</label>
-          <input type="text" name='Lnombre' class="form-control inputLocal" id="Lnombre"  title="" placeholder="" required/>
+          <input type="number" name='ACvalor' class="form-control inputAct" id="RAvalorR"  title="" placeholder="" required/>
           </div>
           <div class="col-6">
             <label for="apellido" class="form-label">Descripción</label>
             <div class="form-floating">
-              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 109px"></textarea>
-              <label for="floatingTextarea2">Breve descripcion del activo </label>
+              <textarea class="form-control" name="descrip" placeholder="Brebe descripcion caracteres permitido #.-_ A-z 0-9" id="descripcion" style="height: 109px"></textarea>
+              <label for="floatingTextarea2">Breve descripcion caracteres permitido #.-_ A-z 0-9</label>
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-3 optActivo">
             <label for="text" class="form-label">Marca</label> 
-            <select name="select_box" class="form-select inputLocal" id="jef">
-          </select>
+            <input type="text" name='ACmarca' class="form-control inputLocal" id="RAmarca"  title="" placeholder="Samgsung"/>
           </div>
-          <div class="col-3">
+          <div class="col-3 optActivo">
             <label for="apellido" class="form-label">Modelo</label>
-            <input type="text" name='Lnombre' class="form-control inputLocal" id="Lnombre"  title="" placeholder="" required/>
+            <input type="text" name='ACmodelo' class="form-control" id="RAmodelo"  title="" placeholder="Gt-4567" />
           </div>
-          <div class="col-4">
+          <div class="col-4 optActivo">
             <label for="apellido" class="form-label">Dimensions</label>
-            <input type="text" name='Lnombre' class="form-control inputLocal" id="Lnombre"  title="" placeholder="" required/>
+            <input type="text" name='ACdimensiones' class="form-control" id="RAdimensiones"  title="" placeholder="4X4X6" />
+          </div>
+          <div class="col-5">
+            <label for="apellido" class="form-label">Codigo Mined</label>
+            <input type="text" name='ACmined' class="form-control inputLocal" id="RAmined"  title="" placeholder="" required/>
+          </div>
+          <div class="col-5">
+            <label for="apellido" class="form-label">Codigo Interno</label>
+            <input type="text" name='ACinterno' class="form-control inputLocal" id="RAinterno"  title="" placeholder="" required/>
           </div>
           <div class="col-3">
             <label for="apellido" class="form-label">Serie</label>
-            <input type="text" name='Lnombre' class="form-control inputLocal" id="Lnombre"  title="" placeholder="" required/>
+            <input type="text" name='ACserieActivo' class="form-control inputLocal" id="RAserie"  title="" placeholder="" required/>
           </div>
           <div class="col-3">
-            <label for="apellido" class="form-label">Vida Util</label>
-            <input type="text" name='Lnombre' class="form-control inputLocal" id="Lnombre"  title="" placeholder="En Años" required/>
+            <label for="apellido" class="form-label">Vida Util en años</label>
+            <input type="number" name='ACvidaUti' class="form-control inputLocal" id="RAvidaU"  title="" placeholder="Años" required/>
           </div>
           <div class="col-4">
             <label for="text" class="form-label">Local de pertenecia</label> 
-            <select name="select_box" class="form-select inputLocal" id="jef">
+            <select name="localPert" class="form-select inputLocal" id="localPertenece">
             </select>
           </div>
           <div class="col-5">
-            <label for="text" class="form-label">Resposable de Area</label> 
-            <select name="select_box" class="form-select inputLocal" id="jef">
+            <label for="text" class="form-label">Resposable de Activo</label> 
+            <select name="responsable" class="form-select inputLocal" id="jef">
             </select>
           </div>
           <div class="col-5">
               <label for="formFile" class="form-label">Foto</label>
-              <input class="form-control" type="file" id="formFile">
+              <input class="form-control" name="fot" type="file" id="formFile">
           </div>
         
           <div class="col-10 text-center">

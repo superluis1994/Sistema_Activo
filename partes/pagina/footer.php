@@ -73,7 +73,10 @@ if(isset($_SESSION['datos'][@$_COOKIE['id']])){
     }
     elseif($_GET["pagina"] == "list_productos.php"){
      
-      echo "<script src='./js/list_activos/list_activo.js'></script>";
+      echo "<script src='./js/activos/list_activo.js'></script>";
+    }elseif($_GET["pagina"] == "registrar_Activo.php"){
+     
+      echo "<script src='./js/activos/regis_activo.js'></script>";
     }
 
 }

@@ -33,7 +33,7 @@ CREATE TABLE `conexiones` (
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
   PRIMARY KEY (`id_conexion`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `conexiones` */
 
@@ -56,13 +56,6 @@ insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (16,130
 insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (17,130125,'2022-07-04','02:09:49');
 insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (18,130125,'2022-07-11','11:52:21');
 insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (19,130125,'2022-07-11','03:31:01');
-insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (20,130125,'2022-07-12','09:27:11');
-insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (21,130125,'2022-07-12','10:43:18');
-insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (22,130125,'2022-07-12','12:11:41');
-insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (23,130125,'2022-07-12','12:14:46');
-insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (24,130125,'2022-07-12','02:21:49');
-insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (25,130125,'2022-07-12','02:26:42');
-insert  into `conexiones`(`id_conexion`,`id_user`,`fecha`,`hora`) values (26,130125,'2022-07-13','10:28:19');
 
 /*Table structure for table `inventario` */
 
@@ -82,16 +75,12 @@ CREATE TABLE `inventario` (
   `id_local` varchar(255) NOT NULL,
   `id_reposable` int(11) NOT NULL,
   `foto` text NOT NULL,
-  `fecha_resg` date DEFAULT NULL,
   PRIMARY KEY (`id_activo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `inventario` */
 
-insert  into `inventario`(`id_activo`,`codigo_mined`,`codigo_interno`,`nom_activo`,`tipo_activo`,`descrip_activo`,`valor_activo`,`marca`,`modelo`,`dimensiones`,`serie`,`vida_util`,`id_local`,`id_reposable`,`foto`,`fecha_resg`) values (34,'ss','sss','s',2,'s',500,'N/s','N/s','N/s','444',5,'St-18',130122,'img/recursos/foto_default.jpg','2022-07-15');
-insert  into `inventario`(`id_activo`,`codigo_mined`,`codigo_interno`,`nom_activo`,`tipo_activo`,`descrip_activo`,`valor_activo`,`marca`,`modelo`,`dimensiones`,`serie`,`vida_util`,`id_local`,`id_reposable`,`foto`,`fecha_resg`) values (43,'34','345','pc',2,'sss',500,'N/s','N/s','N/s','s',5,'St-19',130123,'img/imgPerfil/a1657896868.jpg','2022-07-15');
-insert  into `inventario`(`id_activo`,`codigo_mined`,`codigo_interno`,`nom_activo`,`tipo_activo`,`descrip_activo`,`valor_activo`,`marca`,`modelo`,`dimensiones`,`serie`,`vida_util`,`id_local`,`id_reposable`,`foto`,`fecha_resg`) values (232,'324566777','567788','Mesa',1,'mesa negra hecha de caoba',125,'E/s','E/s','4x4x4','34567',5,'St-17',130125,'img/recursos/foto_default.jpg',NULL);
-insert  into `inventario`(`id_activo`,`codigo_mined`,`codigo_interno`,`nom_activo`,`tipo_activo`,`descrip_activo`,`valor_activo`,`marca`,`modelo`,`dimensiones`,`serie`,`vida_util`,`id_local`,`id_reposable`,`foto`,`fecha_resg`) values (233,'74757866','4567','silla',1,'silla de ',30,'E/s','E/s','4x3','5678',5,'St-17',130125,'img/recursos/foto_default.jpg',NULL);
+insert  into `inventario`(`id_activo`,`codigo_mined`,`codigo_interno`,`nom_activo`,`tipo_activo`,`descrip_activo`,`valor_activo`,`marca`,`modelo`,`dimensiones`,`serie`,`vida_util`,`id_local`,`id_reposable`,`foto`) values (2324466,'324566777','567788','Mesa',1,'mesa negra hecha de caoba',125,'E/s','E/s','4x4x4','E/s',5,'St-17',130125,'img/recursos/foto_default.jpg');
 
 /*Table structure for table `list_activos_movimiento` */
 
@@ -111,32 +100,14 @@ CREATE TABLE `list_movimientos` (
   `id_tipo_mov` int(11) NOT NULL,
   `id_user_entrega` int(11) NOT NULL,
   `id_user_recibe` int(11) NOT NULL,
-  `id_local_salida` varchar(30) NOT NULL,
-  `id_local_destino` varchar(30) NOT NULL,
-  `fecha_mov` date NOT NULL,
-  `hora_mov` time NOT NULL,
-  `justi_mov` text NOT NULL,
+  `id_local_salida` int(11) NOT NULL,
+  `id_local_destino` int(11) NOT NULL,
+  `fecha_mov` date DEFAULT NULL,
+  `hora_mov` date DEFAULT NULL,
   PRIMARY KEY (`id_lis_mov`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `list_movimientos` */
-
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (8,2,130123,130122,'St-17','St-19','2022-07-13','11:21:46','sllslslls');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (9,3,130122,130123,'St-17','St-18','2022-07-13','11:22:22','sssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (10,2,130122,130125,'St-17','St-18','2022-07-13','11:26:53','lusus');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (11,2,130122,130125,'St-17','St-18','2022-07-13','11:30:19','lusus');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (12,3,130121,130123,'St-17','St-18','2022-07-13','11:33:55','ssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (13,4,130121,130123,'St-17','St-18','2022-07-13','11:35:32','ssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (14,2,130122,130122,'St-17','St-19','2022-07-13','11:38:40','sss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (15,3,130121,130122,'St-17','St-18','2022-07-13','11:50:17','ssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (16,3,130122,130123,'St-17','St-19','2022-07-13','11:56:20','ssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (17,2,130121,130123,'St-17','St-19','2022-07-13','11:58:48','sss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (18,4,130121,130125,'St-17','St-18','2022-07-13','12:03:25','ssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (19,2,130122,130122,'St-17','St-19','2022-07-13','12:05:00','sssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (20,3,130122,130122,'St-17','St-19','2022-07-13','12:05:52','ssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (21,3,130122,130123,'St-17','St-18','2022-07-13','02:13:08','wwwwwwww');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (22,3,130123,130123,'St-17','St-19','2022-07-13','02:17:43','ssss');
-insert  into `list_movimientos`(`id_lis_mov`,`id_tipo_mov`,`id_user_entrega`,`id_user_recibe`,`id_local_salida`,`id_local_destino`,`fecha_mov`,`hora_mov`,`justi_mov`) values (23,3,130122,130123,'St-17','St-18','2022-07-13','02:22:57','sssss');
 
 /*Table structure for table `local` */
 
@@ -191,7 +162,7 @@ CREATE TABLE `permisos` (
   `mostr_local` varchar(20) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_permisos`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `permisos` */
 
@@ -201,7 +172,6 @@ insert  into `permisos`(`id_permisos`,`registrar_usu`,`list_usu`,`conexion`,`mov
 insert  into `permisos`(`id_permisos`,`registrar_usu`,`list_usu`,`conexion`,`mover_activos`,`list_movimiento_activo`,`regist_producto`,`mostr_producto`,`regist_local`,`mostr_local`,`id_user`) values (4,'on','on','on','on','on','on','on','on','on',130125);
 insert  into `permisos`(`id_permisos`,`registrar_usu`,`list_usu`,`conexion`,`mover_activos`,`list_movimiento_activo`,`regist_producto`,`mostr_producto`,`regist_local`,`mostr_local`,`id_user`) values (5,'on','on','on','on','on','on','on','on','on',130155);
 insert  into `permisos`(`id_permisos`,`registrar_usu`,`list_usu`,`conexion`,`mover_activos`,`list_movimiento_activo`,`regist_producto`,`mostr_producto`,`regist_local`,`mostr_local`,`id_user`) values (6,'on','on','on','on','on','on','on','on','on',130156);
-insert  into `permisos`(`id_permisos`,`registrar_usu`,`list_usu`,`conexion`,`mover_activos`,`list_movimiento_activo`,`regist_producto`,`mostr_producto`,`regist_local`,`mostr_local`,`id_user`) values (7,'off','off','off','off','off','on','on','on','on',130150);
 
 /*Table structure for table `roles` */
 
@@ -216,6 +186,7 @@ CREATE TABLE `roles` (
 insert  into `roles`(`id_rol`,`rol`) values (1,'Admin');
 insert  into `roles`(`id_rol`,`rol`) values (2,'usuario');
 insert  into `roles`(`id_rol`,`rol`) values (3,'supervisor');
+insert  into `roles`(`id_rol`,`rol`) values (4,'francela');
 
 /*Table structure for table `sub_menu` */
 
@@ -227,19 +198,6 @@ CREATE TABLE `sub_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sub_menu` */
-
-/*Table structure for table `tipo_activo` */
-
-CREATE TABLE `tipo_activo` (
-  `id_tipo_activo` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_tipo_activo` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_tipo_activo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `tipo_activo` */
-
-insert  into `tipo_activo`(`id_tipo_activo`,`nom_tipo_activo`) values (1,'Tecnologico');
-insert  into `tipo_activo`(`id_tipo_activo`,`nom_tipo_activo`) values (2,'Mobiliario');
 
 /*Table structure for table `tipo_movimiento` */
 
@@ -276,11 +234,10 @@ CREATE TABLE `usuario` (
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130121,'WkpOTWpsUkxCbFR3TENpTVJDWFMyaG9MRVZ3Z0ZJTU1KSVhFakszc3hiVT0=','luis','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',2,1,NULL);
+insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130121,'WkpOTWpsUkxCbFR3TENpTVJDWFMyaG9MRVZ3Z0ZJTU1KSVhFakszc3hiVT0=','luis','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1,NULL);
 insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130122,'U0NyaG5Ra2pPYTVWUjQ2OGpwTE9KckxudUhpWWpxOFVtdEdNb0dmMlMzdz0=','frank','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,2,NULL);
 insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130123,'WkpOTWpsUkxCbFR3TENpTVJDWFMyaG9MRVZ3Z0ZJTU1KSVhFakszc3hiVT0=','luis','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1,NULL);
 insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130125,'YWNlOFBaVG5BaTVnZkg2R3dFdjh3Zz09','frank','sorto','superluis1994@gmail.com','img/recursos/foto_default.jpg',1,1,NULL);
-insert  into `usuario`(`id_user`,`passw`,`nom`,`apellidos`,`correo`,`photo`,`account_status_id`,`rol_id`,`Centro_costo`) values (130150,'LzFMSzl0Q3NxTTlLZFF6dWxzWFFxakg3anpmcVN3dEZaenlaeDFUVlpETT0=','juan','malaquias','superluis1994@gmail.com','img/imgPerfil/a1657895484.jpg',1,2,500);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
