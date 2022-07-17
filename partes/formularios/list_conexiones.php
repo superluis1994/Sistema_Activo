@@ -13,8 +13,9 @@
                 <div class="col-11">
                     <div class="row justify-content-end">
                         <div class="row justify-content-end"> 
-                        <div class="col-4">
-                            <div class="form-check form-check-inline">
+                        <div class="col-3">
+                          <input type="date" class="form-control" name="tiempo" id="">
+                            <!-- <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox1" value="option1">
                                 <label class="form-check-label" for="inlineCheckbox1" ckeck="checked">Carnet</label>
                               </div>
@@ -25,10 +26,10 @@
                               <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox3" value="option3" >
                                 <label class="form-check-label" for="inlineCheckbox3">Apellido</label>
-                              </div>
+                              </div> -->
                             </div>
                             <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario" required/>
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Carnet" required/>
                           </div>
                         </div>
                           <div class="col-10 mt-2">
