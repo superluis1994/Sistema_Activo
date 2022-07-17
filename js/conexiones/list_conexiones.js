@@ -8,7 +8,8 @@
       body: list
     }).then(res=>res.json())
     .then(data=>{
-     document.getElementById("listConexiones").innerHTML=data;
+     document.getElementById("listConexiones").innerHTML=data.fila;
+     document.getElementById("pagList").innerHTML=data.paginacion;
       
     })
 

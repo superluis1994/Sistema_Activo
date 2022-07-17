@@ -41,9 +41,11 @@ if(isset($_POST["accion"])){
   else if($_POST["accion"]=="select"){
 
     // eleiminar session deactivos de movimientos
-    foreach ($_SESSION['actList'] as $key => $value){
-      if($value[0]==$_COOKIE["id"]){
-          unset($_SESSION['actList'][$key]);
+    if(isset($_SESSION['actList'])){
+      foreach ($_SESSION['actList'] as $key => $value){
+        if($value[0]==$_COOKIE["id"]){
+            unset($_SESSION['actList'][$key]);
+        }
       }
     }
 /////////tipo de movimiento///////////////

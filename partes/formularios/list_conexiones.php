@@ -32,7 +32,7 @@
                           </div>
                         </div>
                           <div class="col-10 mt-2">
-                           
+                          <div style="height: 400px; overflow-Y: scroll;">
                               <table class="table-bordered table table-striped table-hover scrollspy" height="300" >
                                   <thead>
                                       <tr>
@@ -48,20 +48,11 @@
                             </tbody>
                         </table>
                     </div>
+                    </div>
                     <div class="col-10 mt-2 text-center">
                         <nav aria-label="...">
-                            <ul class="pagination justify-content-center">
-                              <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                              </li>
+                            <ul class="pagination justify-content-center" id="pagList">
+                            
                             </ul>
                           </nav>
                     </div>

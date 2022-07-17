@@ -14,6 +14,9 @@ if(isset($_POST["accion_logui"])){
     ];
 
     $results=$procesoDatos->loguiar($dato);
+    $respuesta=[
+        'alerta'=>"alerta('error','Datos Incorrectos','No se encuentra usuario con esos datos')"
+    ];
     if($results==1){
         // genero el token
         $token=generar_token_seguro(20);
@@ -68,16 +71,38 @@ if(isset($_POST["accion_logui"])){
 
         // echo json_encode($regisConex);
     // }
+ 
+    $respuesta=[
     
+        'alerta'=>"window.location.href='index.php',2000",
+        'tiempo'=>"1000"
+    ];
+
     
     
 }
-echo json_encode($results);
-
-   
-
+echo json_encode($respuesta);
 
 }
+else if($_POST["accion"]=='CerrarSession'){
+
+    
+    unset($_SESSION['datos'][$_COOKIE['id']]);
+    setcookie(
+      $name= "id",
+      $value = "",
+      $expires = 0,
+      $path = "/",
+      $domain = "localhost",
+      $secure = false,
+      $httponly = false);
+  
+  
+     echo json_encode(Ruta);
+  
+    }
+
+
 else if(isset($_POST['rest_loguin'])){
     if(!$_POST["codigo"]=="" ){
         
@@ -100,14 +125,5 @@ function generar_token_seguro($longitud)
     
     return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
 }
-// $perfil=$procesoDatos->restClave("343566");
-// echo $perfil["correo"]
-// var_dump($perfil)
-
-
-
-// setcookie("usuarioActivo", "Hola");
-
-
 
 ?>

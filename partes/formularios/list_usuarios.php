@@ -14,7 +14,7 @@
                 <div class="col-11">
                   <div class="row justify-content-end">
                     <div class="row justify-content-end"> 
-                      <div class="col-4">
+                      <div class="col-4" id="btn-tip">
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" name="tipoBus" id="tipoBus" value="carnet" checked>
                           <label class="form-check-label" for="inlineCheckbox1">Carnet</label>
@@ -29,48 +29,40 @@
                         </div>
                       </div>
                             <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario" required/>
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar por carnet" required/>
                           </div>
                         </div>
                           <div class="col-10 mt-2">
-                           
-                              <table class="table-bordered table table-striped table-hover">
-                                  <thead>
+                            
+                            <div style="height: 400px; overflow-Y: scroll;">
+                            <table class="table-bordered table table-striped table-hover">
+                              <thead>
                                       <tr>
                                           <th scope="col">Foto</th>
-                                <th scope="col">Codigo</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Centro costo</th>
-                                <th scope="col">Correo</th>
-                                <?php 
-                                if($_SESSION["datos"][$_COOKIE["id"]][5]==1)
+                                          <th scope="col">Codigo</th>
+                                          <th scope="col">Nombre</th>
+                                          <th scope="col">Apellido</th>
+                                          <th scope="col">Centro costo</th>
+                                          <th scope="col">Correo</th>
+                                          <?php 
+                                          if($_SESSION["datos"][$_COOKIE["id"]][5]==1)
                                 {
                                      echo " <th scope='col'>Estado</th>
                                             <th scope='col'>Accion</th>";
-                                } 
-                                ?>
-                              </tr>
+                                          } 
+                                          ?>
+                                        </tr>
                             </thead>
                             <tbody id="list_resul">
                               
                             </tbody>
-                        </table>
+                          </table>
+                        </div>
                     </div>
                     <div class="col-10 mt-2 text-center">
                         <nav aria-label="...">
-                            <ul class="pagination justify-content-center">
-                              <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                              </li>
+                            <ul class="pagination justify-content-center pgina" id="paginacion">
+                             
                             </ul>
                           </nav>
                     </div>

@@ -10,6 +10,7 @@
     <script src="<?php echo Ruta; ?>js/jquery-3.6.0.min.js"></script>
     <script src="<?php echo Ruta; ?>js/menu_permisos/menu_permiso.js"></script>
     <script src="<?php echo Ruta; ?>js/dselect.js"></script>
+    <script src="<?php echo Ruta; ?>js/valid.js"></script>
 
   
     <?php 

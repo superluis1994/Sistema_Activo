@@ -2,14 +2,16 @@
 function list_user(){
     list= new FormData()
     list.append("accion","list_usuario_table")
-    list.append("cantida","5")
+    list.append("cantida","7")
     
     fetch("partes/procesoForm/list_usuario.php",{
       method: 'POST',
       body: list
     }).then(res=>res.json())
     .then(data=>{
-     document.getElementById("list_resul").innerHTML=data;
+      // alert(data)
+     document.getElementById("list_resul").innerHTML=data.fila;
+     document.getElementById("paginacion").innerHTML=data.paginacion;
       
     })
 
@@ -73,12 +75,44 @@ fil=document.querySelector('input[name=tipoBus]:checked').value
          body: list
          }).then(res=>res.json())
          .then(data=>{
-            document.getElementById("list_resul").innerHTML=data;
+            document.getElementById("list_resul").innerHTML=data.fila;
+            document.getElementById("paginacion").innerHTML=data.paginacion;
         //    console.log(data);
          })
     }else{
         list_user()
     }
+})
+
+document.getElementById("btn-tip").addEventListener("click",function(e){
+  input=document.getElementById("btn-buscar")
+   input.value=""
+  input.placeholder="Buscar por " + e.target.value
+  list_user()
+})
+
+
+//paginacion parte
+$(".pgina").on ("click","#pagUser",function(e)
+{  
+  fill=document.querySelector('input[name=tipoBus]:checked').value
+  list= new FormData()
+  list.append("accion","btn-paginacion")
+  list.append("cantida",e.target.name)
+  list.append("input",$("#btn-buscar").val())
+  list.append("tipo",fill)
+  
+  fetch("partes/procesoForm/list_usuario.php",{
+    method: 'POST',
+    body: list
+  }).then(res=>res.json())
+  .then(data=>{
+    // alert(data)
+   document.getElementById("list_resul").innerHTML=data.fila;
+  //  document.getElementById("paginacion").innerHTML=data.paginacion;
+    
+  })
+   
 })
 
 // contrasena aleatoria

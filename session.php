@@ -69,7 +69,27 @@ echo "<br/>";
 echo "<br/>";
 echo "<br/>";
 echo "<br/>";
-var_dump($_SESSION['actList']);
+// var_dump($_SESSION['actList']);
+// echo $_SESSION['datos'][$_COOKIE['id']][0]
+require_once "conexionprueba.php";
+
+
+class sqlReg extends Principal {
+    
+    public function ListGenerica($dato){
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
+        $sql->execute();
+        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+        return $dat;
+    }
+}
+
+$procesoDatos= new sqlReg ();
+
+$t=$procesoDatos->ListGenerica("usuario");
+echo count($t);
+
+
 // unset($_SESSION['actList']['232'][$_COOKIE["id"]]);
 
 // foreach ($_SESSION['actList'] as $key => $value){

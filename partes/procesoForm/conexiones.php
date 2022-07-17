@@ -11,7 +11,7 @@ if(isset($_POST["accion"])){
         $resl="";
           $cantidad = $_POST["cantida"];
         // $list=$procesoDatos->ListGenerica("conexiones LIMIT ".$cantidad-$cantidad.",".$cantidad);
-        $list=$procesoDatos->ListGenerica("conexiones ");
+        $list=$procesoDatos->ListGenerica("conexiones limit 0, 7");
         
         foreach($list as $key => $value){
         
@@ -23,9 +23,48 @@ if(isset($_POST["accion"])){
         </tr>";
           
         }
-        
+
+
+        $numUser=count($procesoDatos->ListGenerica("conexiones"));
+    // aqui comienzo a trabjar la paginacion para la tabla locales
+    $num_paginas=0;
+    // aqui determino si el numero de datos es inferior al numero de datos que quiero mostrar
+    if($numUser<7){
+      $num_paginas=1;
+    }else{
+      $num_paginas=ceil($numUser/7);
     }
-    echo json_encode($resl);
+
+    // $res="";
+    // $_POST["cantida"];
+    
+    $paginacion ="";
+    // aqui creo los registros de paginacion fila por fila siempre y cuando la num pagina sea mayor a 2
+    if($num_paginas >1){
+      $paginacion="<li class='page-item disabled'>
+    <a class='page-link'  tabindex='-1' aria-disabled='true'>Previous</a>
+    </li>";
+    for($a=0;$a<$num_paginas;$a++){
+      $numero=$a+1;
+      $g=7*$numero;
+      $paginacion.="<li class='page-item ' aria-current='page'>
+      <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
+      </li>";
+    }
+    
+    $paginacion.="<li class='page-item'>
+ <a class='page-link' >Next</a>
+ </li>";
+  }
+        
+  $Respuestas = [
+    "paginacion"=> $paginacion,
+    "estado"=> "exito",
+    "fila"=> $resl,
+   ];
+
+  echo json_encode($Respuestas);
+    }
 
 
 }

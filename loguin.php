@@ -38,11 +38,7 @@
             <div class="mb-3 text-center">
               <button type="submit" class="btn btn-primary mt-4" id="btn_loguin" disabled>Iniciar</button>
             </div>
-            <div class="mb-3 text-center">
-              <a class="" data-bs-toggle="modal" data-bs-target="#modal-rest">
-                Restablecer contraseña
-              </a>
-            </div>
+           
 
           </form>
         </div>
@@ -54,36 +50,7 @@
   </div>
   <br>
   <br>
-  <!-- Button trigger modal -->
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="modal-rest" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="restablecer-contra" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="restablecer-contra">Restablecer Contraseña</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-     
-          <form id="restablecer_pass" action="" method="post" >
-            <div class="mb-3 ">
-              <label for="" class="form-label">Codigos</label>
-              <input type="number"id="codigoRest" name="codigo" class="form-control" title="debe de ingresar el codigo de profesor " > 
-             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni architecto officia aliquam ad repellendus cumque
-                illo eaque sapiente nulla pariatur culpa provident animi nisi aliquid deserunt, temporibus vero sint minus!</p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" id="btn_restablecer" disabled="true">Restablcer</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <div class="text-center p-3">
     © 2020 Copyright: <a class="text-grey" href="#">Itca Fepade</a>

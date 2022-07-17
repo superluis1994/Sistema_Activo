@@ -19,15 +19,12 @@ function alertas(titulo,mensaje,icono,){
          //envio los datos para la actualizacion del usario
             list= new FormData()
             list.append("accion","CerrarSession")
-            fetch("partes/procesoForm/Registrar_usuario.php",{
+            fetch("partes/procesoForm/loguin.php",{
             method: 'POST',
             body: list
             }).then(res=>res.json())
             .then(data=>{
-                
                     window.location.replace(data+"loguin.php");
-                
-          
             })
 
         }

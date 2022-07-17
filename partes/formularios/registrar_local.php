@@ -7,7 +7,7 @@
       <div class="row justify-content-center">
       <div class="col-2">
         <div class="col-12 text-center">
-        <img src="img/recursos/foto_default.jpg"  id="img_visual" class="" width="200" height="200"alt="...">
+        <img src="img/recursos/locales.png"  id="img_visual" class="" width="200" height="200"alt="...">
       </div>
   </div>
 

@@ -126,30 +126,6 @@ if(isset($_POST["accion"])){
   }
  
   
-  
-  else if($_POST["accion"]=='CerrarSession'){
-
-    
-  unset($_SESSION['datos'][$_COOKIE['id']]);
-  setcookie(
-    $name= "id",
-    $value = "",
-    $expires = 0,
-    $path = "/",
-    $domain = "localhost",
-    $secure = false,
-    $httponly = false);
-
-
-   echo json_encode(Ruta);
-
-  }
-  
-
-  
-
-
-  
 }
 
 

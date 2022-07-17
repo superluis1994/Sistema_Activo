@@ -76,7 +76,7 @@ class sqlReg extends Principal {
     }
      //lista de usuarios por busqueda de filtros
      public function busquedaFiltro($dato){
-        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["filtro"]." like '".$dato["busqueda"]."%'");
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["filtro"]." like '".$dato["busqueda"]."%' limit 0,20");
        $sql->execute();
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;
@@ -94,6 +94,7 @@ class sqlReg extends Principal {
     //    $f=$sql->rowCount();
        return $sql;
     }
+    
     public function AddUsuario($dato){
         //funcion 1 = insertar
         //funcion 2 = es igual actualizar
@@ -210,6 +211,13 @@ public function RegaActivo($dato){
   $dat=$sql->rowCount();
       return $dat;
  }
+   //consulta generica
+   public function sqlConsulta($dato){
+      $sql=Principal::conectar()->prepare($dato);
+     $sql->execute();
+     $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+     return $dat;
+  }
     
 }
 

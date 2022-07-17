@@ -53,24 +53,9 @@ fetch('partes/procesoForm/loguin.php',{
     body: datos_log
   }).then(res=>res.json())
     .then(data=>{
-      if(data==0){
-  
-        alerta("error","Error","Datos incorrectos")
-      }
-      else if(data==1){
-  
-       alerta("success","Correcto","session iniciada en 5 segundos")
-       window.location.href = "index.php";
-  
-      }
-      
+      setTimeout(data.alerta,data.tiempo);
     })
-  }
-  else{
-    alerta("error","Error","Llenar los campos")
-
-  }
-  
+  } 
 })
 
 // validar el campo de restablecimeinto este lleno para activar el btn
@@ -115,6 +100,6 @@ function alerta(icono,title,text){
       title: title,
       text: text,
       showConfirmButton: false,
-      timer: 1500
+      timer: 1800
     })
   }
