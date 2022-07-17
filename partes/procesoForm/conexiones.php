@@ -11,7 +11,7 @@ if(isset($_POST["accion"])){
         $resl="";
           $cantidad = $_POST["cantida"];
         // $list=$procesoDatos->ListGenerica("conexiones LIMIT ".$cantidad-$cantidad.",".$cantidad);
-        $list=$procesoDatos->ListGenerica("conexiones limit 0, 7");
+        $list=$procesoDatos->ListGenerica("conexiones limit 0, 20");
         
         foreach($list as $key => $value){
         
@@ -29,10 +29,10 @@ if(isset($_POST["accion"])){
     // aqui comienzo a trabjar la paginacion para la tabla locales
     $num_paginas=0;
     // aqui determino si el numero de datos es inferior al numero de datos que quiero mostrar
-    if($numUser<7){
+    if($numUser<20){
       $num_paginas=1;
     }else{
-      $num_paginas=ceil($numUser/7);
+      $num_paginas=ceil($numUser/20);
     }
 
     // $res="";
@@ -46,7 +46,7 @@ if(isset($_POST["accion"])){
     </li>";
     for($a=0;$a<$num_paginas;$a++){
       $numero=$a+1;
-      $g=7*$numero;
+      $g=20*$numero;
       $paginacion.="<li class='page-item ' aria-current='page'>
       <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
       </li>";
