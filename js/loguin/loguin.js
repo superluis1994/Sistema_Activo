@@ -71,27 +71,6 @@ $("#modal-rest").find("input[type=number]").on('keyup', function(e) {
   });
 
 
-// envio de datos para restablecer password
-logui_reset=document.getElementById("restablecer_pass")
-logui_reset.addEventListener("submit", function(e){
-    e.preventDefault()
-
-    datos_res= new FormData(logui_reset);
-    datos_res.append("rest_loguin","loguin")
-    fetch('partes/procesoForm/loguin.php',{
-        method: 'POST',
-        body: datos_res,
-      }).then(res=>res.json())
-        .then(data=>{
-     
-         alert(data)
-    
-        })
-
-})
-
-
-
 ///////////////alerta////////////////////
 function alerta(icono,title,text){
     Swal.fire({

@@ -61,8 +61,10 @@ if(isset($_POST["accion"])){
     $list2=$procesoDatos->ListGenerica("usuario");
     $list_usuario="<option value='0' selected>SELECCIONAR....</option>";
     foreach($list2 as $key => $value){
-    
+    if($value["account_status_id"] == 1){
+
       $list_usuario.="<option value='".$value["id_user"]."'>".strtoupper($value["nom"])." ".strtoupper($value["apellidos"])." (".strtoupper($value["id_user"]).") </option>";
+    }
     
       
     }

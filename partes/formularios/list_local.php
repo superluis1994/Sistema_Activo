@@ -32,6 +32,7 @@
                           </div>
                         </div>
                           <div class="col-10 mt-2">
+                          <div style="height: 400px; overflow-Y: scroll;">
                            
                               <table class="table-bordered table table-striped table-hover">
                                   <thead>
@@ -48,6 +49,7 @@
                               
                             </tbody>
                         </table>
+                    </div>
                     </div>
                     <div class="col-10 mt-2 text-center">
                         <nav aria-label="...">

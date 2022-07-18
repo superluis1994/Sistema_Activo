@@ -95,7 +95,7 @@ document.getElementById("Re_pass").addEventListener("keyup",function(e){
 
     if(/^[A-Za-z 0-9$@$!%*?&\s]+$/g.test(e.target.value)){
         // si cumple
-        if(e.target.value == $("#actual_pass").val()){
+        if(e.target.value == $("#nuev_pass").val()){
 
             e.target.classList.remove("is-invalid")
             e.target.classList.add("is-valid")

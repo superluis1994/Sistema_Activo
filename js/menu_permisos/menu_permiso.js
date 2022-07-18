@@ -8,7 +8,9 @@ window.onload = function() {
         body: menu
       }).then(res=>res.json())
         .then(data=>{
-         document.getElementById("navbarNav").innerHTML = data
+          if(data.accion=="si"){
+            document.getElementById("navbarNav").innerHTML = data.menu
+          }
         // console.log(data);
         })
 }

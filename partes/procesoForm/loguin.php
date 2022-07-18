@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once "../conexion/sql.php";
+require_once "../credenciale/datos.php";
+
 $procesoDatos= new sqlReg ();
 
 if(isset($_POST["accion_logui"])){
