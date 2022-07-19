@@ -8,7 +8,7 @@ if(isset($_POST["accion"])){
     if($_POST['accion'] == "estadoUser"){
         
         $opt=[
-            "accion" => "console.log('llego aqui')",
+            "accion" => "",
             "timer" => "1000",
             "opt" => ""
         ];

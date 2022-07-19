@@ -74,21 +74,94 @@ echo "<br/>";
 require_once "conexionprueba.php";
 
 
-class sqlReg extends Principal {
+// try {
+//     $dbh = new PDO('mysql:host=localhost;dbname=sistema_activos1', 'root', '');
+
+//     $stmt = $dbh->prepare("INSERT INTO list_movimientos(
+ 
+//         `id_tipo_mov`,
+//         `id_user_entrega`,
+//         `id_user_recibe`,
+//         `id_local_salida`,
+//         `id_local_destino`,
+//         `fecha_mov`,
+//         `hora_mov`,
+//         `justi_mov`
+//       )
+//       VALUES
+//         (
+//           2,
+//           130123,
+//           130122,
+//           'St-19',
+//           'St-18',
+//           '2022-07-13',
+//           '11:21:46',
+//           'son pruebas'
+//         );");
+
+//     try {
+//         $stmt->execute();
+//         print $dbh->lastInsertId();
+//         $dbh->beginTransaction();
+//         $dbh->commit();
+//     } catch(PDOExecption $e) {
+//         $dbh->rollback();
+//         print "Error!: " . $e->getMessage() . "</br>";
+//     }
+// } catch( PDOExecption $e ) {
+//     print "Error!: " . $e->getMessage() . "</br>";
+// }
+
+// class sqlReg extends Principal {
     
-    public function ListGenerica($dato){
-        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
-        $sql->execute();
-        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
-        return $dat;
-    }
-}
+//     public function ListGenerica($dato){
+//         $sq->beginTransaction();
+//         $sql=Principal::conectar()->prepare($dato);
+//         $sq=Principal::conectar();
+//         $sq->execute();
+//         $sq->commit();
+//         $sq->lastInsertId();
+//         // $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+//         return $sq;
+//     }
+// }
 
-$procesoDatos= new sqlReg ();
+// $procesoDatos= new sqlReg ();
 
-$t=$procesoDatos->ListGenerica("usuario");
-echo count($t);
+// $t=$procesoDatos->ListGenerica("INSERT INTO list_movimientos(
+ 
+//     `id_tipo_mov`,
+//     `id_user_entrega`,
+//     `id_user_recibe`,
+//     `id_local_salida`,
+//     `id_local_destino`,
+//     `fecha_mov`,
+//     `hora_mov`,
+//     `justi_mov`
+//   )
+//   VALUES
+//     (
+//       2,
+//       130123,
+//       130122,
+//       'St-19',
+//       'St-18',
+//       '2022-07-13',
+//       '11:21:46',
+//       'son pruebas'
+//     ); SELECT LAST_INSERT_ID();");
+// // echo $t[];
+// var_dump($_SESSION['actList']);
+// $string="";
+// foreach($_SESSION['actList'] as $key=>$value){
+//    if($_COOKIE['id'] == $value[0]){
+//     $string.=$key.",";
 
+//    }
+      
+// }
+// echo $string2=trim($string,",");
 
 // unset($_SESSION['actList']['232'][$_COOKIE["id"]]);
 
@@ -99,6 +172,13 @@ echo count($t);
 // }
 // session_destroy($_SESSION['actList'])
 // session_destroy()
+$string="123,124";
+$p=explode(",", $string);
+// echo $t=substr_count($string, ',');
+// $string2=trim($string,",");  
+// var_dump($p);
 
-
+foreach($p as $key){
+    echo $key."\n";  
+}
 ?>

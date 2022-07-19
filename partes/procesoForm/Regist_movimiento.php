@@ -23,15 +23,48 @@ if(isset($_POST["accion"])){
     'hora'=>date('h:i:s')
   ];
    $idInsert=$procesoDatos->RegdatosMovimiento($dato);
-  echo json_encode($idInsert);
+   if($idInsert!=0){
+
+          $string="";
+          $string2="";
+      foreach($_SESSION['actList'] as $key=>$value){
+        if($_COOKIE['id'] == $value[0]){
+          $string.=$key.",";
+
+        }
+            
+      }
+
+      if($string == ""){
+
+      }else{
+       
+          $string2=trim($string,",");  
+          $arrayAd=explode(",", $string2);
+
+          $inserSql="INSERT INTO detalle_movimientos (id_mov,id_activos) VALUES(".$idInsert.",'".$string2."');";
+          $inserRest=$procesoDatos->sqlConsulta($inserSql);
+
+                $sqllis="";
+                 foreach($arrayAd as $key){
+                  $sqllis.="UPDATE inventario SET id_local = '".$_POST["localDes"]."' WHERE id_activo = '".$key."';";
+                }
+                
+                $updateInve=$procesoDatos->sqlConsulta($sqllis);
+                json_encode($updateInve);
+      }
+
+
+               
+  }
       
 
-    foreach ($_SESSION['actList'] as $key => $value){
-      if($value[0]==$_COOKIE["id"]){
-          // $ids=$_SESSION['actList'][$key];
-          $lu.=$key;
-      }
-    }
+    // foreach ($_SESSION['actList'] as $key => $value){
+    //   if($value[0]==$_COOKIE["id"]){
+    //       // $ids=$_SESSION['actList'][$key];
+    //       $lu.=$key;
+    //   }
+    // }
 
   
   }

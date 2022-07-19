@@ -29,7 +29,7 @@ if($_POST["accion"]=='buscarUser'){
     $datos=[
       'filtro'=>$tipo,
       'busqueda'=>$_POST["busqueda"],
-      'tabla'=>"usuario"
+      'tabla'=>"usuario INNER JOIN roles ON usuario.rol_id = roles.id_rol"
       
     ];
 
@@ -56,7 +56,8 @@ if($_POST["accion"]=='buscarUser'){
 
         }
         $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"]."' class='btn btn-primary'>Modificar</button></td>";
-
+        $res.="<td><button type='button' id='btn-permisos' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["rol"]."' class='btn btn-secondary'>Permisos</button></td>";
+        
       }
 
      
@@ -71,7 +72,7 @@ if($_POST["accion"]=='buscarUser'){
     echo json_encode($Resp);
 
   } else if($_POST["accion"]=='list_usuario_table'){
-    $list_user=$procesoDatos->ListTipoUsuario("usuario limit 0,".$_POST["cantida"].";");
+    $list_user=$procesoDatos->ListTipoUsuario("usuario INNER JOIN roles ON usuario.rol_id = roles.id_rol limit 0,".$_POST["cantida"].";");
     $res="";
     foreach($list_user as $key => $value){
       // filas de la tabla
@@ -94,6 +95,7 @@ if($_POST["accion"]=='buscarUser'){
 
         }
         $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"].",".$value["Centro_costo"]."' class='btn btn-primary'>Modificar</button></td>";
+        $res.="<td><button type='button' id='btn-permisos' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["rol"]."' class='btn btn-secondary'>Permisos</button></td>";
 
       }
      
@@ -146,7 +148,7 @@ if($_POST["accion"]=='buscarUser'){
 }
 else if($_POST["accion"]=='btn-paginacion'){
      $infC=$_POST["cantida"]-7;
-    $sql="usuario limit ".$infC." , ".$_POST["cantida"]."";
+    $sql="usuario INNER JOIN roles ON usuario.rol_id = roles.id_rol limit ".$infC." , ".$_POST["cantida"]."";
      if($_POST["input"]!=""){
 
       $sql .= " WHERE ".$_POST["tipo"]." = ".$_POST["input"]."";
@@ -175,7 +177,8 @@ else if($_POST["accion"]=='btn-paginacion'){
 
       }
       $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"].",".$value["Centro_costo"]."' class='btn btn-primary'>Modificar</button></td>";
-
+      $res.="<td><button type='button' id='btn-permisos' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["rol"]."' class='btn btn-secondary'>Permisos</button></td>";
+      
     }
    
     $res.="</tr>";      

@@ -14,8 +14,12 @@
 
 
 <?php 
+
         if(isset($_GET["pagina"])){
-        include("partes/formularios/".$_GET["pagina"]);
+          if(isset($_SESSION['datos'][@$_COOKIE['id']][0]))
+         {
+            include("partes/formularios/".$_GET["pagina"]);
+          }
         }
         else{
             print "<center><h2>Bienvenidos</h2>";

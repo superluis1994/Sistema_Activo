@@ -1,38 +1,38 @@
 <div class="row mt-4">
     <div class="col-10 offset-1">
-        <form id="form" action="" method="post" enctype="multipart/form">
+
             <div class="row  mt-5">
                 <div class="col-1">
-                        <div class="col-12 justify-content-center">
+                        <div class="col-6 justify-content-center">
                         <p class="display-5">Usuarios</p>
-                        <img src="img/recursos/users.png" id="img_visual" class="" width="200"
-                            height="200" alt="...">
+                        <img src="img/recursos/users.png" id="img_visual" class="" width="180"
+                            height="180" alt="...">
                     </div>
                 </div>
-              </form>
+              
 
                 <div class="col-11">
                   <div class="row justify-content-end">
                     <div class="row justify-content-end"> 
-                      <div class="col-4" id="btn-tip">
+                      <div class="col-4" id="btn-tip" value="busqueda">
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" name="tipoBus" id="tipoBus" value="carnet" checked>
-                          <label class="form-check-label" for="inlineCheckbox1">Carnet</label>
+                          <label class="form-check-label" for="tipoBus">Carnet</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="tipoBus" id="tipoBus" value="nombre">
-                          <label class="form-check-label" for="inlineCheckbox2">Nombre</label>
+                          <input class="form-check-input" type="radio" name="tipoBus" id="tipoNom" value="nombre">
+                          <label class="form-check-label"  for="tipoNom">Nombre</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="tipoBus" id="tipoBus" value="apellido" >
-                          <label class="form-check-label" for="inlineCheckbox3">Apellido</label>
+                          <input class="form-check-input" type="radio" name="tipoBus" id="tipoApe" value="apellido" >
+                          <label class="form-check-label" for="tipoApe">Apellido</label>
                         </div>
                       </div>
                             <div class="col-5">
                                 <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar por carnet" required/>
                           </div>
                         </div>
-                          <div class="col-10 mt-2">
+                          <div class="col-11 mt-2">
                             
                             <div style="height: 400px; overflow-Y: scroll;">
                             <table class="table-bordered table table-striped table-hover">
@@ -74,7 +74,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal de modificar -->
 <div class="modal fade" id="mdMuser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -141,5 +141,185 @@
     </div>
   </div>
   </form>
+</div>
+</div>
+<!-- Modal de permisos -->
+<div class="modal fade" id="mdPermiso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloMdP">Permisos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="contenedor">
+        <form action="" method="post" enctype="multipart/form">
+          
+          <div class="row">
+            <div class="col-4">
+              <img src="" id="imgMdP" class="img-thumbnail img-fluid rounded-start" height="500" width="500" >
+            </div>
+            <div class="col-8">
+              <form action="">
+                <div class="row">
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-header" id="nomCompleto">
+                      Featured
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item" id="apellido">An item</li>
+                      <li class="list-group-item" id="tipoUsert">A second item</li>
+                    </ul>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+              <div style="height: 300px; overflow-Y: scroll;">
+        <div class="row mt-2">
+          <div class="col-7 border">
+           PERMISO PARA REGISTRAR USUARIOS
+            </div>
+              <div class="col-5 border">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+                  <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+                </div>
+                <div class="form-check form-check-inline text-center">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+                  <label class="form-check-label" for="inlineCheckbox2">ON</label>
+                </div>
+              </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-7 border">
+           PERMISO PARA REGISTRAR USUARIOS2
+            </div>
+              <div class="col-5 border">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+                  <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+                </div>
+                <div class="form-check form-check-inline text-center">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+                  <label class="form-check-label" for="inlineCheckbox2">ON</label>
+                </div>
+              </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-7 border">
+           PERMISO PARA REGISTRAR USUARIOS3
+            </div>
+              <div class="col-5 border">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+                  <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+                </div>
+                <div class="form-check form-check-inline text-center">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+                  <label class="form-check-label" for="inlineCheckbox2">ON</label>
+                </div>
+              </div>
+        </div>
+
+          <div class="row mt-2">
+            <div class="col-7 border">
+              PERMISO PARA REGISTRAR USUARIOS3
+            </div>
+            <div class="col-5 border">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+                <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+              </div>
+              <div class="form-check form-check-inline text-center">
+                <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+                <label class="form-check-label" for="inlineCheckbox2">ON</label>
+              </div>
+            </div>
+          </div>
+        <div class="row mt-2">
+          <div class="col-7 border">
+            PERMISO PARA REGISTRAR USUARIOS3
+          </div>
+          <div class="col-5 border">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+                  <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+                </div>
+                <div class="form-check form-check-inline text-center">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+                  <label class="form-check-label" for="inlineCheckbox2">ON</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-7 border">
+                PERMISO PARA REGISTRAR USUARIOS3
+              </div>
+              <div class="col-5 border">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+                  <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+                </div>
+                <div class="form-check form-check-inline text-center">
+                  <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+                  <label class="form-check-label" for="inlineCheckbox2">ON</label>
+                </div>
+              </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-7 border">
+            PERMISO PARA REGISTRAR USUARIOS3
+          </div>
+          <div class="col-5 border">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+              <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+            </div>
+            <div class="form-check form-check-inline text-center">
+              <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+              <label class="form-check-label" for="inlineCheckbox2">ON</label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-7 border">
+            PERMISO PARA REGISTRAR USUARIOS3
+          </div>
+          <div class="col-5 border">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+              <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+            </div>
+            <div class="form-check form-check-inline text-center">
+              <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+              <label class="form-check-label" for="inlineCheckbox2">ON</label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-7 border">
+            PERMISO PARA REGISTRAR USUARIOS3
+          </div>
+          <div class="col-5 border">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="off">
+              <label class="form-check-label" for="inlineCheckbox1">OFF</label>
+            </div>
+            <div class="form-check form-check-inline text-center">
+              <input class="form-check-input" name="RgUsurio" type="radio" id="inlineCheckbox1" value="on">
+              <label class="form-check-label" for="inlineCheckbox2">ON</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
+      </div>
+    </form>
+  </div>
+</div>
+</form>
 </div>
 </div>

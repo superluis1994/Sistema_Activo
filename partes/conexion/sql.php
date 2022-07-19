@@ -165,11 +165,14 @@ class sqlReg extends Principal {
 
   ///////////////////////movimientos//////////////////////////////////////////////////////////////////
   public function RegdatosMovimiento($dato){
-     $sql=Principal::conectar()->prepare("INSERT INTO list_movimientos (id_tipo_mov,id_user_entrega,id_user_recibe,id_local_salida,id_local_destino,justi_mov,fecha_mov,hora_mov)  
-   VALUES('".$dato["tipoMovi"]."','".$dato["Entrega"]."','".$dato["Recibe"]."','".$dato["localSalida"]."','".$dato["localDestino"]."','".$dato["justificacion"]."','".$dato["fecha"]."','".$dato["hora"]."') ;");
-  $sql->execute();
+      $sql=Principal::conectar();
+      $resp=$sql->prepare("INSERT INTO list_movimientos (id_tipo_mov,id_user_entrega,id_user_recibe,id_local_salida,id_local_destino,justi_mov,fecha_mov,hora_mov)  
+      VALUES('".$dato["tipoMovi"]."','".$dato["Entrega"]."','".$dato["Recibe"]."','".$dato["localSalida"]."','".$dato["localDestino"]."','".$dato["justificacion"]."','".$dato["fecha"]."','".$dato["hora"]."') ;");
+      $resp->execute();
+      $dat=$sql->lastInsertId();
+      $sql->beginTransaction();
+      $sql->commit();
   //   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
-  $dat=Principal::conectar()->lastInsertId();
   return $dat;
   
 }
@@ -215,8 +218,8 @@ public function RegaActivo($dato){
    public function sqlConsulta($dato){
       $sql=Principal::conectar()->prepare($dato);
      $sql->execute();
-     $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
-     return $dat;
+   //   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+     return $sql;
   }
     
 }

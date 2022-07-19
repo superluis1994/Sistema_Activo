@@ -16,7 +16,7 @@ await fetch('partes/procesoForm/validStatus.php',{
             
           })
 }
-  temporizador= setInterval (getData,10000)
+  temporizador= setInterval (getData,60000)
 
 ///////////////alerta////////////////////
 function alerta(icono,title,text){
