@@ -42,7 +42,7 @@ dato_loguin=document.getElementById("loguing")
 dato_loguin.addEventListener("submit", function(e){
     e.preventDefault();
     datos_log= new FormData(dato_loguin);
-    datos_log.append("accion_logui","loguin")
+    datos_log.append("accion","loguin")
 
     if( document.getElementById("codigo").classList.contains("is-valid") &&
     document.getElementById("pass").classList.contains("is-valid")  )
@@ -54,6 +54,7 @@ fetch('partes/procesoForm/loguin.php',{
   }).then(res=>res.json())
     .then(data=>{
       setTimeout(data.alerta,data.tiempo);
+    // alert(data)
     })
   } 
 })

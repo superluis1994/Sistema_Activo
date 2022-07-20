@@ -38,6 +38,17 @@ if(isset($_POST["accion"])){
     echo json_encode($fill);
 
        }
+       if($_POST["accion"] == "datos_mov"){
+
+         $dato=[
+            "tabla"=>"list_movimientos",
+            "campo"=>"list_movimientos",
+            "tabla"=>"list_movimientos"
+         ];
+
+         
+      }
+      echo json_encode("luis");
      
 }
 

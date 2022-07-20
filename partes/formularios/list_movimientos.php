@@ -76,15 +76,149 @@
 
 <!-- Modal de permisos -->
 <div class="modal fade" id="detalleMov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="TituloMdP">Permisos</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="contenedorDetalle">
-      
+      <div class="row">
+        <div class="col-5">
+        <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" id="id_mov">Card title</h5>
+              <p class="card-text" id="justificacion">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="card" style="width: 22rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id="recibeUS">vacio</li>
+                  <li class="list-group-item" id="entregaUS">vacio</li>
+                  <li class="list-group-item" id="entregaLO">vacio</li>
+                  <li class="list-group-item" id="entregaLO">vacio</li>
+                  <li class="list-group-item" id="tipoMov">A third item</li>
+                </ul>
+              </div>
+              <p class="card-text"><small class="text-muted" id="fechayhora">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+       </div>
+        </div>
+        <div class="col-7">
+          <!-- <div class="container px-4">
+          <div class="row gx-5" >
+            <div class="col-3" style=" background-color: aquamarine;" >
+              <div class="card" >
+                <img src="img/recursos/users.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the.</p>
+                </div>
+            </div>
+            </div>
+            <div class="col-3" style=" background-color: aquamarine;" >
+              <div class="card" width="200">
+                <img src="img/recursos/users.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the.</p>
+                </div>
+            </div>
+            </div>
+            </div>
+           
+          
+            
+          </div> -->
+          <!-- <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">ID</th>
+                <th scope="col">NOMBRE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+             
+            </tbody>
+          </table> -->
+          <div style="height: 400px; overflow-Y: scroll;">
+
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3" style="max-width: 540px;" id="list_acti_detall">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+          
+        </div>
+      </div>
   </div>
+  <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
+        </div> -->
 </div>
 </form>
 </div>

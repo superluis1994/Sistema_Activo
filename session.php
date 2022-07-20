@@ -8,7 +8,7 @@ session_start();
 // // echo'<pre>';
 var_dump($_SESSION['datos']);
 // unset($_SESSION['datos'][$_COOKIE['id']]);
-    var_dump($_SESSION['datos'][$_COOKIE['id']][0]);
+    // var_dump($_SESSION['datos'][$_COOKIE['id']][0]);
     // if(isset($_SESSION['datos'][$_COOKIE['id']])){
     //     echo "si existe";
 
@@ -177,8 +177,10 @@ require_once "conexionprueba.php";
 // echo $t=substr_count($string, ',');
 // $string2=trim($string,",");  
 // var_dump($p);
-echo "seccion activos".var_dump( $_SESSION[$_COOKIE["id"]]);
+// echo "seccion activos".var_dump( $_SESSION[$_COOKIE["id"]]);
+
 // foreach($p as $key){
 //     echo $key."\n";  
 // }
+// session_destroy();
 ?>

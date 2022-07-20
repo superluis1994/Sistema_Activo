@@ -4,8 +4,9 @@ require_once "../conexion/sql.php";
 require_once "../credenciale/datos.php";
 
 $procesoDatos= new sqlReg ();
+if(isset($_POST["accion"])){
 
-if(isset($_POST["accion_logui"])){
+if($_POST["accion"]=="loguin"){
 
     
     $codigo=filter_var($_POST["codigo"], FILTER_SANITIZE_NUMBER_INT );
@@ -14,7 +15,8 @@ if(isset($_POST["accion_logui"])){
         'codigo'=>$_POST["codigo"],
         'pass'=>$_POST["contra"]
     ];
-
+    
+    
     $results=$procesoDatos->loguiar($dato);
     $respuesta=[
         'alerta'=>"alerta('error','Datos Incorrectos','No se encuentra usuario con esos datos')"
@@ -72,7 +74,7 @@ if(isset($_POST["accion_logui"])){
         $regisConex=$procesoDatos->registrarConexion($datoConex);
 
         // echo json_encode($regisConex);
-    // }
+    }
  
     $respuesta=[
     
@@ -82,28 +84,28 @@ if(isset($_POST["accion_logui"])){
 
     
     
+    echo json_encode($respuesta);
 }
-echo json_encode($respuesta);
 
-}
 else if($_POST["accion"]=='CerrarSession'){
-
+    
     
     unset($_SESSION['datos'][$_COOKIE['id']]);
     setcookie(
-      $name= "id",
-      $value = "",
-      $expires = 0,
-      $path = "/",
-      $domain = "localhost",
-      $secure = false,
-      $httponly = false);
-  
-  
-     echo json_encode(Ruta);
-  
+        $name= "id",
+        $value = "",
+        $expires = 0,
+        $path = "/",
+        $domain = "localhost",
+        $secure = false,
+        $httponly = false);
+        
+        
+        echo json_encode(Ruta);
+        
     }
-
+}
+    
 
 else if(isset($_POST['rest_loguin'])){
     if(!$_POST["codigo"]=="" ){

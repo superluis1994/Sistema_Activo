@@ -5,6 +5,7 @@ class sqlReg extends Principal {
     public function loguiar($dato){
         $clave=Principal::encryption($dato["pass"]);
         $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
+      //   return $sql;
         $sql->bindParam(":CODIGO",$dato['codigo']); 
         $sql->bindParam(":PASSWD",$clave); 
        $sql->execute();
@@ -232,6 +233,13 @@ justi_mov AS justi
    INNER JOIN tipo_movimiento ON list_movimientos.id_tipo_mov = tipo_movimiento.id_mov
    INNER JOIN `local` AS local_salida ON list_movimientos.id_local_salida = local_salida.id_local
    INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local");
+  $sql->execute();
+  $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+  return $dat;
+}
+  //lista de usuarios
+  public function listaPersonalizada($dato){
+   $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["campo"]." = ".$dato["codigo"].";");
   $sql->execute();
   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
   return $dat;
