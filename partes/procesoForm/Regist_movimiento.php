@@ -27,7 +27,7 @@ if(isset($_POST["accion"])){
 
           $string="";
           $string2="";
-      foreach($_SESSION['actList'] as $key=>$value){
+      foreach($_SESSION[$_COOKIE['id']] as $key=>$value){
         if($_COOKIE['id'] == $value[0]){
           $string.=$key.",";
 
@@ -74,12 +74,9 @@ if(isset($_POST["accion"])){
   else if($_POST["accion"]=="select"){
 
     // eleiminar session deactivos de movimientos
-    if(isset($_SESSION['actList'])){
-      foreach ($_SESSION['actList'] as $key => $value){
-        if($value[0]==$_COOKIE["id"]){
-            unset($_SESSION['actList'][$key]);
-        }
-      }
+    if(isset($_SESSION[$_COOKIE['id']])){
+       
+            unset($_SESSION[$_COOKIE['id']]);      
     }
 /////////tipo de movimiento///////////////
     $list1=$procesoDatos->ListGenerica("tipo_movimiento");

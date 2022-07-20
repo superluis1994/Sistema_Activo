@@ -139,7 +139,7 @@ class sqlReg extends Principal {
       return $dat;
    }
    public function tablas($dato){
-      $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." LIMIT ".$dato["inferior"].", ".$dato["superior"].";");
+      $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." LIMIT ".$dato["inferior"]." , ".$dato["superior"].";");
       $sql->execute();
       $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
       return $dat;
@@ -221,6 +221,21 @@ public function RegaActivo($dato){
    //   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
      return $sql;
   }
+
+  public function detalle(){
+   $sql=Principal::conectar()->prepare("SELECT id_lis_mov AS id_mov,user_entrega.nom AS usuario_entrega, user_recibe.nom AS usuario_recibe,tipo_mov AS tipo,
+   local_salida.local_name AS local_sal,local_destino.local_name AS local_dest,fecha_mov AS fecha,hora_mov AS hora_mov,
+justi_mov AS justi
+   FROM list_movimientos 
+   INNER JOIN usuario AS user_entrega ON list_movimientos.id_user_entrega = user_entrega.id_user
+   INNER JOIN usuario AS user_recibe ON list_movimientos.id_user_recibe = user_recibe.id_user
+   INNER JOIN tipo_movimiento ON list_movimientos.id_tipo_mov = tipo_movimiento.id_mov
+   INNER JOIN `local` AS local_salida ON list_movimientos.id_local_salida = local_salida.id_local
+   INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local");
+  $sql->execute();
+  $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+  return $dat;
+}
     
 }
 

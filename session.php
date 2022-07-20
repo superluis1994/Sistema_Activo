@@ -172,13 +172,13 @@ require_once "conexionprueba.php";
 // }
 // session_destroy($_SESSION['actList'])
 // session_destroy()
-$string="123,124";
-$p=explode(",", $string);
+// $string="123,124";
+// $p=explode(",", $string);
 // echo $t=substr_count($string, ',');
 // $string2=trim($string,",");  
 // var_dump($p);
-
-foreach($p as $key){
-    echo $key."\n";  
-}
+echo "seccion activos".var_dump( $_SESSION[$_COOKIE["id"]]);
+// foreach($p as $key){
+//     echo $key."\n";  
+// }
 ?>

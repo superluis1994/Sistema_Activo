@@ -78,6 +78,9 @@ if(isset($_SESSION['datos'][@$_COOKIE['id']])){
     }elseif($_GET["pagina"] == "registrar_Activo.php"){
      
       echo "<script src='./js/activos/regis_activo.js'></script>";
+    }elseif($_GET["pagina"] == "list_movimientos.php"){
+     
+      echo "<script src='./js/list_mov/list_mov.js'></script>";
     }
 
 }

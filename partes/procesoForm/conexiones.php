@@ -11,7 +11,7 @@ if(isset($_POST["accion"])){
         $resl="";
           $cantidad = $_POST["cantida"];
         // $list=$procesoDatos->ListGenerica("conexiones LIMIT ".$cantidad-$cantidad.",".$cantidad);
-        $list=$procesoDatos->ListGenerica("conexiones limit 0, 20");
+        $list=$procesoDatos->ListGenerica("conexiones ORDER BY id_conexion DESC limit 0, 20 ");
         
         foreach($list as $key => $value){
         

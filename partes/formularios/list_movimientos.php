@@ -36,34 +36,16 @@
                               <table class="table-bordered table table-striped table-hover">
                                   <thead>
                                       <tr>
-                                          <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Handle</th>
+                                          <th scope="col">Id</th>
+                                <th scope="col">Usurio Entrega</th>
+                                <th scope="col">Ususrio Recibe</th>
+                                <th scope="col">Local Salida</th>
+                                <th scope="col">Local Destino</th>
+                                <th scope="col">Tipo</th>
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                  <th scope="row">1</th>
-                                  <td>Mark</td>
-                                  <td>Otto</td>
-                                  <td>@mdo</td>
-                                  <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                </tr>
+                            <tbody id="rspuets_list_mov">
+                            
                             </tbody>
                         </table>
                     </div>
@@ -89,4 +71,21 @@
 
         </form>
     </div>
+</div>
+
+
+<!-- Modal de permisos -->
+<div class="modal fade" id="detalleMov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloMdP">Permisos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="contenedorDetalle">
+      
+  </div>
+</div>
+</form>
+</div>
 </div>
