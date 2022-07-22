@@ -239,7 +239,7 @@ justi_mov AS justi
 }
   //lista de usuarios
   public function listaPersonalizada($dato){
-   $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["campo"]." = ".$dato["codigo"].";");
+   $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["campo"]." = ".$dato["codigo"]." ;");
   $sql->execute();
   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
   return $dat;

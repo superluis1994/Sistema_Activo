@@ -26,10 +26,16 @@ fetch('partes/procesoForm/list_movimientos.php',{
       }).then(res=>res.json())
         .then(data=>{
           document.getElementById("id_mov").innerHTML=e.target.value;
-          // document.getElementById("justificacion").innerHTML=data;
-          // document.getElementById("rspuets_list_mov").innerHTML=data;
-          // document.getElementById("rspuets_list_mov").innerHTML=data;
-          // document.getElementById("pagination").innerHTML=data.paginacion;
+          document.getElementById("justificacion").innerHTML=data.justificacion;
+          document.getElementById("recibeUS").innerHTML=data.user_entr;
+          document.getElementById("entregaUS").innerHTML=data.User_reci;
+          document.getElementById("entregaLO").innerHTML=data.local_sali;
+          document.getElementById("destinoLO").innerHTML=data.local_des;
+          document.getElementById("tipoMov").innerHTML=data.tipoM;
+          document.getElementById("cont").innerHTML=data.fill;
+          document.getElementById("fechayhora").innerHTML="Fecha movimiento "+data.fecha+"\n Hora"+data.hora;
+          console.log(data)
+  
           $('#detalleMov').modal('show');
 
         })
