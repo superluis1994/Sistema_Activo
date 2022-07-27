@@ -28,13 +28,14 @@ class sqlReg extends Principal {
       $sql->bindParam(":PASSWD",$clave); 
      $sql->execute();
      $dat=$sql->fetch(PDO::FETCH_ASSOC);
-     $count=$sql->rowCount();
+   //   $count=$sql->rowCount();
 
-     $respuest=[
-       "count"=>$count,
-        "array"=>$dat
-     ];
-     return $respuest;
+   //   $respuest=[
+   //     "count"=>$count,
+   //      "array"=>$dat
+   //   ];
+   //   return $respuest;
+     return $dat;
   }
 
 

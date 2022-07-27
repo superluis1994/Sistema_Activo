@@ -23,8 +23,8 @@ if($_POST["accion"]=="loguin"){
     ];
 
 
-    if($results["count"] == 1){
-        if($results["array"]["account_status_id"][0] == 1)
+    if(isset($results["id_user"])){
+        if($results["account_status_id"] == 1)
         {
         // genero el token
         $token=generar_token_seguro(20);
