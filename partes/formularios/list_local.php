@@ -42,7 +42,11 @@
                                 <th scope="col">Jefe de local</th>
                                 <th scope="col">Fecha de Registro</th>
                                 <th scope="col">Registrado por</th>
-                                <th scope="col">Estado</th>
+                                <?php
+                                if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
+                                echo"<th scope='col'>Estado</th>";
+                                }
+                                ?>
                               </tr>
                             </thead>
                             <tbody id="lis_local">

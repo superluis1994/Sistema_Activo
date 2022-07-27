@@ -54,7 +54,9 @@ fetch('partes/procesoForm/loguin.php',{
   }).then(res=>res.json())
     .then(data=>{
       setTimeout(data.alerta,data.tiempo);
-    // alert(data)
+
+    // console.log("filas "+data.array)
+    // console.log("numero "+ data.count)
     })
   } 
 })
@@ -79,7 +81,7 @@ function alerta(icono,title,text){
       icon: icono,
       title: title,
       text: text,
-      showConfirmButton: false,
-      timer: 1800
+      showConfirmButton: true,
+     
     })
   }

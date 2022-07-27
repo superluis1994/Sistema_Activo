@@ -18,6 +18,9 @@
 
   <div class="container">
     <div class="row mt-4">
+    <div class="col-12 text-center p-2">
+      <p class="display-6 head">SISTEMA DE CONTROL DE INVENTARIO </p>
+      </div>
       <div
         class=" col-sm-8 col-md-6 col-lg-4 offset-lg-4 offset-md-3  offset-sm-2  offset-4 p-3 shadow-lg p-3 mb-5 bg-white"
         style="border-radius: 15px; height:500px">

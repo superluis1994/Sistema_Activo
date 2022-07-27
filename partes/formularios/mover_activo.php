@@ -1,7 +1,7 @@
 <div class="row mt-4 justify-content-center">
   <div class="col-10 offset-1">
     <div class="col-12 text-center">
-      <p class="display-5 head">Mover Activo</p>
+      <p class="display-5 head">TRASLADO DE ACTIVOS</p>
     </div>
     <div class="row justify-content-center">
       <div class="col-2">
@@ -20,10 +20,22 @@
             <input type="number" name=""class="form-control" id="numMovi">
           </div>
           <div class="row m-2" id="datosInput">
-        </div>
-      </div> -->
-
+          </div>
+        </div> -->
+        
+        
+        <div class="col-5">
+          <label for="text" class="form-label">Tipo de Movimiento</label> 
+          <select name="Tmov" class="form-select" id="Tmov">
+        </select>
           
+        </div>
+        <div class="col-5 mt-3">
+        <div class="form-floating">
+          <textarea class="form-control" name="justificacion" placeholder="Breve descripcion max 100 caracteres" maxlength="100" minlength="1" id="justificacion" style="height: 70px"></textarea>
+          <label for="floatingTextarea2">Breve descripcion max 100 caracteres</label>
+        </div>
+      </div>
           <div class="col-5" id="dat">
           
             <label for="nombre" class="form-label">Usuario que Entrega</label>
@@ -45,18 +57,6 @@
             <select name="localDes" class="form-select" id="localDes">
             </select>
           </div>
-          <div class="col-5">
-            <label for="text" class="form-label">Tipo de Movimiento</label> 
-            <select name="Tmov" class="form-select" id="Tmov">
-          </select>
-            
-          </div>
-          <div class="col-5 mt-3">
-          <div class="form-floating">
-            <textarea class="form-control" name="justificacion" placeholder="Leave a comment here" id="justificacion" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Justificacion del movimiento</label>
-          </div>
-        </div>
    
         
           <div class="10 text-center">

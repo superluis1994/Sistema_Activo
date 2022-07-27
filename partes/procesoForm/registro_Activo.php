@@ -92,9 +92,9 @@ if(isset($_POST["accion"])){
             $foto="img/imgPerfil/".$imagen;
         }
         if($_POST["ACmarca"] != ""){
-            $marca=$_POST["ACmarca"];      
+            $marca=strtoupper($_POST["ACmarca"]);      
         }if($_POST["ACmodelo"] != ""){  
-            $modelo=$_POST["ACmodelo"];
+            $modelo=strtoupper($_POST["ACmodelo"]);
         }if($_POST["ACdimensiones"] != ""){
           $dimension=$_POST["ACdimensiones"];
         }
@@ -103,8 +103,9 @@ if(isset($_POST["accion"])){
         $inserAct = [
             "foto"=> $foto,
             "codigo"=> $_POST["ACcodigo"],
-            "nombre"=> $_POST["ACnombre"],
+            "nombre"=> strtoupper($_POST["ACnombre"]),
             "tipoAct"=> $_POST["tipoAct"],
+            "color"=> strtoupper($_POST["ACColor"]),
             "ValorR"=> $_POST["ACvalor"],
             "marca"=> $marca,
             "modelo"=> $modelo,
@@ -115,7 +116,7 @@ if(isset($_POST["accion"])){
             "responsable"=> $_POST["responsable"],
             "codInterno"=> $_POST["ACinterno"],
             "CodMined"=> $_POST["ACmined"],
-            "decripcion"=> $_POST["descrip"],
+            "decripcion"=> ucfirst(strtolower($_POST["descrip"])),
             "fechaR"=>date('Y-m-d')
           ];
 

@@ -2,16 +2,42 @@
 require_once "conexion.php";
 class sqlReg extends Principal {
 
-    public function loguiar($dato){
-        $clave=Principal::encryption($dato["pass"]);
-        $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
-      //   return $sql;
-        $sql->bindParam(":CODIGO",$dato['codigo']); 
-        $sql->bindParam(":PASSWD",$clave); 
-       $sql->execute();
-       $count=$sql->fetchColumn();
-       return $count;
-    }
+   //  public function loguiar($dato){
+   //      $clave=Principal::encryption($dato["pass"]);
+   //      $sql=Principal::conectar()->prepare("SELECT COUNT(*) FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
+   //    //   return $sql;
+   //      $sql->bindParam(":CODIGO",$dato['codigo']); 
+   //      $sql->bindParam(":PASSWD",$clave); 
+   //     $sql->execute();
+   //     $dat=$sql->fetch(PDO::FETCH_ASSOC);
+   //     $count=$sql->fetchColumn();
+
+   //     $respuest=[
+   //       "count"=>$count,
+   //        "array"=>$dat
+   //     ];
+   //     return $respuest;
+   //  }
+
+
+   public function loguiar($dato){
+      $clave=Principal::encryption($dato["pass"]);
+      $sql=Principal::conectar()->prepare("SELECT * FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
+    //   return $sql;
+      $sql->bindParam(":CODIGO",$dato['codigo']); 
+      $sql->bindParam(":PASSWD",$clave); 
+     $sql->execute();
+     $dat=$sql->fetch(PDO::FETCH_ASSOC);
+     $count=$sql->rowCount();
+
+     $respuest=[
+       "count"=>$count,
+        "array"=>$dat
+     ];
+     return $respuest;
+  }
+
+
      //  Registrar conexion de usuario loguiado
      public function registrarConexion($dato){
       $sql=Principal::conectar()->prepare("INSERT INTO conexiones(id_user, fecha, hora)
@@ -190,9 +216,9 @@ public function validarActivo($dato){
 // Registrar Activo
 public function RegaActivo($dato){
    $sql=Principal::conectar()->prepare("insert into  inventario  ( id_activo , codigo_mined , codigo_interno ,
-   nom_activo , tipo_activo , descrip_activo , valor_activo , marca ,modelo , dimensiones , serie , vida_util , id_local , id_reposable , foto , fecha_resg )
+   nom_activo , tipo_activo , descrip_activo , valor_activo , marca ,modelo , dimensiones , serie , vida_util , id_local , id_reposable , foto , color,fecha_resg )
 	VALUES (:CODIGO, :CODMINED, :CODINTER, :NOM, :TIPOACT, :DESCRIP, :VALORR, 
-           :MARCA, :MODELO, :DIMEN, :SERIE, :VIDA, :LOC_PERTE, :RESPOSABLE, :FOTO, :FECH);");
+           :MARCA, :MODELO, :DIMEN, :SERIE, :VIDA, :LOC_PERTE, :RESPOSABLE, :FOTO,:COLOR, :FECH);");
    $sql->bindParam(":CODIGO",$dato["codigo"]); 
    $sql->bindParam(":CODMINED",$dato["CodMined"]); 
    $sql->bindParam(":CODINTER",$dato["codInterno"]); 
@@ -209,6 +235,7 @@ public function RegaActivo($dato){
    $sql->bindParam(":RESPOSABLE",$dato["responsable"]); 
    $sql->bindParam(":FOTO",$dato["foto"]); 
    $sql->bindParam(":FECH",$dato["fechaR"]); 
+   $sql->bindParam(":COLOR",$dato["color"]); 
   
 
   $sql->execute();
@@ -221,6 +248,13 @@ public function RegaActivo($dato){
      $sql->execute();
    //   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
      return $sql;
+  }
+   //consulta generica2
+   public function sqlGenericaArreglo($dato){
+      $sql=Principal::conectar()->prepare($dato);
+     $sql->execute();
+     $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+     return $dat;
   }
 
   public function detalle(){
@@ -240,6 +274,19 @@ justi_mov AS justi
   //lista de usuarios
   public function listaPersonalizada($dato){
    $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["campo"]." = ".$dato["codigo"]." ;");
+  $sql->execute();
+  $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+  return $dat;
+}
+  //lista de activos
+  public function listaActivos(){
+   $sql=Principal::conectar()->prepare("Select id_activo,codigo_mined,codigo_interno,nom_activo,nom_tipo_activo,descrip_activo,
+   valor_activo,marca,modelo,dimensiones,serie,vida_util,local_name,nom,apellidos,foto,fecha_resg
+    FROM inventario 
+    INNER JOIN tipo_activo ON inventario.tipo_activo = tipo_activo.id_tipo_activo
+    INNER JOIN `local` ON inventario.id_local = `local`.id_local
+    INNER JOIN usuario ON inventario.id_reposable = usuario.id_user 
+    LIMIT 0,20;");
   $sql->execute();
   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
   return $dat;

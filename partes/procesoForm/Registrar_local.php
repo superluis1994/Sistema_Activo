@@ -19,7 +19,7 @@ if(isset($_POST["accion"])){
     $fecha=date('Y-m-d');
     $dato = [
       "codigo"=> $codigo,
-      "nombre"=> $nombre,
+      "nombre"=> strtoupper($nombre),
       "responsable"=> $resposable,
       "fecha"=>$fecha,
       "estatus"=>"1",
@@ -104,6 +104,7 @@ if(isset($_POST["accion"])){
       <td>".$value["jefe_local"]."</td>
       <td>".$value["fecha_regis"]."</td>
       <td>".$value["registradoX"]."</td>";
+      if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
       if($value["estatus"] == 1){
       
       $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"]."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>";
@@ -112,6 +113,7 @@ if(isset($_POST["accion"])){
       $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>";
             
       }
+    }
 
     $fila.="</tr>";
       

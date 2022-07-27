@@ -183,4 +183,6 @@ require_once "conexionprueba.php";
 //     echo $key."\n";  
 // }
 // session_destroy();
+
+echo ucfirst(strtolower("hello wOrld!"));
 ?>

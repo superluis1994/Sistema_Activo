@@ -18,11 +18,13 @@ if(isset($_POST["accion"])){
     "localSalida"=>$_POST["localSali"],
     "localDestino"=>$_POST["localDes"],
     "tipoMovi"=>$_POST["Tmov"],
-    "justificacion"=>$_POST["justificacion"],
+    "justificacion"=>ucfirst(strtolower($_POST["justificacion"])),
     'fecha'=>date('Y-m-d'),
     'hora'=>date('h:i:s')
   ];
    $idInsert=$procesoDatos->RegdatosMovimiento($dato);
+                echo json_encode($idInsert);
+   
    if($idInsert!=0){
 
           $string="";
@@ -51,7 +53,7 @@ if(isset($_POST["accion"])){
                 }
                 
                 $updateInve=$procesoDatos->sqlConsulta($sqllis);
-                json_encode($updateInve);
+                // json_encode($updateInve);
       }
 
 
@@ -141,10 +143,10 @@ $tabla="";
     </div>
     <div class='col-md-8'>
     <div class='card-body'>
-    <h5 class='card-title'>".$value["nom_activo"]."</h5>
-    <p class='card-text'>".$value["id_activo"]."</p>
-    <p class='card-text'>".$value["serie"]."</p>
-    <p class='card-text'>".$value["descrip_activo"]."</p>
+    <h5 class='card-title'><b>Nombre:</b> ".$value["nom_activo"]."</h5>
+    <p class='card-text'><b>ID:</b> ".$value["id_activo"]."</p>
+    <p class='card-text'><b>SERIE:</b> ".$value["serie"]."</p>
+    <p class='card-text'><b>DESCRIPCION:</b> ".$value["descrip_activo"]."</p>
     <div class='d-grid gap-2'>
     <button type='button' name='' value='".$value["nom_activo"].",".$value['id_activo'].",".$value["serie"]."' id='btn-agre' class='btn btn-primary'>Agregar</button>
     </div>

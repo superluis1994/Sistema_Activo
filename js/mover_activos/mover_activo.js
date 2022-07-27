@@ -55,7 +55,10 @@ if($("#usuarioEntre").val()!='0' && $("#usuarior").val()!='0' && $("#localDes").
          }).then(res=>res.json())
            .then(data=>{
             // alert(data)
-            console.log(data)
+            // console.log(data)
+            // window.location.href = 'reportes/reporte_mov.php?ids='+data
+            window.open('reportes/reporte_mov.php?ids='+data, '_blank');
+            location.reload();
            })
     
   })

@@ -52,8 +52,8 @@ if(isset($_POST["accion"])){
 
     $dato=[
       'foto'=>$foto,
-      'nombre'=>$_POST["nombre"],
-      'apellidos'=>$_POST["apellidos"],
+      'nombre'=>strtoupper($_POST["nombre"]),
+      'apellidos'=>strtoupper($_POST["apellidos"]),
       'correo'=>$_POST["correo"],
       'contrasena'=>$_POST["pas"],
       'codigo'=>$_POST["codigo"],
@@ -83,13 +83,13 @@ if(isset($_POST["accion"])){
       $permisosUser=[
         'codigo'=>$_POST["codigo"],
         'registrar_usu'=>"off",
-        'list_usu'=>"off",
+        'list_usu'=>"on",
         'conexion'=>"off",
         'mover_activo'=>"off",
         'list_movimiento_activos'=>"off",
-        'regist_producto'=>"on",
+        'regist_producto'=>"off",
         'mostr_producto'=>"on",
-        'regist_local'=>"on",
+        'regist_local'=>"off",
         'mostr_local'=>"on"
       ];
       

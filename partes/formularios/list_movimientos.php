@@ -5,7 +5,7 @@
                 <div class="col-1">
                         <div class="col-12 justify-content-center">
                         <p class="display-5">Movimientos</p>
-                        <img src="img/recursos/users.png" id="img_visual" class="" width="200"
+                        <img src="img/recursos/movimientosList.png" id="img_visual" class="" width="200"
                             height="200" alt="...">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                               </div>
                             </div>
                             <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario" required/>
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario" />
                           </div>
                         </div>
                           <div class="col-10 mt-2">
@@ -38,10 +38,16 @@
                                       <tr>
                                           <th scope="col">Id</th>
                                 <th scope="col">Usurio Entrega</th>
-                                <th scope="col">Ususrio Recibe</th>
+                                <th scope="col">Usuario Recibe</th>
                                 <th scope="col">Local Salida</th>
                                 <th scope="col">Local Destino</th>
-                                <th scope="col">Tipo</th>
+                                <?php
+                                if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
+                                echo"<th scope='col'>Tipo</th>";
+                                }
+                                ?>
+                                <th colspan="2" scope="col" class="text-center"> Opciones</th>
+                   
                               </tr>
                             </thead>
                             <tbody id="rspuets_list_mov">

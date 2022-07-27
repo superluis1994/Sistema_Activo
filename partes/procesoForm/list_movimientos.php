@@ -14,15 +14,19 @@ if(isset($_POST["accion"])){
             //  $respuest=$procesoDatos->tablas($dato);
              $respuest=$procesoDatos->detalle();
             foreach($respuest as $key => $val){
+              $id="reportes/reporte_mov.php?ids=".$val["id_mov"];
                $fill.="<tr>
                <th scope='row'>".$val["id_mov"]."</th>
                <td>".$val["usuario_entrega"]."</td>
                <td>".$val["usuario_recibe"]."</td>
                <td>".$val["local_sal"]."</td>
                <td>".$val["local_dest"]."</td>
-               <td>".$val["tipo"]."</td>
-               <td><button type='button' value='".$val["id_mov"]."' id='detalle_mov' class='btn btn-success'>Detalle</button></td>
-               </tr>";
+               <td>".$val["tipo"]."</td>";
+               if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
+               $fill.="<td><button type='button' value='".$val["id_mov"]."' id='detalle_mov' class='btn btn-success'>Detalle</button></td>
+               <td><a type='button' target='_blank' href='".$id."' value='".$val["id_mov"]."' id='reporteMovT' class='btn btn-danger'>Reporte</a></td>";
+               }
+               $fill.="</tr>";
             }
     echo json_encode($fill);
 
@@ -76,18 +80,18 @@ if(isset($_POST["accion"])){
             "codigo"=>$item
          ];
          $consulta=$procesoDatos->listaPersonalizada($dato);
-            foreach($consulta as $key => $val){
+            foreach($consulta as $key => $value){
           $list_activo.="<div class='card mb-3' style='max-width: 540px;'>
           <div class='row g-0'>
             <div class='col-md-4'>
-              <img src='...' class='img-fluid rounded-start' alt='...'>
+              <img src='".$value["foto"]."' class='img-fluid rounded-start' alt='...'>
             </div>
             <div class='col-md-8'>
               <div class='card-body'>
-                <h5 class='card-title'>Card title</h5>
-                <p class='card-text'>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h5 class='card-title'>".$value["nom_activo"]." ( ID: ".$value["id_activo"].")</h5>
+                <p class='card-text'>".$value["descrip_activo"]."</p>
                 
-                <p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>
+                <p class='card-text'><small class='text-muted'>Serie: ".$value["serie"]." </small></p>
               </div>
             </div>
           </div>

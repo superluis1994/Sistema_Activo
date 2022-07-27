@@ -29,12 +29,15 @@ fetch('partes/procesoForm/registro_Activo.php',{
         for (var i = 0; i < x.length; i++) {
           x[i].style.display= "none";
         }
+        document.getElementById("dimenOpt").style.display="block";
+
     }else{
         var x = document.getElementsByClassName('optActivo');
 
         for (var i = 0; i < x.length; i++) {
           x[i].style.display= "block";
         }
+        document.getElementById("dimenOpt").style.display="none";
 
     }
     
@@ -43,7 +46,7 @@ fetch('partes/procesoForm/registro_Activo.php',{
 
 // esta es la clase que uso para validar los inputs
 validForm("RAcodigo","keyup","descripcion")
-validForm("RAnombre","keyup","letras")
+validForm("RAnombre","keyup","letrasYnumeros")
 validForm("tipoActivo","change","select")
 validForm("RAvalorR","keyup","letrasYnumeros")
 validForm("descripcion","keyup","descripcion")
@@ -56,6 +59,7 @@ validForm("localPertenece","change","select")
 validForm("jef","change","select")
 validForm("RAinterno","keyup","letrasYnumeros")
 validForm("RAmined","keyup","letrasYnumeros")
+validForm("RAColor","keyup","letras")
 
 
 
@@ -75,9 +79,19 @@ validForm("RAmined","keyup","letrasYnumeros")
     
               }
         }
+        if(tipo == "codigo"){
+          if(/^[0-9\s]+$/g.test(e.target.value) && e.target.value.length == 9){
+            e.target.classList.remove("is-invalid")
+            e.target.classList.add("is-valid")
+          }else{
+              e.target.classList.remove("is-valid")
+              e.target.classList.add("is-invalid")
+              
+            }
+      }
         else if(tipo == "letrasYnumeros"){
            
-                if(!/^[A-Za-zñ 0-9\s]+$/g.test(e.target.value)){
+                if(!/^[A-Za-zñ 0-9/\-\s]+$/g.test(e.target.value)){
                     e.target.classList.remove("is-valid")
                     e.target.classList.add("is-invalid")
                   }else{
@@ -109,7 +123,7 @@ validForm("RAmined","keyup","letrasYnumeros")
             }
               else{
                 
-                if(/^[A-Za-zñ 0-9-\s]+$/g.test(e.target.value)){
+                if(/^[0-9-\s]+$/g.test(e.target.value) && e.target.value.length == 9){
                     valid= new FormData();
                     valid.append("accion","validarActivo")
                     valid.append("codigo",e.target.value)
@@ -154,13 +168,13 @@ formActivoR.addEventListener("submit", function(e){
    document.getElementById("descripcion").classList.contains("is-valid")&&
    document.getElementById("RAmarca").classList.contains("is-valid")&&
    document.getElementById("RAmodelo").classList.contains("is-valid") &&
-   document.getElementById("RAdimensiones").classList.contains("is-valid")&&
    document.getElementById("RAserie").classList.contains("is-valid") &&
    document.getElementById("RAvidaU").classList.contains("is-valid")&&
    document.getElementById("localPertenece").classList.contains("is-valid")&&
    document.getElementById("jef").classList.contains("is-valid")&&
    document.getElementById("RAinterno").classList.contains("is-valid")&&
-   document.getElementById("RAmined").classList.contains("is-valid")){
+   document.getElementById("RAmined").classList.contains("is-valid")&&
+   document.getElementById("RAColor").classList.contains("is-valid")){
         
      formEnvio(formActivoR,select)
 
@@ -181,7 +195,9 @@ formActivoR.addEventListener("submit", function(e){
    document.getElementById("localPertenece").classList.contains("is-valid")&&
    document.getElementById("jef").classList.contains("is-valid") &&
    document.getElementById("RAinterno").classList.contains("is-valid")&&
-   document.getElementById("RAmined").classList.contains("is-valid")){
+   document.getElementById("RAmined").classList.contains("is-valid")&&
+   document.getElementById("RAColor").classList.contains("is-valid")&&
+   document.getElementById("RAdimensiones").classList.contains("is-valid")){
 
     formEnvio(formActivoR,select)
 

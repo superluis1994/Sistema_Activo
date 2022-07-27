@@ -70,10 +70,10 @@ foreach($permiso as  $key => $value){
         <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
         
         if($value["regist_producto"] =="on"){
-            $menu.=" <li><a class='dropdown-item' href='index.php?pagina=registrar_Activo.php'>Registrar Producto</a></li>";
+            $menu.=" <li><a class='dropdown-item' href='index.php?pagina=registrar_Activo.php'>Registrar Activos</a></li>";
         }
         if($value["mostr_producto"] =="on"){
-            $menu.="<li><a class='dropdown-item' href='index.php?pagina=list_productos.php'>Mostrar Producto</a></li>";
+            $menu.="<li><a class='dropdown-item' href='index.php?pagina=list_activos.php'>Mostrar Activos</a></li>";
         }
         
         $menu.="</ul>

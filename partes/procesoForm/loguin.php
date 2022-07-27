@@ -21,7 +21,11 @@ if($_POST["accion"]=="loguin"){
     $respuesta=[
         'alerta'=>"alerta('error','Datos Incorrectos','No se encuentra usuario con esos datos')"
     ];
-    if($results==1){
+
+
+    if($results["count"] == 1){
+        if($results["array"]["account_status_id"][0] == 1)
+        {
         // genero el token
         $token=generar_token_seguro(20);
         //genero la session
@@ -74,13 +78,21 @@ if($_POST["accion"]=="loguin"){
         $regisConex=$procesoDatos->registrarConexion($datoConex);
 
         // echo json_encode($regisConex);
+        $respuesta=[
+        
+            'alerta'=>"window.location.href='index.php',2000",
+            'tiempo'=>"1000"
+        ];
     }
+    // si el estatus no es 1 quiere decir que no esta activo
+    else{
+        $respuesta=[
+            'alerta'=>"alerta('error','ACCESO DENEGADO','No tiene acceso al sistemas ponerse en contacto con el administrador')",
+            
+        ];
+    }
+}
  
-    $respuesta=[
-    
-        'alerta'=>"window.location.href='index.php',2000",
-        'tiempo'=>"1000"
-    ];
 
     
     
