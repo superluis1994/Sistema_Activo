@@ -122,6 +122,48 @@ class sqlReg extends Principal {
     //    $f=$sql->rowCount();
        return $sql;
     }
+///////////////actualizar datos usuarios/////////////////////////
+public function ActualizarDatosUser($dato){
+  
+   $sqlCa="";
+ 
+  if(isset($dato["contrasena"]))
+  {
+     $clave=Principal::encryption($dato["contrasena"]);
+     $sqlCa="UPDATE usuario
+     SET `passw` = :PASSW,
+       `nom` = :NOMBRE,
+       `apellidos` = :APELLIDO,
+       `correo` = :CORREO,
+       `rol_id` = :TIPO,
+       `Centro_costo` = :COSTO
+     WHERE `id_user` = :CODIGO;";
+  }else{
+   $sqlCa="UPDATE usuario
+   SET `nom` = :NOMBRE,
+     `apellidos` = :APELLIDO,
+     `correo` = :CORREO,
+     `rol_id` = :TIPO,
+     `Centro_costo` = :COSTO
+   WHERE `id_user` = :CODIGO;";
+  }
+   $sql=Principal::conectar()->prepare($sqlCa);
+ 
+   $sql->bindParam(":NOMBRE",$dato['nombre']);
+   $sql->bindParam(":APELLIDO",$dato['apellidos']);
+   $sql->bindParam(":CORREO",$dato['correo']);
+   if(isset($dato["contrasena"])){
+
+      $sql->bindParam(":PASSW",$clave);
+   }
+   $sql->bindParam(":CODIGO",$dato['codigo']);
+   $sql->bindParam(":TIPO",$dato['tipo']);
+   $sql->bindParam(":COSTO",$dato['costo']);
+   $sql->execute();
+   return $sql;
+   }
+
+
     
     public function AddUsuario($dato){
         //funcion 1 = insertar

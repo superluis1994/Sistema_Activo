@@ -83,7 +83,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="contenedor">
-        <form action="" method="post" enctype="multipart/form">
+        <form id="actuUserDatos" action="" method="post" enctype="multipart/form">
           
           <div class="row">
             <div class="col-4">
@@ -122,11 +122,11 @@
           </div>
           <div class="col-6">
             <label for="passw" class="form-label">Contraseña</label>
-            <input type="text" name="Apassw" class="form-control" id="Apassw" required disabled/>
+            <input type="text" name="Apassw" class="form-control" id="Apassw" />
           </div>
           <div class="col-6">
             <label for="passw" class="form-label">Centro de Costo</label>
-            <input type="text" name="Apassw" class="form-control" id="Ccosto" required/>
+            <input type="text" name="Ccosto" class="form-control" id="Ccosto" required/>
           </div>
           <div class="col-10 align-middle">
             <button type="button" id="btn_generarMob" class="btn btn-primary mt-3">Resetear Contraseña</button>
@@ -134,8 +134,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cerrar">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="btn-actualizarUser">Actualizar</button>
       </div>
     </form>
     </div>

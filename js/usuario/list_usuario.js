@@ -23,6 +23,7 @@ list_user()
 $("#list_resul").on ("click","#btn-modificar",function(e)
 {   
     $('#mdMuser').modal('show');
+    document.getElementById("Apassw").value=""
      datos=e.target.value.split(",")
      document.getElementById("staticBackdropLabel").innerHTML=datos[2]+" "+datos[3]
      nom=document.getElementById("Anombre")
@@ -41,8 +42,48 @@ $("#list_resul").on ("click","#btn-modificar",function(e)
      correo.value=datos[4]
      correo.classList.add("is-valid")
 
+     costo=document.getElementById("Ccosto")
+     costo.value=datos[5]
+     costo.classList.add("is-valid")
+
      document.getElementById("img").setAttribute("src",datos[0] );
+     // cargar el selec con los tipos de usuarios
+list= new FormData()
+list.append("accion","tipoUserLits")
+list.append("usuario",value=datos[6])
+
+fetch("partes/procesoForm/Actualizar_usuario.php",{
+  method: 'POST',
+  body: list
+}).then(res=>res.json())
+.then(data=>{
+ document.getElementById("AtiposUsuL").innerHTML=data;
 })
+})
+//////////////Actualizar DAtos usuario//////////////////////////////////////////////
+
+formDatosAct=document.getElementById("actuUserDatos")
+formDatosAct.addEventListener("submit",function(e){
+  e.preventDefault();
+
+
+    datosAct= new FormData(formDatosAct)
+    datosAct.append("accion","actualizarDatos")  
+    fetch("partes/procesoForm/Actualizar_usuario.php",{
+      method: 'POST',
+      body: datosAct
+    }).then(res=>res.json())
+    .then(data=>{
+      // alert(data)
+      // setTimeout(data.accion, data.timer)
+      console.log(data)
+    })
+  
+})
+
+// document.getElementById("cerrar").addEventListener("click",function(){
+//   document.getElementById("Apassw").value=""
+// })
 
 ///////////Cambiar el estado del usuario ///////////////////
 $("#list_resul").on ("click","#btn-statu",function(e)
@@ -159,6 +200,7 @@ document.getElementById("btn_generarMob").addEventListener("click",function(){
                         pas.classList.remove("is-invalid")
                          pas.classList.add("is-valid")
                 } 
+                
 
 //funcion de alerta con opciones 
 function alertOpt(titulo,mensaje,icono,accion,val1,val2){

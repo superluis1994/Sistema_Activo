@@ -94,7 +94,7 @@ if($_POST["accion"]=='buscarUser'){
           $res.="<td><button type='button' value='".$value["id_user"].",".$value["account_status_id"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>";
 
         }
-        $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"].",".$value["Centro_costo"]."' class='btn btn-primary'>Modificar</button></td>";
+        $res.="<td><button type='button' id='btn-modificar' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["correo"].",".$value["Centro_costo"].",".$value["rol"]."' class='btn btn-primary'>Modificar</button></td>";
         $res.="<td><button type='button' id='btn-permisos' value='".$value["photo"].",".$value["id_user"].",".$value["nom"].",".$value["apellidos"].",".$value["rol"]."' class='btn btn-secondary'>Permisos</button></td>";
 
       }
