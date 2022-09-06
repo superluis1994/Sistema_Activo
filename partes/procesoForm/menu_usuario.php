@@ -25,26 +25,26 @@ $permiso=$procesoDatos->List($dato);
 $menu="<ul class='navbar-nav mx-auto' id='menu'>";
 foreach($permiso as  $key => $value){
     
-    if(!($value["registrar_usu"] =="off" && $value["list_usu"] =="off" && $value["conexion"] =="off")){
+    if(!($value["registrar_usu"] =="false" && $value["list_usu"] =="false" && $value["conexion"] =="false")){
         
         $menu.="<li class='nav-item dropdown'> 
         <a class='nav-link dropdown-toggle'  id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
         Usuario
         </a>
         <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-        if($value["registrar_usu"] =="on"){
+        if($value["registrar_usu"] =="true"){
             $menu.=" <li><a class='dropdown-item' href='index.php?pagina=registrar_usuario.php'>Registrar</a></li>";
         }
-        if($value["list_usu"] =="on"){
+        if($value["list_usu"] =="true"){
             $menu.=" <li><a class='dropdown-item' href='index.php?pagina=list_usuarios.php'>Usuario</a></li>";
         }
-        if($value["conexion"] =="on"){
+        if($value["conexion"] =="true"){
             $menu.=" <li><a class='dropdown-item' href='index.php?pagina=list_conexiones.php'>Conexiones</a></li>";
         }
         $menu.="</ul>
         </li>";
     }
-    if(!($value["mover_activos"] =="off" && $value["list_movimiento_activo"] =="off" )){
+    if(!($value["mover_activos"] =="false" && $value["list_movimiento_activo"] =="false" )){
         
         $menu.="<li class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle'  id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -52,16 +52,16 @@ foreach($permiso as  $key => $value){
         </a>
         <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
         
-        if($value["mover_activos"] =="on"){
+        if($value["mover_activos"] =="true"){
             $menu.=" <li><a class='dropdown-item' href='index.php?pagina=mover_activo.php'>Mover</a></li>";
         }
-        if($value["list_movimiento_activo"] =="on"){
+        if($value["list_movimiento_activo"] =="true"){
             $menu.=" <li><a class='dropdown-item' href='index.php?pagina=list_movimientos.php'>Lista de Movimiento</a></li>";
         }
         $menu.="</ul>
         </li>";
     }
-    if(!($value["regist_producto"] =="off" && $value["mostr_producto"] =="off" )){
+    if(!($value["regist_producto"] =="false" && $value["mostr_producto"] =="false" )){
         
         $menu.="<li class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle'  id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -69,17 +69,17 @@ foreach($permiso as  $key => $value){
         </a>
         <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
         
-        if($value["regist_producto"] =="on"){
+        if($value["regist_producto"] =="true"){
             $menu.=" <li><a class='dropdown-item' href='index.php?pagina=registrar_Activo.php'>Registrar Activos</a></li>";
         }
-        if($value["mostr_producto"] =="on"){
+        if($value["mostr_producto"] =="true"){
             $menu.="<li><a class='dropdown-item' href='index.php?pagina=list_activos.php'>Mostrar Activos</a></li>";
         }
         
         $menu.="</ul>
         </li>";
     }
-    if(!($value["regist_local"] =="off" && $value["mostr_local"] =="off" )){
+    if(!($value["regist_local"] =="false" && $value["mostr_local"] =="false" )){
         
         $menu.="<li class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle'  id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -87,10 +87,10 @@ foreach($permiso as  $key => $value){
         </a>
         <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
     
-    if($value["regist_local"] =="on"){
+    if($value["regist_local"] =="true"){
         $menu.=" <li><a class='dropdown-item' href='index.php?pagina=registrar_local.php'>Registrar Local</a></li>";
     }
-    if($value["mostr_local"] =="on"){
+    if($value["mostr_local"] =="true"){
         $menu.="<li><a class='dropdown-item' href='index.php?pagina=list_local.php'>Mostrar Local</a></li>";
     }
     

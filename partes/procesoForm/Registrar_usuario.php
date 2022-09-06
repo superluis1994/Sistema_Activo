@@ -68,29 +68,29 @@ if(isset($_POST["accion"])){
        if($_POST["tipo"]==1){
          $permisosUser=[
            'codigo'=>$_POST["codigo"],
-           'registrar_usu'=>"on",
-           'list_usu'=>"on",
-           'conexion'=>"on",
-           'mover_activo'=>"on",
-           'list_movimiento_activos'=>"on",
-           'regist_producto'=>"on",
-           'mostr_producto'=>"on",
-           'regist_local'=>"on",
-           'mostr_local'=>"on"
+           'registrar_usu'=>"true",
+           'list_usu'=>"true",
+           'conexion'=>"true",
+           'mover_activo'=>"true",
+           'list_movimiento_activos'=>"true",
+           'regist_producto'=>"true",
+           'mostr_producto'=>"true",
+           'regist_local'=>"true",
+           'mostr_local'=>"true"
           ];
           
         }else if($_POST["tipo"]==2){
       $permisosUser=[
         'codigo'=>$_POST["codigo"],
-        'registrar_usu'=>"off",
-        'list_usu'=>"on",
-        'conexion'=>"off",
-        'mover_activo'=>"off",
-        'list_movimiento_activos'=>"off",
-        'regist_producto'=>"off",
-        'mostr_producto'=>"on",
-        'regist_local'=>"off",
-        'mostr_local'=>"on"
+        'registrar_usu'=>"false",
+        'list_usu'=>"false",
+        'conexion'=>"false",
+        'mover_activo'=>"false",
+        'list_movimiento_activos'=>"false",
+        'regist_producto'=>"false",
+        'mostr_producto'=>"true",
+        'regist_local'=>"false",
+        'mostr_local'=>"true"
       ];
       
     }

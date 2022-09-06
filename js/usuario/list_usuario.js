@@ -100,21 +100,32 @@ $("#list_resul").on ("click","#btn-statu",function(e)
     
     
 })
-/////////////////permisos/////////////////////////////////
-$("#list_resul").on ("click","#btn-permisos",function(e)
-{ 
-  inf=e.target.value.split(",")
-  $("#TituloMdP").html("<small class='text-muted'>PERMISOS DEL CARNET:</small> "+inf[1])
-  $("#nomCompleto").html("<b>NOMBRE: </b>"+inf[2].toUpperCase())
-  $("#apellido").html("<b>APELLIDOS: </b>"+inf[3].toUpperCase())
-  $("#tipoUsert").html("<b>CARGO: </b>"+inf[4].toUpperCase())
-  document.getElementById("imgMdP").setAttribute("src",inf[0] );
-  $('#mdPermiso').modal('show');
-  
+// /////////////////Cargar editor permisos/////////////////////////////////
+// $("#list_resul").on ("click","#btn-permisos",function(e)
+// { 
+//   $("#lisPermisos").html("")
+//   inf=e.target.value.split(",")
+//   $("#TituloMdP").html("<small class='text-muted'>PERMISOS DEL CARNET:</small> "+inf[1])
+//   $("#nomCompleto").html("<b>NOMBRE: </b>"+inf[2].toUpperCase())
+//   $("#apellido").html("<b>APELLIDOS: </b>"+inf[3].toUpperCase())
+//   $("#tipoUsert").html("<b>CARGO: </b>"+inf[4].toUpperCase())
+//   document.getElementById("imgMdP").setAttribute("src",inf[0] );
 
+//   // solicito los permisos de usuario
+//   list= new FormData()
+//          list.append("accion","permisos")
+//          list.append("id",inf[1])
+//          fetch("partes/procesoForm/cargarPermisos.php",{
+//          method: 'POST',
+//          body: list
+//          }).then(res=>res.json())
+//          .then(data=>{
+//          $("#lisPermisos").html(data)
+          
+//          })
 
-   
-})
+//   $('#mdPermiso').modal('show');
+// })
 
 ////////////////////permisos value///////////////////////////////
 document.getElementById("permisoRgT").addEventListener("click",function(e){

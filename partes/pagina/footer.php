@@ -67,6 +67,7 @@ if(isset($_SESSION['datos'][@$_COOKIE['id']])){
     elseif($_GET["pagina"] == "list_usuarios.php"){
      
       echo "<script src='./js/usuario/list_usuario.js'></script>";
+      echo "<script src='./js/usuario/permisos.js'></script>";
     }
     elseif($_GET["pagina"] == "list_conexiones.php"){
      

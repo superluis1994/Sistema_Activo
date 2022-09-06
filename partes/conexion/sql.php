@@ -102,6 +102,15 @@ class sqlReg extends Principal {
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;
     }
+        //lista de permisos
+        public function ListPermisos($dato){
+         $sql=Principal::conectar()->prepare("SELECT * FROM permisos WHERE id_user=:CODIGO");
+        $sql->bindParam(":CODIGO",$dato); 
+        $sql->execute();
+        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+        return $dat;
+     }
+ 
      //lista de usuarios por busqueda de filtros
      public function busquedaFiltro($dato){
         $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato["tabla"]." WHERE ".$dato["filtro"]." like '".$dato["busqueda"]."%' limit 0,20");
