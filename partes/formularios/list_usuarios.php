@@ -171,7 +171,7 @@
                 </div>
               </div>
               <div style="height: 300px; overflow-Y: scroll;" id="lisPermisos">
-   
+                
       </div>
     </div>
       <div class="modal-footer">

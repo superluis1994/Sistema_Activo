@@ -20,7 +20,7 @@ if(isset($_POST["accion"])){
       'regist_local'=>"REGISTRAR LOCALES",
       'mostr_local'=>"VER LISTA DE LOCALES",     
   ];
-  
+  $lisTpermi.="<form id='Per' action=''>";
     foreach($MENU as $key => $value){
         
       $lisTpermi.="<div class='row mt-2'style='border: 0.5px solid grey;'>
@@ -38,6 +38,7 @@ if(isset($_POST["accion"])){
           </div>
     </div>";
     }
+    $lisTpermi.="</form>";
  
     echo json_encode($lisTpermi);
 }

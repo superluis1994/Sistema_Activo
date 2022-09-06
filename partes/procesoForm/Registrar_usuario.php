@@ -16,10 +16,7 @@ if(isset($_POST["accion"])){
       $list=$procesoDatos->ListTipoUsuario("roles");
       $resl.="<option value='0' selected>Seleccionar</option>";
       foreach($list as $key => $value){
-      
-        $resl.="<option value='".$value["id_rol"]."'>".strtoupper($value["rol"])."</option>";
-      
-        
+        $resl.="<option value='".$value["id_rol"]."'>".strtoupper($value["rol"])."</option>"; 
       }
       echo json_encode($resl);
     }
@@ -96,19 +93,13 @@ if(isset($_POST["accion"])){
     }
 
     $insertPermiso=$procesoDatos->PermisosInsert($permisosUser);
-
-
-   
-    
     $alerta=["icono"=>"success",
     "titulo"=>"Correcto",
     "mensaje"=>"Registrado Correctamente",
     "recargar"=>"si"
   ];
-    
-    
-  }else{
-    
+      
+  }else{ 
     $alerta=["icono"=>"error",
     "titulo"=>"Error",
     "mensaje"=>"Llenar todos los campos",
@@ -116,7 +107,6 @@ if(isset($_POST["accion"])){
   ];
   } 
   echo json_encode($alerta);
-
   }
   else if($_POST["accion"]=='validarUser'){
     $resul=$procesoDatos->validarUsuario($_POST["codigo"]);

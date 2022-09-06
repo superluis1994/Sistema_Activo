@@ -20,13 +20,30 @@ $("#list_resul").on ("click","#btn-permisos",function(e)
     }).then(res=>res.json())
     .then(data=>{
          $("#lisPermisos").html(data)
-          
          })
-         
+         document.getElementById("permisoRgT").setAttribute("value", inf[1]);
          $('#mdPermiso').modal('show');
-        })
+   })
         
- $("#lisPermisos").on ("click","#Rusu",function(e){
-        alert(e.target.checked);
+//  $("#lisPermisos").on ("click","#Rusu",function(e){
+//         alert(e.target.checked);
         
-        })
+//         })
+
+////////////////////permisos value///////////////////////////////
+document.getElementById("permisoRgT").addEventListener("click",function(e){
+    // console.log(document.getElementById("Per"))
+    form=document.getElementById("Per")
+    list= new FormData(form)
+    list.append("accion","permisos")
+    list.append("id",inf[1])
+    fetch("partes/procesoForm/ActualizarPermisos.php",{
+        method: 'POST',
+        body: list
+    }).then(res=>res.json())
+    .then(data=>{
+        console.log(data);
+         })
+    // alert();
+    
+  })
