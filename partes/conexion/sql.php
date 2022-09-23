@@ -19,7 +19,15 @@ class sqlReg extends Principal {
    //     return $respuest;
    //  }
 
-
+   public function camposPermiso(){
+      $sql=Principal::conectar()->prepare("SELECT COLUMN_NAME,COLUMN_COMMENT
+      FROM Information_Schema.Columns
+      WHERE TABLE_NAME = 'permisos' && COLUMN_NAME !='id_permisos' && COLUMN_NAME !='id_user' 
+      ORDER BY COLUMN_NAME");
+     $sql->execute();
+     $dat=$sql->fetch(PDO::FETCH_ASSOC);
+     return $dat;
+  }
    public function loguiar($dato){
       $clave=Principal::encryption($dato["pass"]);
       $sql=Principal::conectar()->prepare("SELECT * FROM  usuario WHERE id_user = :CODIGO && passw = :PASSWD ;");
@@ -28,13 +36,6 @@ class sqlReg extends Principal {
       $sql->bindParam(":PASSWD",$clave); 
      $sql->execute();
      $dat=$sql->fetch(PDO::FETCH_ASSOC);
-   //   $count=$sql->rowCount();
-
-   //   $respuest=[
-   //     "count"=>$count,
-   //      "array"=>$dat
-   //   ];
-   //   return $respuest;
      return $dat;
   }
 
@@ -109,6 +110,27 @@ class sqlReg extends Principal {
         $sql->execute();
         $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
         return $dat;
+     }
+      //Actualizar permisos
+      public function actualizarPermisos($dato){
+         $sql=Principal::conectar()->prepare("UPDATE permisos SET registrar_usu = :REGISTRAR_USU,
+         list_usu = :LIST_USU,conexion = :CONEXION, mover_activos = :MOVER_ACTIVO ,list_movimiento_activo = :LIST_MOVI,
+         regist_producto = :RGS_PRODUCT,mostr_producto = :MS_PRODUCTO,regist_local = :RG_LOCAL, mostr_local = :MS_LOCAL
+         WHERE id_user = :ID ;");
+       $sql->bindParam(":REGISTRAR_USU",$dato["registrar_usu"]); 
+       $sql->bindParam(":LIST_USU",$dato['list_usu']); 
+       $sql->bindParam(":CONEXION",$dato['conexion']); 
+       $sql->bindParam(":MOVER_ACTIVO",$dato['mover_activos']); 
+       $sql->bindParam(":LIST_MOVI",$dato['list_movimiento_activo']); 
+       $sql->bindParam(":RGS_PRODUCT",$dato['regist_producto']); 
+       $sql->bindParam(":MS_PRODUCTO",$dato['mostr_producto']); 
+       $sql->bindParam(":RG_LOCAL",$dato['regist_local']); 
+       $sql->bindParam(":MS_LOCAL",$dato['mostr_local']); 
+       $sql->bindParam(":ID",$dato["id"]); 
+
+        $sql->execute();
+        $fil=$sql->rowCount();
+        return $fil;
      }
  
      //lista de usuarios por busqueda de filtros

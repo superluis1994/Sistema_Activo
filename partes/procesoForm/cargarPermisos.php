@@ -20,7 +20,7 @@ if(isset($_POST["accion"])){
       'regist_local'=>"REGISTRAR LOCALES",
       'mostr_local'=>"VER LISTA DE LOCALES",     
   ];
-  $lisTpermi.="<form id='Per' action=''>";
+  $lisTpermi.="";
     foreach($MENU as $key => $value){
         
       $lisTpermi.="<div class='row mt-2'style='border: 0.5px solid grey;'>
@@ -31,14 +31,14 @@ if(isset($_POST["accion"])){
               <label class='form-check-label' for='flexSwitchCheckDefault'>OFF</label>
               <label class='form-check-label' for='flexSwitchCheckDefault'>ON</label>
           <div class='form-check form-switch'>
-          <input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' ";
+          <input class='form-check-input' name='".$key."' type='checkbox' id='flexSwitchCheckDefault' ";
           $lisTpermi.=validCheck($ListPermisos,$key);
           $lisTpermi.=" style='width:80px'>
         </div>
           </div>
     </div>";
     }
-    $lisTpermi.="</form>";
+    $lisTpermi.="";
  
     echo json_encode($lisTpermi);
 }

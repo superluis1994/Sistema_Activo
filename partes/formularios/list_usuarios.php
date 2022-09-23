@@ -151,13 +151,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="contenedor">
+        <form id='Per' action='' method="post" enctype="multipart/form">
         <div class="row">
           <div class="col-4">
             <img src="" id="imgMdP" class="img-thumbnail img-fluid rounded-start" height="500" width="500" >
           </div>
           <div class="col-8">
-              <form action="" method="post" enctype="multipart/form">
-           
                 <div class="row">
                   <div class="card" style="width: 18rem;">
                     <div class="card-header" id="nomCompleto">
@@ -176,7 +175,7 @@
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
+        <button type="submit" id="permisoRgT" class="btn btn-primary">Actualizar</button>
       </div>
     </form>
   </div>
