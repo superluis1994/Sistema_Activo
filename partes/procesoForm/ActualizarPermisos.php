@@ -26,12 +26,19 @@ if(isset($_POST["accion"])){
         $respue=$procesoDatos->actualizarPermisos($datos);
         if($respue!=0){
             $R=[
-                'funcion'=>"alerta('success','Actualizacion Completada','sssss')",    
+                'funcion'=>"alerta('success','Actualizacion Completada','Permisos modificados')",    
                 'timer'=>"500",    
                 'recargar'=>"location.reload()", 
                 'timer2'=>"2000",    
             ];
     
+        }else{
+            $R=[
+                'funcion'=>"alerta('error','Error','No a modificado ningun permiso')",    
+                'timer'=>"200",    
+                'recargar'=>"", 
+                'timer2'=>"0",    
+            ];
         }
     }
 

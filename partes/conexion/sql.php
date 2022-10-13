@@ -142,7 +142,7 @@ class sqlReg extends Principal {
   
     }
     public function ListGenerica($dato){
-        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.";");
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato." ;");
        $sql->execute();
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;

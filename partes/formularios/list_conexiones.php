@@ -13,23 +13,25 @@
                 <div class="col-11">
                     <div class="row justify-content-end">
                         <div class="row justify-content-end"> 
-                        <div class="col-3">
+                        <!-- <div class="col-3">
                           <input type="date" class="form-control" name="tiempo" id="">
-                            <!-- <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1" ckeck="checked">Carnet</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Nombre</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox3" value="option3" >
-                                <label class="form-check-label" for="inlineCheckbox3">Apellido</label>
-                              </div> -->
+                          <input type="date" class="form-control" name="tiempo" id="">
+                        </div> -->
+                        <div class="col-3">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">INICIO</label>
+                            <div class="col-10">
+                            <input type="date" class="form-control" name="tiempoI" id="tiempoI">
                             </div>
-                            <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Carnet" required/>
+                          </div>
+                          <div class="col-3">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">FINAL</label>
+                            <div class="col-10">
+                            <input type="date" class="form-control" name="tiempoF" id="tiempoF">
+                            </div>
+                          </div>
+                            <div class="col-4 text-end ">
+                              <a name="" id="" class="btn btn-danger mb-2" href="#" role="button">Reportes</a>
+                                <input type="text" name='Lcodigo' class="form-control " id="Inp_buscar"  title="btn_buscar" placeholder="Buscar Carnet" />
                           </div>
                         </div>
                           <div class="col-10 mt-2">
