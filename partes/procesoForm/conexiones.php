@@ -31,14 +31,32 @@ if(isset($_POST["accion"])){
     }
     if($_POST["accion"] == "BusqueConexion"){
       // $list=$procesoDatos->ListGenerica("conexiones LIMIT ".$inferior.",".$cantidad);
-      $listConex=$procesoDatos->ListGenerica("conexiones  WHERE id_user = ".$_POST["bsqueda"]." LIMIT 0,20");
+      $parametros=[];
+      $limited="";
+      $inferior=0;
+      if($_POST["fechaI"]!="" && $_POST["fechaF"]!="" ){
+        $parametros["fechaI"]=$_POST["fechaI"];
+        $parametros["fechaF"]=$_POST["fechaF"];
+      }
+      if($_POST["cantida"]!=20){
+        $cantidad =$_POST["cantida"];
+        $inferior=$cantidad-20;
+        $limited.=" LIMIT ".$inferior.",".$cantidad."";
+      }
+
+      $listConex=$procesoDatos->ListGenerica("conexiones  WHERE id_user = ".$_POST["bsqueda"]." ".$limited);
+
       $resp=GenerarListConexiones($listConex,1);
+      $numUser=count($listConex);
+      $paginacion=Paginacion($numUser,$inferior+1,$_POST["pg"]);
+
       $Respuestas2 = [
-        // "paginacion"=> $paginacion,
+        "paginacion"=> $paginacion,
         "estado"=> "exito",
         "fila"=> $resp,
         // "fecha"=>date('Y-m-d')
        ];
+      // echo json_encode($numUser);
       echo json_encode($Respuestas2);
 
     }
