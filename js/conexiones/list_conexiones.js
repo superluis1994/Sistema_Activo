@@ -50,24 +50,7 @@ document.getElementById("pagList").addEventListener("click",function(e){
 
 document.getElementById("Inp_buscar").addEventListener("keyup",function(e){
   if(/^[0-9\s]+$/g.test(e.target.value)){
-    // lis= new FormData()
-    // lis.append("accion","BusqueConexion")
-    // lis.append("bsqueda",e.target.value)
-    // // list.append("cantida",pag)
-    // // list.append("pg",num)
-    
-    // fetch("partes/procesoForm/conexiones.php",{
-    //   method: 'POST',
-    //   body: lis
-    // }).then(res=>res.json())
-    // .then(data=>{
-    //  document.getElementById("listConexiones").innerHTML=data.fila;
-    //  document.getElementById("pagList").innerHTML="";
-    // //  document.getElementById("pagList").innerHTML=data.paginacion;
-    // //  document.getElementById("tiempoF").value=data.fecha;
    
-      
-    // })
     list_conexionBusq(20,1,e.target.value)
 
   }else{
@@ -76,3 +59,9 @@ document.getElementById("Inp_buscar").addEventListener("keyup",function(e){
 
 })
 // alert()
+document.getElementById("GReportrC").addEventListener("click", function(){
+
+  // GReportrC
+  $('#detalleReport').modal('show')
+
+})
