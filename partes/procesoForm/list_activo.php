@@ -132,7 +132,7 @@ if(isset($_POST["accion"])){
        INNER JOIN tipo_activo ON inventario.tipo_activo = tipo_activo.id_tipo_activo
        INNER JOIN `local` ON inventario.id_local = `local`.id_local
        INNER JOIN usuario ON inventario.id_reposable = usuario.id_user WHERE ".$where."
-       LIMIT 0,5";
+       LIMIT 0,4";
       $sql="SELECT * FROM  inventario WHERE ".$where;
       $rs=$procesoDatos->sqlGenericaArreglo($query);
       $filas="";
@@ -148,7 +148,7 @@ if(isset($_POST["accion"])){
      if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
 
        $filas.=" <td><button type='button' id='detalleActi' value='".$value["id_activo"]."' class='btn btn-primary'>Detalles</button></td>
-        <td><button type='button' class='btn btn-primary'>Actualizar</button></td>";
+        <td><button type='button' id='update' class='btn btn-primary'>Actualizar</button></td>";
      }
       $filas.="</tr>";
     }  
