@@ -97,6 +97,7 @@
             <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_detal" alt="...">
             <div class="card-body">
               <h5 class="card-title" id="nombreActiTex">Card title</h5>
+             
               <p class="card-text" id="descripcionAct">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
@@ -147,8 +148,9 @@
             <input type="file"  id="btn_img" hidden>
             
             <div class="card-body">
-              <h5 class="card-title" id="nombreActiTex">Card title</h5>
-              <textarea id="descripcionAct" class="card-text form-control">Some quick example text to build on the card title</textarea>
+              <h5 class="card-title" id="nombActivo">Card title</h5>
+              <label for="editdescript" class="form-label">Descripción</label>
+              <textarea id="editdescript" class="card-text form-control">Some quick example text to build on the card title</textarea>
             </div>
           </div>
         </div>
@@ -168,12 +170,13 @@
             </table>
         </div>
         </div>
+      
       </div>
   </div>
-  <!-- <div class="modal-footer">
+   <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
-        </div> -->
+        </div> 
 </div>
 </form>
 </div>

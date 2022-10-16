@@ -1,6 +1,4 @@
-
-// window.onload = function () {
-  inFrom = new FormData();
+inFrom = new FormData();
   inFrom.append("accion", "tabla_list_activo");
   inFrom.append("inferior", "0");
   inFrom.append("superior", "20");
@@ -10,18 +8,14 @@
   })
     .then((res) => res.json())
     .then((data) => {
-      document.getElementById("filas_activos").innerHTML = data;
-
-      // document.getElementById("pagination").innerHTML=data.paginacion;
-      // console.log(data)  https://www.youtube.com/watch?v=IP2Ye2KKfoc
+      document.getElementById("filas_activos").innerHTML = data
     })
-// }
+
 
 //Detalles de Activos  
 $("#filas_activos").on ("click","#detalleActi",function(e){ 
   $('#detalleActivo').modal('show');
- // alert(e.target.value)
- // let foto = document.getElementById("img_detal")
+
   inMod = new FormData();
   inMod.append("accion","infAct");
   inMod.append("id", e.target.value);
@@ -32,28 +26,37 @@ $("#filas_activos").on ("click","#detalleActi",function(e){
   })
     .then((res) => res.json())
     .then((data) => {
-     // $('#detalleActivo').modal('show')
       document.getElementById("caractActivo").innerHTML = data.filas;
       document.getElementById("nombreActiTex").innerHTML=data.nombre;
       document.getElementById("descripcionAct").innerHTML=data.descripcion;
       document.getElementById("img_detal").setAttribute("src",data.img);
-      // $("#img_acti").attr("src",data.foto);
-      // console.log(data.filas);
-     
 
     })
 
  })
 
- //Actualizar datos
+ //Cargar datos para actualizar
  $("#filas_activos").on ("click","#update",function(e){ 
  $('#modal_activo_update').modal('show');
  
- alert(e.target.value)
+ fordata = new FormData()
+ fordata.append("accion","cargardatos_up")
+ fordata.append("id",e.target.value)
+ 
+ fetch("partes/procesoForm/list_activo.php", {
+  method: "POST",
+  body:fordata,
+ })
+ .then((res) => res.json())
+ .then((data) => {
 
-
+document.getElementById("cargarActivo").innerHTML = data.filas
+document.getElementById("editdescript").innerHTML=data.descripcion
+document.getElementById("nombActivo").innerHTML=data.nombre
+ })
  })
 
+ //Busque varios campos
 document.getElementById("btn-buscar").addEventListener("keyup",function(e){
 let conditions = "";
 if(e.target.value == ""){
@@ -80,39 +83,8 @@ fetch("partes/procesoForm/list_activo.php", {
   .then((data) => {
     console.log(data)
     
-    document.getElementById("filas_activos").innerHTML = data;
-   // document.getElementById("filas_activos").innerHTML = data.fila;
-     
-    //document.getElementById("filas_activos").innerHTML = data.fila;
-    // document.getElementById("pagination").innerHTML=data.paginacion;
-    // console.log(data)  https://www.youtube.com/watch?v=IP2Ye2KKfoc
+    document.getElementById("filas_activos").innerHTML = data
+
   })
 
 })
-
-/*
-$("#filas_activos").on("click","#detalleActi",function(e)
-{
-  inMod = new FormData();
-  inMod.append("accion","infAct");
-  inMod.append("id", e.target.value);
-
-  fetch("partes/procesoForm/list_activo.php", {
-    method: "POST",
-    body: inMod,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      $('#detalleActivo').modal('show')
-      document.getElementById("caractActivo").innerHTML = data.filas;
-      document.getElementById("nombreActiTex").innerHTML=data.nombre;
-      document.getElementById("descripcionAct").innerHTML=data.descripcion;
-      document.getElementById("img_acti").setAttribute("src",data.img);
-      // $("#img_acti").attr("src",data.foto);
-      // console.log(data.filas);
-     
-
-    })
-  //  alert("luis")
-})
-*/
