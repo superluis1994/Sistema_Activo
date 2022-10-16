@@ -115,10 +115,54 @@
 
               </tbody>
             </table>
-     
-        
         </div>
-          
+        </div>
+      </div>
+  </div>
+  <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
+        </div> -->
+</div>
+</form>
+</div>
+</div>
+
+
+<!-- Modal actualizar -->
+<div class="modal fade" id="modal_activo_update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloMdP">Detalles del Activo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="contenedorDetalle">
+      <div class="row">
+        <div class="col-5">
+          <div class="card" style="width: 15rem;">
+            <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_acti" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" id="nombreActiTex">Card title</h5>
+              <p class="card-text" id="descripcionAct">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-7">
+         
+          <div style="height: 400px; overflow-Y: scroll;" id="cont">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Caracteristica</th>
+                  <th scope="col">Valor</th>
+                </tr>
+              </thead>
+              <tbody id="caractActivo">
+
+              </tbody>
+            </table>
+        </div>
         </div>
       </div>
   </div>

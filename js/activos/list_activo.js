@@ -17,6 +17,17 @@
     })
 // }
 
+//Detalles de Activos  
+$("#filas_activos").on ("click","#detalleActi",function(e){ 
+  $('#detalleActivo').modal('show');
+
+ })
+
+ $("#filas_activos").on ("click","#update",function(e){ 
+  $('#modal_activo_update').modal('show');
+
+ })
+
 document.getElementById("btn-buscar").addEventListener("keyup",function(e){
 let conditions = "";
 if(e.target.value == ""){

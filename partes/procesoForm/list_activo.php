@@ -23,7 +23,7 @@ if(isset($_POST["accion"])){
       if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
 
         $filas.=" <td><button type='button' id='detalleActi' value='".$value["id_activo"]."' class='btn btn-primary'>Detalles</button></td>
-         <td><button type='button' class='btn btn-primary'>Actualizar</button></td>";
+         <td><button type='button' id='update' class='btn btn-primary'>Actualizar</button></td>";
       }
        $filas.="</tr>";
      }      

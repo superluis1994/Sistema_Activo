@@ -142,6 +142,7 @@
   </form>
 </div>
 </div>
+
 <!-- Modal de permisos -->
 <div class="modal fade" id="mdPermiso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
