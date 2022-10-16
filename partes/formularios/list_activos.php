@@ -24,7 +24,7 @@
                             </div>
                             </div>
                             <div class="col-5" id="busqueda">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="------------" required/>
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="------------" >
                           </div>
                           <div class="col-5" id="busquedaPer" hidden>
                           

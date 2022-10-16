@@ -113,7 +113,7 @@ if(isset($_POST["accion"])){
     } else if($_POST["accion"] == "buscarfiltro"){
       $datos=[];
       //campos a consultar
-      $columna=['id_activo','nom_activo','tipo_activo'];
+      $columna=['id_activo','nom_activo','nom_tipo_activo'];
       //$campo=isset($_POST["buscar"]) ? : null;
       $campo=$_POST["buscar"];
       $where="";
