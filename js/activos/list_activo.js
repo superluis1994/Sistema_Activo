@@ -10,13 +10,45 @@
   })
     .then((res) => res.json())
     .then((data) => {
-      document.getElementById("filas_activos").innerHTML = data.fila;
+      document.getElementById("filas_activos").innerHTML = data;
+
       // document.getElementById("pagination").innerHTML=data.paginacion;
-      // console.log(data)
+      // console.log(data)  https://www.youtube.com/watch?v=IP2Ye2KKfoc
     })
 // }
 
+document.getElementById("btn-buscar").addEventListener("keyup",function(e){
+let conditions = "";
+if(e.target.value == ""){
+conditions="tabla_list_activo"
+}else{
+  conditions="buscarfiltro"
+}  
+dataform = new FormData()
+dataform.append("accion",conditions )
+dataform.append("buscar",e.target.value)
+dataform.append("inferior", "0")
+dataform.append("superior", "20")
 
+fetch("partes/procesoForm/list_activo.php", {
+  method: "POST",
+  body: dataform,
+})
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+    
+    document.getElementById("filas_activos").innerHTML = data;
+   // document.getElementById("filas_activos").innerHTML = data.fila;
+     
+    //document.getElementById("filas_activos").innerHTML = data.fila;
+    // document.getElementById("pagination").innerHTML=data.paginacion;
+    // console.log(data)  https://www.youtube.com/watch?v=IP2Ye2KKfoc
+  })
+
+})
+
+/*
 $("#filas_activos").on("click","#detalleActi",function(e)
 {
   inMod = new FormData();
@@ -41,3 +73,4 @@ $("#filas_activos").on("click","#detalleActi",function(e)
     })
   //  alert("luis")
 })
+*/

@@ -14,21 +14,17 @@
                     <div class="row justify-content-end">
                         <div class="row justify-content-end"> 
                         <div class="col-5">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input " type="radio" name="tipoBus" id="op1"  value="option1" checked>
-                                <label class="form-check-label" for="inlineCheckbox1">Codigo</label>
+                            <div class="row justify-content-end">
+                              <div class="col-5">
+                              <button class="btn btn-danger" id="report_activo_gene">Reporte General</button>
                               </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="op2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Nombre</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="opt" value="option3" >
-                                <label class="form-check-label" for="inlineCheckbox3">Tipo Activo</label>
+                              <div class="col-4">
+                                <label class="form-control">Busqueda:</label>
                               </div>
                             </div>
+                            </div>
                             <div class="col-5" id="busqueda">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar" required/>
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="------------" required/>
                           </div>
                           <div class="col-5" id="busquedaPer" hidden>
                           

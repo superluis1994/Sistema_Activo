@@ -27,12 +27,9 @@ if(isset($_POST["accion"])){
       }
        $filas.="</tr>";
      }      
-     $respuest=[
-        "fila"=>$filas,
-        "paginacion"=>""
-     ];
 
-    echo json_encode($respuest);
+
+    echo json_encode($filas);
 
     }
     else if($_POST["accion"] == "infAct"){
@@ -113,7 +110,51 @@ if(isset($_POST["accion"])){
 
     echo json_encode($datos);
         
-    }
+    } else if($_POST["accion"] == "buscarfiltro"){
+      $datos=[];
+      //campos a consultar
+      $columna=['id_activo','nom_activo','tipo_activo'];
+      //$campo=isset($_POST["buscar"]) ? : null;
+      $campo=$_POST["buscar"];
+      $where="";
+     if($campo != null){
+      $where.="(";
+      for ($i=0; $i < count($columna) ; $i++) { 
+        
+        $where.= $columna[$i]." LIKE '%".$campo."%' OR ";
+      }
+      $where=substr_replace($where,"",-3);
+      $where.=")";
+     }
+      $query="Select id_activo,codigo_mined,codigo_interno,nom_activo,nom_tipo_activo,descrip_activo,
+      valor_activo,marca,modelo,dimensiones,serie,vida_util,local_name,nom,apellidos,foto,fecha_resg
+       FROM inventario 
+       INNER JOIN tipo_activo ON inventario.tipo_activo = tipo_activo.id_tipo_activo
+       INNER JOIN `local` ON inventario.id_local = `local`.id_local
+       INNER JOIN usuario ON inventario.id_reposable = usuario.id_user WHERE ".$where."
+       LIMIT 0,5";
+      $sql="SELECT * FROM  inventario WHERE ".$where;
+      $rs=$procesoDatos->sqlGenericaArreglo($query);
+      $filas="";
+      foreach($rs as $key => $value){
+      
+        $filas.="
+        <tr>
+        <th scope='row'>".$value["id_activo"]."</th>
+        <td>".$value["nom_activo"]."</td>
+        <td>".$value["nom_tipo_activo"]."</td>
+        <td>".$value["nom"]." ".$value["apellidos"]."</td>
+        <td>".$value["local_name"]."</td>";
+     if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
+
+       $filas.=" <td><button type='button' id='detalleActi' value='".$value["id_activo"]."' class='btn btn-primary'>Detalles</button></td>
+        <td><button type='button' class='btn btn-primary'>Actualizar</button></td>";
+     }
+      $filas.="</tr>";
+    }  
+  echo json_encode($filas);
+      
+  }
 
 }
 
