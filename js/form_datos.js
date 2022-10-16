@@ -148,6 +148,7 @@ e.target.classList.add("is-invalid")
 })
 
 }
+
 /////////////////pasar foto
 document.getElementById("foto").addEventListener("change", function() {
 mostrar=document.querySelector("#img_visual")

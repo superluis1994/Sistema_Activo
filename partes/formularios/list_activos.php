@@ -143,7 +143,7 @@
       <div class="row">
         <div class="col-5">
           <div class="card" style="width: 15rem;">
-            <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_acti" alt="...">
+            <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_actu" alt="...">
             <label for="btn_img" class="btn btn-warning">Seleccionar</label>
             <input type="file"  id="btn_img" hidden>
             
@@ -164,8 +164,11 @@
                   <th scope="col">Valor</th>
                 </tr>
               </thead>
+              <tr><td><b>Resposable</b></td><td><select name="responsable" class="form-select inputLocal" id="respon">
+            </select></td></tr>
+             
               <tbody id="cargarActivo">
-
+             
               </tbody>
             </table>
         </div>
@@ -175,7 +178,7 @@
   </div>
    <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
+          <button type="button" id="save_update" class="btn btn-primary">Actualizar</button>
         </div> 
 </div>
 </form>

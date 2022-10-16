@@ -214,20 +214,27 @@ if(isset($_POST["accion"])){
           <td><input type='text' class='form-control' value='".$value["local_name"]."'></td>
           </tr>
           <tr>
-          <td><b>Responsable</b></td>
-          <td><input type='text' class='form-control' value='".$value["nom"]." ".$value["apellidos"]."'></td>
-          </tr>
-          <tr>
           <td><b>Fecha de Registro</b></td>
           <td><input type='text' class='form-control' value='".$value["fecha_resg"]."'></td>
           </tr>"; 
         }
        
+        ///////////////usuarios/////////////////
+        $list2=$procesoDatos->ListGenerica("usuario");
+        $list_usuario="<option value='0' selected>SELECCIONAR....</option>";
+        foreach($list2 as $key => $value){
+        
+          $list_usuario.="<option value='".$value["id_user"]."'>".strtoupper($value["nom"])." ".strtoupper($value["apellidos"])." (".strtoupper($value["id_user"]).") </option>";
+        
+          
+        }
+
         $datos=[
             "nombre"=>$rs[0]["nom_activo"],
             "descripcion"=>$rs[0]["descrip_activo"],
             "img"=>$rs[0]["foto"],
-           "filas"=>$fil
+           "filas"=>$fil,
+           "usuarios"=>$list_usuario
         ];
 
 

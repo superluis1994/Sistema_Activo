@@ -35,6 +35,30 @@ $("#filas_activos").on ("click","#detalleActi",function(e){
 
  })
 
+ /////////////////pasar foto
+document.getElementById("btn_img").addEventListener("change", function() {
+  mostrar=document.querySelector("#img_actu")
+  archivos = document.querySelector("#btn_img").files
+  // Si no hay archivos salimos de la función y quitamos la imagen
+  if (!archivos || !archivos.length) {
+  $document.mostrar.src = "img/recursos/foto_default.jpg";
+  return;
+  }
+  // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+  primerArchivo = archivos[0];
+  // Lo convertimos a un objeto de tipo objectURL
+  objectURL = URL.createObjectURL(primerArchivo);
+  // Y a la fuente de la imagen le ponemos el objectURL
+  mostrar.src = objectURL;
+  })
+
+  //Guardar cambios
+  document.getElementById("save_update").addEventListener("click",function(){
+  
+  alerta("error","Opcion no configurada","Falta configuracion")
+  
+  })
+
  //Cargar datos para actualizar
  $("#filas_activos").on ("click","#update",function(e){ 
  $('#modal_activo_update').modal('show');
@@ -53,6 +77,9 @@ $("#filas_activos").on ("click","#detalleActi",function(e){
 document.getElementById("cargarActivo").innerHTML = data.filas
 document.getElementById("editdescript").innerHTML=data.descripcion
 document.getElementById("nombActivo").innerHTML=data.nombre
+document.getElementById("img_actu").setAttribute("src",data.img);
+document.getElementById("respon").innerHTML = data.usuarios
+
  })
  })
 
