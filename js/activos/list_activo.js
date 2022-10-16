@@ -59,7 +59,7 @@ fetch("partes/procesoForm/list_activo.php", {
 
 })
 
-/*
+
 $("#filas_activos").on("click","#detalleActi",function(e)
 {
   inMod = new FormData();
@@ -84,4 +84,3 @@ $("#filas_activos").on("click","#detalleActi",function(e)
     })
   //  alert("luis")
 })
-*/
