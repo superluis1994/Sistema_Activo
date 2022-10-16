@@ -9,15 +9,15 @@
         <div class='col-12 text-center'>
           <p class='display-5 head'>Datos Del Usuario ".$item[1]." ".$item[2]."</p>
         </div>
-        <form  id='form' action='' method='post' enctype='multipart/form'>
+        
         <div class='row'>
         <div class='col-4'>
         <div class='col-12 text-center'>
-        <img src='".$item[4]."'  id='img_visual' class='img-thumbnail' width='200' height='200'alt='...'>
+        <img src=''  id='img_visual' class='img-thumbnail' width='200' height='200'alt='...'>
         </div>
         <div class='col-12 text-center'>
         <input type='file' name='foto'  class='form-control' id='foto'  aria-label='Upload' hidden>
-        <button type='button' id='btn_foto' class='btn btn-primary mt-3 btn-sm' style='width:200px;'>Seleccionar</button>    
+ <label for='foto' class='btn btn-primary mt-3 btn-sm' style='width:200px;'>Seleccionar</label>   
         </div>
         </div>
         <div class='col-8'>
@@ -40,22 +40,40 @@
         </div>
         <div class='col-8'>
         <label for='correo' class='form-label fw-bolder'>Correo</label>
-        <input type='text' name='correo' class='form-control' id='correo' value='".$item[3]."' required/>
+        <input type='text' class='form-control' name='correo' id='correo' required>
+        <div class='alert alert-danger' role='alert' id='msj_alert' style='visibility:hidden;'>
+        ¡Correo no valido!
+          </div>
         </div>
         <div class='col-8 text-center'>
         
-        <button type='submit' id='btn_form' class='btn btn-primary mt-3 btn-xs'>Actualizar Datos</button>
-        </form>
+        <button type='submit' id='btn_update_perfil' class='btn btn-primary mt-3 btn-xs'>Actualizar Datos</button>
+
+
         </div>
         </div>
       </div>
-
+      </div>
+ </div>
       </div>";
     }
     }
     
     ?>
-
+<!---Toast mensaje-->
+<div class="position-fixed bottom-0 end-0 p-3" id="alert1" style="z-index: 11 ; visibility:hidden;">
+  <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="img/recursos/foto_default.jpg" class="rounded me-2 navbar-brand" width="30" height="30" >
+      <strong class="me-auto">¡Aviso!</strong>
+      <!--<small>11 mins ago</small>-->
+     <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
+    </div>
+    <div class="toast-body">
+      No se requiere ninguna accion.
+    </div>
+  </div>
+</div>
 
 
 <!-- Modal -->

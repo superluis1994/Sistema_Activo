@@ -19,6 +19,49 @@ class sqlReg extends Principal {
    //     return $respuest;
    //  }
 
+   //validar correo existente
+public function val_correo($tabla,$id,$id_correo,$correo){
+   $msg="";
+   //UPDATE usuario SET correo = 'angel@gmail.com' WHERE id_user='190156'
+   $query="SELECT * FROM ".$tabla." WHERE ".$id_correo." = '".$correo."' AND id_user = ".$id;
+   $msg=$query;
+   $sentence=Principal::conectar()->prepare($query);
+   $sentence->execute();
+   if ($sentence->rowCount() > 0) {
+      $msg="2";
+   }else{
+      $msg="0";
+   }
+   return $msg;
+
+}
+
+///carga de datos
+public function reserva_datos($dato){
+   //$clave=Principal::encryption($dato["pass"]);
+   $sql=Principal::conectar()->prepare("SELECT correo AS mail, photo AS picture FROM usuario WHERE id_user=:CODIGO ;");
+   $sql->bindParam(":CODIGO",$dato); 
+  $sql->execute();
+  $dat=$sql->fetch(PDO::FETCH_ASSOC);
+  return $dat;
+
+ }
+
+  //updateInve
+  public function update_information($sql){
+   $msg="";
+   //UPDATE usuario SET correo = 'angel@gmail.com' WHERE id_user='190156'
+  // $query="UPDATE ".$tabla." SET correo='".$valores."' WHERE ".$id."= ".$campo."";
+   $sentence=Principal::conectar()->prepare($sql);
+   $sentence->execute();
+   if ($sentence->rowCount() > 0) {
+      $msg="1";
+   }else{
+      $msg="0";
+   }
+   return $msg;
+}
+
    public function camposPermiso(){
       $sql=Principal::conectar()->prepare("SELECT COLUMN_NAME,COLUMN_COMMENT
       FROM Information_Schema.Columns

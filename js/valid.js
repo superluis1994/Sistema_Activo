@@ -17,7 +17,14 @@ await fetch('partes/procesoForm/validStatus.php',{
           })
 }
   temporizador= setInterval (getData,1000)
-
+////validar correo
+function val_email (valor){
+  var msj="";
+	re=/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,3})$/
+	if(!re.exec(valor)){ msj="404"}else{  msj="204"} 
+  return msj
+	}
+  
 ///////////////alerta////////////////////
 function alerta(icono,title,text){
   Swal.fire({
