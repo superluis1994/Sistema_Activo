@@ -135,7 +135,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="TituloMdP">Detalles del Activo</h5>
+        <h5 class="modal-title" id="TituloMdP">Actualizar informacion del activo</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="contenedorDetalle">
@@ -143,9 +143,12 @@
         <div class="col-5">
           <div class="card" style="width: 15rem;">
             <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_acti" alt="...">
+            <label for="btn_img" class="btn btn-warning">Seleccionar</label>
+            <input type="file"  id="btn_img" hidden>
+            
             <div class="card-body">
               <h5 class="card-title" id="nombreActiTex">Card title</h5>
-              <p class="card-text" id="descripcionAct">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <textarea id="descripcionAct" class="card-text form-control">Some quick example text to build on the card title</textarea>
             </div>
           </div>
         </div>
@@ -159,7 +162,7 @@
                   <th scope="col">Valor</th>
                 </tr>
               </thead>
-              <tbody id="caractActivo">
+              <tbody id="cargarActivo">
 
               </tbody>
             </table>

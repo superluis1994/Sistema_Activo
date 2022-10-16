@@ -45,8 +45,12 @@ $("#filas_activos").on ("click","#detalleActi",function(e){
 
  })
 
+ //Actualizar datos
  $("#filas_activos").on ("click","#update",function(e){ 
-  $('#modal_activo_update').modal('show');
+ $('#modal_activo_update').modal('show');
+ 
+ alert(e.target.value)
+
 
  })
 
