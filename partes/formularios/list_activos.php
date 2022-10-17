@@ -16,7 +16,7 @@
                         <div class="col-5">
                             <div class="row justify-content-end">
                               <div class="col-5">
-                              <button class="btn btn-danger" id="report_activo_gene">Reporte General</button>
+                              <button class="btn btn-danger" style="" id="report_activo_gene">Reporte General</button>
                               </div>
                               <div class="col-4">
                                 <label class="form-control">Busqueda:</label>
@@ -58,7 +58,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-10 mt-2 text-center">
+                    <div class="col-10 mt-2 text-center " id="pag" style=''>
                         <nav aria-label="...">
                             <ul class="pagination justify-content-center">
                               <li class="page-item disabled">
@@ -94,9 +94,10 @@
       <div class="row">
         <div class="col-5">
           <div class="card" style="width: 15rem;">
-            <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_acti" alt="...">
+            <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_detal" alt="...">
             <div class="card-body">
               <h5 class="card-title" id="nombreActiTex">Card title</h5>
+             
               <p class="card-text" id="descripcionAct">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
@@ -119,10 +120,11 @@
         </div>
       </div>
   </div>
-  <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
-        </div> -->
+
+  <div class="modal-footer">
+          <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
+          <button type="button" id="reporte_unit_activo" class="btn btn-danger">Reporte</button>
+        </div>
 </div>
 </form>
 </div>
@@ -134,17 +136,21 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="TituloMdP">Detalles del Activo</h5>
+        <h5 class="modal-title" id="TituloMdP">Actualizar informacion del activo</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="contenedorDetalle">
       <div class="row">
         <div class="col-5">
           <div class="card" style="width: 15rem;">
-            <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_acti" alt="...">
+            <img src="img/recursos/foto_default.jpg" class="card-img-top" id="img_actu" alt="...">
+            <label for="btn_img" class="btn btn-warning">Seleccionar</label>
+            <input type="file"  id="btn_img" hidden>
+            
             <div class="card-body">
-              <h5 class="card-title" id="nombreActiTex">Card title</h5>
-              <p class="card-text" id="descripcionAct">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 class="card-title" id="nombActivo">Card title</h5>
+              <label for="editdescript" class="form-label">Descripción</label>
+              <textarea id="editdescript" class="card-text form-control">Some quick example text to build on the card title</textarea>
             </div>
           </div>
         </div>
@@ -158,18 +164,22 @@
                   <th scope="col">Valor</th>
                 </tr>
               </thead>
-              <tbody id="caractActivo">
-
+              <tr><td><b>Resposable</b></td><td><select name="responsable" class="form-select inputLocal" id="respon">
+            </select></td></tr>
+             
+              <tbody id="cargarActivo">
+             
               </tbody>
             </table>
         </div>
         </div>
+      
       </div>
   </div>
-  <!-- <div class="modal-footer">
+   <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" id="permisoRgT" class="btn btn-primary">Actualizar</button>
-        </div> -->
+          <button type="button" id="save_update" class="btn btn-primary">Actualizar</button>
+        </div> 
 </div>
 </form>
 </div>
