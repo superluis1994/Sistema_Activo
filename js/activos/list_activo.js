@@ -1,16 +1,51 @@
-inFrom = new FormData();
-  inFrom.append("accion", "tabla_list_activo");
-  inFrom.append("inferior", "0");
-  inFrom.append("superior", "20");
+$("#pag").on ("click","#pagUser",function(e)
+{   getInformation(e.target.name) })
+
+//cargar evento
+function getInformation(getNom){
+
+  
+  let conditions = "";
+  let pag_limiter=3;
+ if (getNom) {
+  pag_limiter=getNom
+ }
+
+  let getRequire =  document.getElementById('btn-buscar').value
+    if(getRequire == ""){
+      conditions="tabla_list_activo"
+      //document.getElementById("pag").style.visibility="visible"
+      document.getElementById("report_activo_gene").style.visibility="visible"
+        
+    }else{
+  
+      conditions="buscarfiltro"
+      document.getElementById("report_activo_gene").style.visibility="hidden"
+      //document.getElementById("pag").style.visibility="hidden"
+    }
+  
+  dataform = new FormData()
+  dataform.append("accion",conditions )
+  dataform.append("buscar",getRequire)
+  dataform.append("num_limit",pag_limiter)
+  
   fetch("partes/procesoForm/list_activo.php", {
     method: "POST",
-    body: inFrom,
-  })
-    .then((res) => res.json())
+    body:dataform,
+   })
+   .then((res) => res.json())
     .then((data) => {
-      document.getElementById("filas_activos").innerHTML = data
+      //console.log(data.cam)
+      
+      document.getElementById("filas_activos").innerHTML = data.tabla
+      document.getElementById("pag").innerHTML= data.paginacion
+
+  
     })
 
+}
+
+getInformation()
 
 //Detalles de Activos  
 $("#filas_activos").on ("click","#detalleActi",function(e){ 
@@ -54,8 +89,14 @@ document.getElementById("btn_img").addEventListener("change", function() {
 
   //Guardar cambios
   document.getElementById("save_update").addEventListener("click",function(){
+   //let id= document.getElementById("codigo_mined").value
+   let respo=  document.getElementById("respon").value
+   let local =  document.getElementById("local_option").value
+   let tipo_activo =  document.getElementById("clase_activo").value
   
-  alerta("error","Opcion no configurada","Falta configuracion")
+
+ alert(local)
+ // alerta("error","Opcion no configurada","Falta configuracion")
   
   })
 
@@ -79,64 +120,14 @@ document.getElementById("editdescript").innerHTML=data.descripcion
 document.getElementById("nombActivo").innerHTML=data.nombre
 document.getElementById("img_actu").setAttribute("src",data.img);
 document.getElementById("respon").innerHTML = data.usuarios
-
+document.getElementById("local_option").innerHTML = data.locales_lis
+document.getElementById("clase_activo").innerHTML = data.tipos_activo
  })
  })
 
- //Busque varios campos
-document.getElementById("btn-buscar").addEventListener("keyup",function(e){
-let conditions = "";
-if(e.target.value == ""){
-conditions="tabla_list_activo"
-document.getElementById("pag").style.visibility="visible"
-document.getElementById("report_activo_gene").style.visibility="visible"
-  
-}else{
-  conditions="buscarfiltro"
-  document.getElementById("report_activo_gene").style.visibility="hidden"
-  document.getElementById("pag").style.visibility="hidden"
-}  
-dataform = new FormData()
-dataform.append("accion",conditions )
-dataform.append("buscar",e.target.value)
-dataform.append("inferior", "0")
-dataform.append("superior", "20")
+ document.getElementById('btn-buscar').addEventListener("keyup",function(){
+  getInformation()
+ })
+ 
 
-fetch("partes/procesoForm/list_activo.php", {
-  method: "POST",
-  body: dataform,
-})
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data)
-    
-    document.getElementById("filas_activos").innerHTML = data
 
-  })
-
-/*
-$("#filas_activos").on("click","#detalleActi",function(e)
-{
-  inMod = new FormData();
-  inMod.append("accion","infAct");
-  inMod.append("id", e.target.value);
-
-  fetch("partes/procesoForm/list_activo.php", {
-    method: "POST",
-    body: inMod,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      $('#detalleActivo').modal('show')
-      document.getElementById("caractActivo").innerHTML = data.filas;
-      document.getElementById("nombreActiTex").innerHTML=data.nombre;
-      document.getElementById("descripcionAct").innerHTML=data.descripcion;
-      document.getElementById("img_acti").setAttribute("src",data.img);
-      // $("#img_acti").attr("src",data.foto);
-      // console.log(data.filas);
-     
-
-    })
-  //  alert("luis")
-})
-*/

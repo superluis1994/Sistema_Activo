@@ -31,9 +31,10 @@ if(isset($_POST["accion"])){
    foreach($list3 as $key => $value){
    
      $list_Tactivo.="<option value='".$value["id_tipo_activo"]."'>".strtoupper($value["nom_tipo_activo"])." </option>";
-   
+
      
    }
+   
   $SelectRest = [
     "usuario"=> $list_usuario,
     "locales"=>$list_Local,

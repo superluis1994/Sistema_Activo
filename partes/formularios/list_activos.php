@@ -10,6 +10,7 @@
                     </div>
                 </div>
 
+                
                 <div class="col-11">
                     <div class="row justify-content-end">
                         <div class="row justify-content-end"> 
@@ -58,22 +59,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-10 mt-2 text-center " id="pag" style=''>
+                    <div class="col-10 mt-2 text-center ">
+                    
                         <nav aria-label="...">
-                            <ul class="pagination justify-content-center">
-                              <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                              </li>
+                            <ul class="pagination justify-content-center" id="pag">
                             </ul>
                           </nav>
+                            
                     </div>
                 </div>
                 </div>
@@ -122,10 +114,9 @@
   </div>
 
   <div class="modal-footer">
-          <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
-          <button type="button" id="reporte_unit_activo" class="btn btn-danger">Reporte</button>
+          
         </div>
-</div>
+</div> 
 </form>
 </div>
 </div>
@@ -164,9 +155,14 @@
                   <th scope="col">Valor</th>
                 </tr>
               </thead>
-              <tr><td><b>Resposable</b></td><td><select name="responsable" class="form-select inputLocal" id="respon">
+              <tr><td><b>Resposable</b></td><td><select  class="form-select inputLocal" id="respon">
             </select></td></tr>
              
+            <tr><td><b>Local</b></td><td><select  class="form-select inputLocal" id="local_option">
+            </select></td></tr>
+             
+            <tr><td><b>Tipo Activo</b></td><td><select  class="form-select inputLocal" id="clase_activo">
+            </select></td></tr>
               <tbody id="cargarActivo">
              
               </tbody>

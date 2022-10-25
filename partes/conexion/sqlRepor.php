@@ -15,6 +15,16 @@ class sqlReg extends Principal {
   $dat=$sql->fetch(PDO::FETCH_ASSOC);
   return $dat;
 }
+
+ //consulta generica2
+ public function sqlGenericaArreglo($dato){
+   $sql=Principal::conectar()->prepare($dato);
+  $sql->execute();
+  $dat=$sql->fetch();
+  
+  return $dat;
+}
+
     
 }
 
