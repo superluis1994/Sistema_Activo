@@ -25,7 +25,14 @@ class sqlReg extends Principal {
   return $dat;
 }
 
-    
+  //devuelve un arreglo asociativo
+public function sqlGenericaArreglo2($dato){
+  $sql=Principal::conectar()->prepare($dato);
+ $sql->execute();
+ $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
+ return $dat;
+}
+
 }
 
 

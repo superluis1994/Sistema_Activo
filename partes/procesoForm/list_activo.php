@@ -27,8 +27,20 @@ if(isset($_POST["accion"])){
        INNER JOIN `local` ON inventario.id_local = `local`.id_local
        INNER JOIN usuario ON inventario.id_reposable = usuario.id_user LIMIT ".$inicio.",".$fin;
     
-       $fill=$procesoDatos->sqlGenericaArreglo($query);
+     $fill=$procesoDatos->sqlGenericaArreglo($query);
+     $getrow=count($procesoDatos->sqlGenericaArreglo($query));
+    
+     //$btn_report=$getrow;
+   
+     $btn_report="";
+     if ($getrow < 3) {
+      $btn_report="<button class='btn btn-danger disabled'>Reporte General</button>";
+      }else{
+       $btn_report="<a href='reportes/recporte_completo_activo.php?requireFeed=".$inicio.",".$fin."' class='btn btn-danger'>Reporte General</a>";
+    
+      }
 
+      
      $paginas=count($all_information);
 
      $num_paginas=0;
@@ -79,7 +91,8 @@ if(isset($_POST["accion"])){
     $salida=[];
     $salida['tabla']=$filas;
     $salida['paginacion']=$paginacion;
-
+    $salida['btn_report']=$btn_report;
+    $salida['prueba']=$getrow;
     echo json_encode($salida);
 
     }
@@ -189,7 +202,7 @@ if(isset($_POST["accion"])){
       INNER JOIN usuario ON inventario.id_reposable = usuario.id_user WHERE ".$where."
       ";
       $getColums=count($procesoDatos->sqlGenericaArreglo($sql));
-
+      
      $inicio=$_POST["num_limit"]-3; 
      $fin=$_POST["num_limit"];
 
@@ -200,9 +213,20 @@ if(isset($_POST["accion"])){
        INNER JOIN `local` ON inventario.id_local = `local`.id_local
        INNER JOIN usuario ON inventario.id_reposable = usuario.id_user WHERE ".$where."
       LIMIT  ".$inicio.",".$fin;
+     
+   
+     //$btn_report=$where;
      // $sql="SELECT * FROM  inventario WHERE ".$where;
       $rs=$procesoDatos->sqlGenericaArreglo($query);
-     
+     $getrow=count($procesoDatos->sqlGenericaArreglo($query));
+
+     $btn_report="";
+     if ($getrow < 3) {
+      $btn_report="<button class='btn btn-danger disabled'>Reporte General</button>";
+      }else{
+       $btn_report="<a href='reportes/recporte_completo_activo.php?requireFeed=".$inicio.",".$fin.",". $campo."' class='btn btn-danger'>Reporte General</a>";
+    
+      }
 
       if ($getColums < 3) {
         $num_paginas=1;
@@ -255,6 +279,8 @@ if(isset($_POST["accion"])){
     $salida=[];
     $salida['tabla']=$filas;
     $salida['paginacion']=$paginacion;
+    $salida['btn_report']=$btn_report;
+    $salida['columnas']=$getColums;
    // $salida['cam']=;
   echo json_encode($salida);
       
@@ -273,36 +299,40 @@ if(isset($_POST["accion"])){
         foreach($rs as $key=> $value){
 
         $fil.="<tr>
+        <td><b>ID Activo</b></td>
+        <td><input type='text' readonly class='form-control' id='id_activo' value='".$value["id_activo"]."'></td>
+        </tr>
+        <tr>
           <td><b>Codigo Mined</b></td>
           <td><input type='text' class='form-control' id='codigo_mined' value='".$value["codigo_mined"]."'></td>
           </tr>
           <tr>
           <td><b>Serie</b></td>
-          <td><input type='text' class='form-control ' value='".$value["serie"]."'></td>
+          <td><input type='text' class='form-control ' id='serie' value='".$value["serie"]."'></td>
           </tr>
           <tr>
           <td><b>Codigo Interno</b></td>
-          <td><input type='text' class='form-control' value='".$value["codigo_interno"]."'></td>
+          <td><input type='text' class='form-control' id='codigo_interno' value='".$value["codigo_interno"]."'></td>
           </tr>
           <tr>
           <td><b>Color</b></td>
-          <td><input type='text' class='form-control' value='".$value["color"]."'></td>
+          <td><input type='text' id='color' class='form-control' value='".$value["color"]."'></td>
           </tr>
           <tr>
           <td><b>Valor $</b></td>
-          <td><input type='text' class='form-control' value='".$value["valor_activo"]."'></td>
+          <td><input type='text' id='valor_activo' class='form-control' value='".$value["valor_activo"]."'></td>
           </tr>
           <tr>
           <td><b>Marca</b></td>
-          <td><input type='text' class='form-control' value='".$value["marca"]."'></td>
+          <td><input type='text' class='form-control' id='marca' value='".$value["marca"]."'></td>
           </tr>
           <tr>
           <td><b>Dimensiones</b></td>
-          <td><input type='text' class='form-control' value='".$value["dimensiones"]."'></td>
+          <td><input type='text' class='form-control' id='dimensiones' value='".$value["dimensiones"]."'></td>
           </tr>
           <tr>
           <td><b>Vida Util</b></td>
-          <td><input type='text' class='form-control' value='".$value["vida_util"]."'></td>
+          <td><input type='text' class='form-control' id='vida_util' value='".$value["vida_util"]."'></td>
           </tr>"; 
         }
        
@@ -342,6 +372,58 @@ if(isset($_POST["accion"])){
 
 
     echo json_encode($datos);
+  }else if($_POST["accion"] == "save_up"){
+   
+  
+    $getImagen="";
+    if (isset($_POST['foto'])) {
+      $getImagen="";
+    }else{
+      $image_name = $_FILES['foto']['name'];
+      $image_temp = $_FILES['foto']['tmp_name'];
+      $image_size = $_FILES['foto']['size'];
+       
+      //quitamos el nombre que trae por defecto
+      $exp = explode(".", $image_name);
+      $ext = end($exp);
+      $imagen='b'.time().'.'.$ext;
+      $def= addslashes(file_get_contents($_FILES['foto']['tmp_name']));
+     
+      //mover la foto a esta ruta :D
+      $ruta="../../img/imgPerfil/".$imagen;
+      $foto="img/imgPerfil/".$imagen;
+      move_uploaded_file($image_temp,$ruta);
+      $getImagen="foto='".$foto."', ";
+    }
+
+    $responsable="";
+    if ($_POST['respon'] != 0) {
+      $responsable="id_reposable='".$_POST['respon']."', ";
+    }
+   
+    $local="";
+    if ($_POST['local'] != '0') {
+      $local="id_local= '".$_POST['local']."', ";
+    }
+
+    //$local=$_POST['local'];
+
+    $tipo="";
+    if ($_POST['tipo'] != 0) {
+      $tipo=" tipo_activo='".$_POST['tipo']."', ";
+    }
+    //echo $getImagen;
+
+//UPDATE inventario SET tipo_activo=2,id_local='St-19',id_reposable=360618,nom_activo='Base vip' WHERE id_activo=232
+
+    $query="UPDATE inventario SET ".$getImagen.$responsable.$local.$tipo."codigo_mined='".$_POST['mined']."', codigo_interno='".$_POST['codigo_interno']."', 
+   descrip_activo= '".$_POST['descripcion']."', valor_activo='".$_POST['valor_activo']."', marca='".$_POST['marca']."', dimensiones='".$_POST['dimensiones']."',
+   serie='".$_POST['serie']."', vida_util='".$_POST['vida_util']."', color='".$_POST['color']."'  
+   WHERE id_activo=".$_POST['activo'];
+  
+   $res=$procesoDatos->sqlConsulta3($query);
+  
+   echo $res;
   }
 
 }

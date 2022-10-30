@@ -366,6 +366,14 @@ public function RegaActivo($dato){
    //   $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
      return $sql;
   }
+
+   //no borrar
+   public function sqlConsulta3($dato){
+      $sql=Principal::conectar()->prepare($dato);
+     $sql->execute();
+   $dat=$sql->rowCount();
+     return $dat;
+  }
    //consulta generica2
    public function sqlGenericaArreglo($dato){
       $sql=Principal::conectar()->prepare($dato);

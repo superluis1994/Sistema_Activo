@@ -16,8 +16,8 @@
                         <div class="row justify-content-end"> 
                         <div class="col-5">
                             <div class="row justify-content-end">
-                              <div class="col-5">
-                              <button class="btn btn-danger" style="" id="report_activo_gene">Reporte General</button>
+                              <div class="col-5" id="report_activo_gene"> 
+                       
                               </div>
                               <div class="col-4">
                                 <label class="form-control">Busqueda:</label>

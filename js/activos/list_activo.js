@@ -13,15 +13,11 @@ function getInformation(getNom){
 
   let getRequire =  document.getElementById('btn-buscar').value
     if(getRequire == ""){
-      conditions="tabla_list_activo"
-      //document.getElementById("pag").style.visibility="visible"
-      document.getElementById("report_activo_gene").style.visibility="visible"
-        
+      conditions="tabla_list_activo";
+     // document.getElementById("report_activo_gene").style.visibility="visible"   
     }else{
-  
-      conditions="buscarfiltro"
-      document.getElementById("report_activo_gene").style.visibility="hidden"
-      //document.getElementById("pag").style.visibility="hidden"
+      conditions="buscarfiltro";
+     // document.getElementById("report_activo_gene").style.visibility="hidden"
     }
   
   dataform = new FormData()
@@ -35,11 +31,10 @@ function getInformation(getNom){
    })
    .then((res) => res.json())
     .then((data) => {
-      //console.log(data.cam)
-      
+
       document.getElementById("filas_activos").innerHTML = data.tabla
       document.getElementById("pag").innerHTML= data.paginacion
-
+      document.getElementById("report_activo_gene").innerHTML = data.btn_report
   
     })
 
@@ -93,10 +88,62 @@ document.getElementById("btn_img").addEventListener("change", function() {
    let respo=  document.getElementById("respon").value
    let local =  document.getElementById("local_option").value
    let tipo_activo =  document.getElementById("clase_activo").value
-  
+   let img =  $("#btn_img")
+   let activo = document.getElementById('id_activo').value
+   let mined=  document.getElementById('codigo_mined').value
+   let serie =  document.getElementById('serie').value
+   let codigo_interno =  document.getElementById('codigo_interno').value
+   let color =  document.getElementById('color').value
+   let valor_activo =  document.getElementById('valor_activo').value
+   let marca =  document.getElementById('marca').value
+   let dimensiones =  document.getElementById('dimensiones').value
+   let vida_util =  document.getElementById('vida_util').value
+   let descripcion =  document.getElementById('editdescript').value
+   
+  if (img.val() == "") {
+    bandera="vacio";
+    }else{
+    bandera=img.prop('files')[0]
+    }
 
- alert(local)
- // alerta("error","Opcion no configurada","Falta configuracion")
+   datos= new FormData();
+   datos.append("accion","save_up")
+   datos.append("foto",bandera)
+   datos.append("respon",respo)
+   datos.append("local",local)
+   datos.append("tipo",tipo_activo)
+   datos.append("activo",activo)
+   datos.append("mined",mined)
+   datos.append("serie",serie)
+   datos.append("codigo_interno",codigo_interno)
+   datos.append("color",color)
+   datos.append("valor_activo",valor_activo)
+   datos.append("marca",marca)
+   datos.append("dimensiones",dimensiones)
+   datos.append("vida_util",vida_util)
+   datos.append("descripcion",descripcion)
+
+   $.ajax({
+    url:'partes/procesoForm/list_activo.php',  
+    type: 'POST',
+    async: true,
+    contentType: false,
+    processData: false,
+    data:datos,
+    success:function(respon){
+     
+      if(respon == 1){
+      alerta("Success","Cambios Realizados","Se ha actualizado correctamente")
+      }else{
+        alerta("error","!Cambios¡","No ha detectado ningun cambio")
+      }
+      
+
+    }
+  
+  })
+
+
   
   })
 
