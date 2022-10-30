@@ -6,7 +6,7 @@ function getInformation(getNom){
 
   
   let conditions = "";
-  let pag_limiter=3;
+  let pag_limiter=50;
  if (getNom) {
   pag_limiter=getNom
  }

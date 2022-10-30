@@ -18,7 +18,7 @@ if(isset($_POST["accion"])){
     
        $all_information=$procesoDatos->sqlGenericaArreglo($sql);
     // $fill=$procesoDatos->listaActivos(); 
-     $inicio=$_POST["num_limit"]-3;
+     $inicio=$_POST["num_limit"]-50;
      $fin=$_POST["num_limit"];
     $query="Select id_activo,codigo_mined,codigo_interno,nom_activo,nom_tipo_activo,descrip_activo,
       valor_activo,marca,modelo,dimensiones,serie,vida_util,local_name,nom,apellidos,foto,fecha_resg
@@ -44,10 +44,10 @@ if(isset($_POST["accion"])){
      $paginas=count($all_information);
 
      $num_paginas=0;
-     if ($paginas < 3) {
+     if ($paginas < 50) {
       $num_paginas=1;
      }else {
-      $num_paginas=ceil($paginas/3);
+      $num_paginas=ceil($paginas/50);
      }
 
      $paginacion ="";
@@ -59,7 +59,7 @@ if(isset($_POST["accion"])){
      </li>";*/
      for($a=0;$a<$num_paginas;$a++){
        $numero=$a+1;
-       $g=3*$numero;
+       $g=50*$numero;
        $paginacion.="<li class='page-item ' aria-current='page'>
        <a class='page-link active' name='".$g."' id='pagUser' >".$numero."</a>
        </li>";
@@ -203,7 +203,7 @@ if(isset($_POST["accion"])){
       ";
       $getColums=count($procesoDatos->sqlGenericaArreglo($sql));
       
-     $inicio=$_POST["num_limit"]-3; 
+     $inicio=$_POST["num_limit"]-50; 
      $fin=$_POST["num_limit"];
 
       $query="Select id_activo,codigo_mined,codigo_interno,nom_activo,nom_tipo_activo,descrip_activo,
@@ -228,10 +228,10 @@ if(isset($_POST["accion"])){
     
       }
 
-      if ($getColums < 3) {
+      if ($getColums < 50) {
         $num_paginas=1;
        }else {
-        $num_paginas=ceil($getColums/3);
+        $num_paginas=ceil($getColums/50);
        }
       
        $next="";
@@ -244,7 +244,7 @@ if(isset($_POST["accion"])){
        </li>";*/
        for($a=0;$a<$num_paginas;$a++){
          $numero=$a+1;
-         $g=3*$numero;
+         $g=50*$numero;
          $paginacion.="<li class='page-item ' aria-current='page'>
          <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
          </li>";
