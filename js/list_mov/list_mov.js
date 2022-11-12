@@ -1,24 +1,43 @@
 
+document.getElementById("btn_buscar").addEventListener('keyup', function(){
+
+getTabla()
 
 
+})
+
+function getTabla(){
+
+  let getContent=document.getElementById("btn_buscar").value
+
+  let condition="";
+  if(getContent != ""){
+    condition="buscar";
+  }else{
+    condition="list_mov_tabla";
+  }
+
+  //alert(condition)
   datos= new FormData();
-  datos.append("accion","list_mov_tabla")
-  datos.append("inferior","0")
-  datos.append("superior","20")
+  datos.append("accion",condition)
+  datos.append("buscar",getContent)
   fetch('partes/procesoForm/list_movimientos.php',{
     method: 'POST',
     body: datos
   }).then(res=>res.json())
     .then(data=>{
-      document.getElementById("rspuets_list_mov").innerHTML=data;
+     document.getElementById("rspuets_list_mov").innerHTML=data;
       // document.getElementById("pagination").innerHTML=data.paginacion;
   
     })
 
 
 
+}
 
-  
+
+getTabla();
+
     $("#rspuets_list_mov").on("click","#detalle_mov",function(e)
     {
 

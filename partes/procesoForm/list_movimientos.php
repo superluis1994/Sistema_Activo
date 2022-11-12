@@ -12,7 +12,16 @@ if(isset($_POST["accion"])){
              $fill="";
          
             //  $respuest=$procesoDatos->tablas($dato);
-             $respuest=$procesoDatos->detalle();
+            $query="SELECT id_lis_mov AS id_mov,user_entrega.nom AS usuario_entrega, user_recibe.nom AS usuario_recibe,tipo_mov AS tipo,
+            local_salida.local_name AS local_sal,local_destino.local_name AS local_dest,fecha_mov AS fecha,hora_mov AS hora_mov,
+         justi_mov AS justi
+            FROM list_movimientos 
+            INNER JOIN usuario AS user_entrega ON list_movimientos.id_user_entrega = user_entrega.id_user
+            INNER JOIN usuario AS user_recibe ON list_movimientos.id_user_recibe = user_recibe.id_user
+            INNER JOIN tipo_movimiento ON list_movimientos.id_tipo_mov = tipo_movimiento.id_mov
+            INNER JOIN `local` AS local_salida ON list_movimientos.id_local_salida = local_salida.id_local
+            INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local";
+             $respuest=$procesoDatos->sqlConsulta($query);
             foreach($respuest as $key => $val){
               $id="reportes/reporte_mov.php?ids=".$val["id_mov"];
                $fill.="<tr>
@@ -33,15 +42,6 @@ if(isset($_POST["accion"])){
        }
        if($_POST["accion"] == "datos_mov"){
          $respues=[];
-         // $dato=[
-         //    "tabla"=>"list_movimientos 
-         //    INNER JOIN detalle_movimientos ON list_movimientos.id_lis_mov = detalle_movimientos.id_mov
-         //    INNER JOIN tipo_movimiento ON tipo_movimiento.id_mov = list_movimientos.id_tipo_mov 
-         //    INNER JOIN usuario AS user_entrega ON list_movimientos.id_user_entrega = user_entrega.id_user
-         //    INNER JOIN usuario AS user_recibe ON list_movimientos.id_user_recibe = user_recibe.id_user",
-         //    "campo"=>"id_lis_mov",
-         //    "codigo"=>$_POST["id"]
-         // ];
          $fil=[];
 
          $sql="SELECT id_lis_mov,user_entrega.nom AS entregaU,user_recibe.nom AS recibeU,local_salida.local_name AS local_s,local_destino.local_name AS local_d,fecha_mov,hora_mov,justi_mov,id_activos,tipo_mov  
@@ -52,8 +52,8 @@ if(isset($_POST["accion"])){
                      INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local
                      INNER JOIN detalle_movimientos ON list_movimientos.id_lis_mov = detalle_movimientos.id_mov
                      INNER JOIN tipo_movimiento ON tipo_movimiento.id_mov = list_movimientos.id_tipo_mov 
-                     WHERE id_lis_mov = ";
-         $detalleMov=$procesoDatos->sqlConsulta($sql."".$_POST["id"]);
+                     WHERE id_lis_mov=".$_POST["id"];
+         $detalleMov=$procesoDatos->sqlConsulta($sql);
          // $detalle="";
          foreach($detalleMov as $key => $val){
            $respues=[
@@ -104,6 +104,51 @@ if(isset($_POST["accion"])){
       // $respues.=["fil"=>$list_activo];
       $respues["fill"]=$list_activo;
          echo json_encode($respues);
+      }else if ($_POST['accion']=="buscar") {
+        $fill="";
+        $campo=$_POST['buscar'];
+        $where="";
+
+        $writeCols=['id_lis_mov','user_entrega.nom ','user_recibe.nom'];
+        $where.="WHERE (";
+        for ($i=0; $i < count($writeCols) ; $i++) { 
+         $where.= $writeCols[$i]." LIKE '%".$campo."%' OR "; 
+        }
+
+        $where=substr_replace($where,"",-3);
+        $where.=")";
+
+        $query="SELECT id_lis_mov AS id_mov,user_entrega.nom AS usuario_entrega, user_recibe.nom AS usuario_recibe,tipo_mov AS tipo,
+        local_salida.local_name AS local_sal,local_destino.local_name AS local_dest,fecha_mov AS fecha,hora_mov AS hora_mov,
+        justi_mov AS justi
+        FROM list_movimientos 
+        INNER JOIN usuario AS user_entrega ON list_movimientos.id_user_entrega = user_entrega.id_user
+        INNER JOIN usuario AS user_recibe ON list_movimientos.id_user_recibe = user_recibe.id_user
+        INNER JOIN tipo_movimiento ON list_movimientos.id_tipo_mov = tipo_movimiento.id_mov
+        INNER JOIN `local` AS local_salida ON list_movimientos.id_local_salida = local_salida.id_local
+        INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local ".$where;
+        
+        $reply=$procesoDatos->sqlConsulta($query);
+
+  
+      foreach ($reply as $key => $val) {
+
+        $id="reportes/reporte_mov.php?ids=".$val["id_mov"];
+        $fill.="<tr>
+        <th scope='row'>".$val["id_mov"]."</th>
+        <td>".$val["usuario_entrega"]."</td>
+        <td>".$val["usuario_recibe"]."</td>
+        <td>".$val["local_sal"]."</td>
+        <td>".$val["local_dest"]."</td>
+        <td>".$val["tipo"]."</td>";
+        
+        if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
+        $fill.="<td><button type='button' value='".$val["id_mov"]."' id='detalle_mov' class='btn btn-success'>Detalle</button></td>
+        <td><a type='button' target='_blank' href='".$id."' value='".$val["id_mov"]."' id='reporteMovT' class='btn btn-danger'>Reporte</a></td>";
+        }
+        $fill.="</tr>";
+      }
+     echo json_encode($fill);
       }
      
 }
