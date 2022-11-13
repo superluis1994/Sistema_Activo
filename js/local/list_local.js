@@ -14,3 +14,19 @@ fetch('partes/procesoForm/Registrar_local.php',{
     alert(e.target.name)
 
   })
+
+ $("#lis_local").on ("click","#btn_detalle",function(e){
+ // alert('hola')
+  alert(e.target.value)
+ })
+
+ $("#lis_local").on ("click","#btn-statu",function(e){
+  // alert('hola')
+   alert(e.target.value)
+  })
+
+  $("#lis_local").on ("click","#btn_update",function(e){
+    // alert('hola')
+     alert(e.target.value)
+    })
+ 

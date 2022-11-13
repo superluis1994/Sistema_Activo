@@ -14,21 +14,20 @@
                     <div class="row justify-content-end">
                         <div class="row justify-content-end"> 
                         <div class="col-4">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1" ckeck="checked">Codigo</label>
+                          
+                              <div class="row justify-content-end">
+
+                                   <div class="col-6">
+                                    <button class="btn btn-danger">Reporte General</button>
+                                   </div>
+                                   <div class="col-5">
+                                    <label class="form-control">Busqueda:</label>
+                                   </div>
                               </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Nombre</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipoBus" id="inlineCheckbox3" value="option3" >
-                                <label class="form-check-label" for="inlineCheckbox3">Jefe</label>
-                              </div>
+              
                             </div>
                             <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="Buscar Usuario"/>
+                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="------------"/>
                           </div>
                         </div>
                           <div class="col-10 mt-2">

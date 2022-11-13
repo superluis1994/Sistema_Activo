@@ -13,16 +13,6 @@
     <div class="col-8 mt-3">
         <form  id="form_mov" action="" method="post" >
         <div class="row justify-content-center">
-          <!-- <div class="col-10">
-          <div class="col-2">
-
-            <label for="text" class="form-label"># Movimiento</label> 
-            <input type="number" name=""class="form-control" id="numMovi">
-          </div>
-          <div class="row m-2" id="datosInput">
-          </div>
-        </div> -->
-        
         
         <div class="col-5">
           <label for="text" class="form-label">Tipo de Movimiento</label> 

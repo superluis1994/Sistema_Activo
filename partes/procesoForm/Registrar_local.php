@@ -107,10 +107,14 @@ if(isset($_POST["accion"])){
       if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
       if($value["estatus"] == 1){
       
-      $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"]."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>";
+      $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"]."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>
+               <td><button type='button' value='".$value['id_local']."' id='btn_detalle' class='btn btn-primary'>Detalle</button></td>
+               <td><button type='button' value='".$value['id_local']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
 
       }else{
-      $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>";
+      $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>
+              <td><button type='button' value='".$value['id_local']."' id='btn_detalle' class='btn btn-primary'>Detalle</button></td>
+              <td><button type='button' value='".$value['id_local']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
             
       }
     }
