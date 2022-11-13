@@ -16,7 +16,7 @@
                         <div class="col-5">
                            <div class="row  justify-content-end">
                            <div class="col-5" id="report_activo_gene"> 
-                           <button type="button" class="btn btn-danger">Reporte General</button>
+                           <!--<button type="button" class="btn btn-danger">Reporte General</button> -->
                        </div>
                            <div class="col-4">
                                 <label class="form-control">Busqueda:</label>
@@ -52,21 +52,11 @@
                         </table>
                     </div>
                     <div class="col-10 mt-2 text-center">
-                        <nav aria-label="...">
-                            <ul class="pagination justify-content-center">
-                              <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                              </li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                              </li>
+                    <nav aria-label="...">
+                            <ul class="pagination justify-content-center" id="pag">
                             </ul>
                           </nav>
+
                     </div>
                 </div>
                 </div>

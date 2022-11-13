@@ -10,7 +10,6 @@ if(isset($_POST["accion"])){
     
        if($_POST["accion"] == "list_mov_tabla"){
              $fill="";
-         
             //  $respuest=$procesoDatos->tablas($dato);
             $query="SELECT id_lis_mov AS id_mov,user_entrega.nom AS usuario_entrega, user_recibe.nom AS usuario_recibe,tipo_mov AS tipo,
             local_salida.local_name AS local_sal,local_destino.local_name AS local_dest,fecha_mov AS fecha,hora_mov AS hora_mov,
@@ -21,12 +20,36 @@ if(isset($_POST["accion"])){
             INNER JOIN tipo_movimiento ON list_movimientos.id_tipo_mov = tipo_movimiento.id_mov
             INNER JOIN `local` AS local_salida ON list_movimientos.id_local_salida = local_salida.id_local
             INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local";
+
              $respuest=$procesoDatos->sqlConsulta($query);
-            foreach($respuest as $key => $val){
+             $numberRow=count($procesoDatos->sqlGenericaArreglo($query));
+
+             $inicio=$_POST["limiter"]-20;
+             $fin=$_POST["limiter"];
+
+             $btn_report="";
+        if ($numberRow < 3) {
+         $btn_report="<button class='btn btn-danger disabled'>Reporte General</button>";
+         }else{
+        $btn_report="<a href='reportes/reporte_lista_movimiento.php?requireFeed=".$inicio.",".$fin."' class='btn btn-danger'>Reporte General</a>";
+     
+       } 
+            $quer="SELECT id_lis_mov AS id_mov,user_entrega.nom AS usuario_entrega,user_entrega.apellidos AS apellido, user_recibe.nom AS usuario_recibe,tipo_mov AS tipo,
+            local_salida.local_name AS local_sal,local_destino.local_name AS local_dest,fecha_mov AS fecha,hora_mov AS hora_mov,
+         justi_mov AS justi
+            FROM list_movimientos 
+            INNER JOIN usuario AS user_entrega ON list_movimientos.id_user_entrega = user_entrega.id_user
+            INNER JOIN usuario AS user_recibe ON list_movimientos.id_user_recibe = user_recibe.id_user
+            INNER JOIN tipo_movimiento ON list_movimientos.id_tipo_mov = tipo_movimiento.id_mov
+            INNER JOIN `local` AS local_salida ON list_movimientos.id_local_salida = local_salida.id_local
+            INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local LIMIT ".$inicio." , ".$fin;
+
+             $res=$procesoDatos->sqlConsulta($quer);
+            foreach($res as $key => $val){
               $id="reportes/reporte_mov.php?ids=".$val["id_mov"];
                $fill.="<tr>
                <th scope='row'>".$val["id_mov"]."</th>
-               <td>".$val["usuario_entrega"]."</td>
+               <td>".$val["usuario_entrega"]." ".$val['apellido']."</td>
                <td>".$val["usuario_recibe"]."</td>
                <td>".$val["local_sal"]."</td>
                <td>".$val["local_dest"]."</td>
@@ -37,7 +60,32 @@ if(isset($_POST["accion"])){
                }
                $fill.="</tr>";
             }
-    echo json_encode($fill);
+            
+            if ($numberRow < 20) {
+              $num_paginas=1;
+            }else{
+              $num_paginas=ceil($numberRow/20);
+            }
+
+            $next="";
+            $paginacion ="";
+            // aqui creo los registros de paginacion fila por fila siempre y cuando la num pagina sea mayor a 2
+            if($num_paginas > 1){
+            for($a=0;$a<$num_paginas;$a++){
+              $numero=$a+1;
+              $g=20*$numero;
+              $paginacion.="<li class='page-item ' aria-current='page'>
+              <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
+              </li>";
+             
+            }
+          }
+          
+            $salida=[];
+            $salida['tabla']=$fill;
+            $salida['paginate']=$paginacion;
+            $salida['btn_reporte']=$btn_report;
+            echo json_encode($salida);
 
        }
        if($_POST["accion"] == "datos_mov"){
@@ -129,9 +177,30 @@ if(isset($_POST["accion"])){
         INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local ".$where;
         
         $reply=$procesoDatos->sqlConsulta($query);
+        $numberRow=count($procesoDatos->sqlGenericaArreglo($query));
 
-  
-      foreach ($reply as $key => $val) {
+        $inicio=$_POST["limiter"]-20;
+        $fin=$_POST["limiter"];
+
+        $btn_report="";
+        if ($numberRow < 3) {
+         $btn_report="<button class='btn btn-danger disabled'>Reporte General</button>";
+         }else{
+        $btn_report="<a href='reportes/reporte_lista_movimiento.php?requireFeed=".$inicio.",".$fin.",". $campo."' class='btn btn-danger'>Reporte General</a>";
+     
+       }
+       
+        $quer="SELECT id_lis_mov AS id_mov,user_entrega.nom AS usuario_entrega, user_recibe.nom AS usuario_recibe,tipo_mov AS tipo,
+        local_salida.local_name AS local_sal,local_destino.local_name AS local_dest,fecha_mov AS fecha,hora_mov AS hora_mov,
+        justi_mov AS justi
+        FROM list_movimientos 
+        INNER JOIN usuario AS user_entrega ON list_movimientos.id_user_entrega = user_entrega.id_user
+        INNER JOIN usuario AS user_recibe ON list_movimientos.id_user_recibe = user_recibe.id_user
+        INNER JOIN tipo_movimiento ON list_movimientos.id_tipo_mov = tipo_movimiento.id_mov
+        INNER JOIN `local` AS local_salida ON list_movimientos.id_local_salida = local_salida.id_local
+        INNER JOIN `local` AS local_destino ON list_movimientos.id_local_destino = local_destino.id_local ".$where." LIMIT ".$inicio.",".$fin;
+        $res=$procesoDatos->sqlConsulta($quer);
+      foreach ($res as $key => $val) {
 
         $id="reportes/reporte_mov.php?ids=".$val["id_mov"];
         $fill.="<tr>
@@ -148,7 +217,33 @@ if(isset($_POST["accion"])){
         }
         $fill.="</tr>";
       }
-     echo json_encode($fill);
+
+         
+      if ($numberRow < 20) {
+        $num_paginas=1;
+      }else{
+        $num_paginas=ceil($numberRow/20);
+      }
+
+      $next="";
+      $paginacion ="";
+      // aqui creo los registros de paginacion fila por fila siempre y cuando la num pagina sea mayor a 2
+      if($num_paginas > 1){
+      for($a=0;$a<$num_paginas;$a++){
+        $numero=$a+1;
+        $g=20*$numero;
+        $paginacion.="<li class='page-item ' aria-current='page'>
+        <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
+        </li>";
+       
+      }
+    }
+
+      $salida=[];
+      $salida['tabla']=$fill;
+      $salida['paginate']=$paginacion;
+      $salida['btn_reporte']=$btn_report;
+      echo json_encode($salida);
       }
      
 }

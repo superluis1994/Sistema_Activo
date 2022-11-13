@@ -82,6 +82,7 @@ if($("#usuarioEntre").val()!='0' && $("#usuarior").val()!='0' && $("#localDes").
        .then(data=>{
      
         resultBusq.innerHTML=data
+        console.log(data)
        }) 
 
 

@@ -6,11 +6,24 @@ getTabla()
 
 })
 
-function getTabla(){
+$("#pag").on ("click","#pagUser",function(e)
+{  
+  getTabla(e.target.name)
+  
+})
 
-  let getContent=document.getElementById("btn_buscar").value
 
+function getTabla(numberpag){
+
+  let getContent=document.getElementById("btn_buscar").value;
   let condition="";
+  let limiter = "";
+  
+if (numberpag) {
+  limiter = numberpag
+}else{
+  limiter = 20
+}
   if(getContent != ""){
     condition="buscar";
   }else{
@@ -21,12 +34,16 @@ function getTabla(){
   datos= new FormData();
   datos.append("accion",condition)
   datos.append("buscar",getContent)
+  datos.append("limiter",limiter)
   fetch('partes/procesoForm/list_movimientos.php',{
     method: 'POST',
     body: datos
   }).then(res=>res.json())
     .then(data=>{
-     document.getElementById("rspuets_list_mov").innerHTML=data;
+     console.log(data.btn_reporte)
+     document.getElementById("rspuets_list_mov").innerHTML=data.tabla
+     document.getElementById("pag").innerHTML= data.paginate
+     document.getElementById("report_activo_gene").innerHTML= data.btn_reporte
       // document.getElementById("pagination").innerHTML=data.paginacion;
   
     })
