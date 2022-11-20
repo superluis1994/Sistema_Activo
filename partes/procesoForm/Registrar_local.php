@@ -174,6 +174,19 @@ if(isset($_POST["accion"])){
     }
     echo json_encode($resl);
 
+  }elseif ($_POST['accion'] == "change_status") {
+  $get_valor=explode(",",$_POST['valor']);
+  $change_value="";
+  if ($get_valor[1] == 1) {
+    $change_value=2;
+  }else {
+    $change_value=1;
+  }
+  
+   $query="UPDATE local SET estatus='".$change_value."'  WHERE id_local='".$get_valor['0']."'";
+   $res=$procesoDatos->sqlConsulta3($query);
+  echo json_encode($res);
+    
   }
   
 }
