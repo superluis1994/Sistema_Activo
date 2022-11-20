@@ -185,7 +185,11 @@ public function reserva_datos($dato){
   
     }
     public function ListGenerica($dato){
-        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato." ;");
+      $condition="";
+      if ($dato=="local") {
+      $condition=" WHERE estatus=1";
+      }
+        $sql=Principal::conectar()->prepare("SELECT * FROM ".$dato.$condition." ;");
        $sql->execute();
        $dat=$sql->fetchAll(PDO::FETCH_ASSOC);
        return $dat;

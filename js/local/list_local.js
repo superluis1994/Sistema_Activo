@@ -33,11 +33,11 @@ get_Tabla()
 
   datos=e.target.value.split(",")
   if(datos[1]==1){
-    titulo="Local "+datos[0];
+    titulo="Local "+datos[2];
     alertOpt(titulo,"¿Seguro que quieres desactivar?","warning","Desactivado",e.target.value);
 }
 if(datos[1]==2){
-    titulo="Local "+datos[0];
+    titulo="Local "+datos[2];
     alertOpt(titulo,"¿Seguro que quieres activar?","warning","Activado",e.target.value)
 }
 
