@@ -17,8 +17,8 @@
                           
                               <div class="row justify-content-end">
 
-                                   <div class="col-6">
-                                    <button class="btn btn-danger">Reporte General</button>
+                                   <div class="col-6" id="btn_report">
+                                  <!--mostrat boton-->
                                    </div>
                                    <div class="col-5">
                                     <label class="form-control">Busqueda:</label>
@@ -27,7 +27,7 @@
               
                             </div>
                             <div class="col-5">
-                                <input type="text" name='Lcodigo' class="form-control " id="btn-buscar"  title="btn-buscar" placeholder="------------"/>
+                                <input type="text" class="form-control " id="buscar"  title="btn-buscar" placeholder="------------"/>
                           </div>
                         </div>
                           <div class="col-10 mt-2">
@@ -38,7 +38,7 @@
                                       <tr>
                                           <th scope="col">Id</th>
                                 <th scope="col">Nombre del local </th>
-                                <th scope="col">Jefe de local</th>
+                                <th scope="col">Encargado del local</th>
                                 <th scope="col">Fecha de Registro</th>
                                 <th scope="col">Registrado por</th>
                                 <?php
@@ -66,4 +66,32 @@
 
         </form>
     </div>
+</div>
+
+<div class="modal" id="exampleModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Actualizar Datos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body " >
+
+     <div id="cargar_lista"></div>
+
+     <div class="mb-3 row">
+     <label for="inputPassword" class="col-sm-2 col-form-label">Encargado: </label>
+     <div class="col-sm-10">
+     <select name="select_box" class="form-select inputLocal" id="jef">
+          </select>
+     </div>
+   </div>
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
+        <button type="button" class="btn btn-primary" id="save">Actualizar</button>
+      </div>
+    </div>
+  </div>
 </div>

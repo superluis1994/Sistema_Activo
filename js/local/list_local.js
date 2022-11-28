@@ -1,19 +1,79 @@
 
-function get_Tabla() {
+function get_Tabla(getpag) {
+
+  let texto = document.getElementById("buscar").value
+  let condition = "";
+  if(texto == ""){
+    condition="lista"
+  }else{
+    condition="buscar"
+  }
+
+  let pag_limiter=10;
+ if (getpag) {
+  pag_limiter=getpag
+ }
 
   datos= new FormData();
-datos.append("accion","Tabla")
-fetch('partes/procesoForm/Registrar_local.php',{
+datos.append("accion",condition)
+datos.append("title",texto)
+datos.append("limiter",pag_limiter)
+fetch('partes/procesoForm/list_local.php',{
   method: 'POST',
   body: datos
 }).then(res=>res.json())
   .then(data=>{
-    document.getElementById("lis_local").innerHTML=data.fila;
+    document.getElementById("lis_local").innerHTML=data.tabla;
     document.getElementById("pagination").innerHTML=data.paginacion;
+    document.getElementById("btn_report").innerHTML=data.btn
 
   })
 
 }
+
+document.getElementById("save").addEventListener('click',function(){
+
+ let local= document.getElementById('local').value
+ let cargo=  document.getElementById('jef').value
+ let id=  document.getElementById('id').value
+
+ if (local == "") {
+  alerta("error","Error","No hay cambios")
+ }else{
+
+  datos= new FormData();
+  datos.append("accion","save")
+  datos.append("local",local)
+  datos.append("cargo",cargo)
+  datos.append("id",id)
+  fetch('partes/procesoForm/list_local.php',{
+    method: 'POST',
+    body: datos
+  }).then(res=>res.json())
+    .then(data=>{
+      if(data == 1){
+      alerta("Success","Cambios","Cambios Realizados")
+      get_Tabla()
+      }else{
+        alerta("error","Error","No error al intentar registrar")
+      }
+  
+    })
+
+ }
+
+})
+
+//optener numero de paginacion
+$("#pagination").on ("click","#pagUser",function(e){  
+   //getInformation(e.target.name) 
+get_Tabla(e.target.name)
+})
+
+
+document.getElementById("buscar").addEventListener("keyup",function(e){
+get_Tabla()
+})
 
 get_Tabla()
 
@@ -46,7 +106,21 @@ if(datos[1]==2){
 
   $("#lis_local").on ("click","#btn_update",function(e){
     // alert('hola')
-     alert(e.target.value)
+    // alert(e.target.value)
+    $('#exampleModal').modal('show');
+
+     datos= new FormData();
+     datos.append("accion","update")
+     datos.append("id",e.target.value)
+     fetch('partes/procesoForm/list_local.php',{
+       method: 'POST',
+       body: datos
+     }).then(res=>res.json())
+       .then(data=>{
+       // console.log(data)
+       document.getElementById("cargar_lista").innerHTML=data.tabla
+       document.getElementById("jef").innerHTML= data.usuarios
+       })
     })
  
     //funcion de alerta con opciones 

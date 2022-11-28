@@ -93,28 +93,32 @@ if(isset($_POST["accion"])){
       "superior"=> "8",
     ];
 
-   
-    $list=$procesoDatos->tablas($dataTable);
+    $query="SELECT id_local AS id,local_name AS nombre,EN.nom AS jefe,EN.apellidos AS jefeAP,fecha_regis AS fecha,RE.nom AS encarNOM,
+    RE.apellidos AS encarAP FROM local LO
+    INNER JOIN usuario EN ON LO.jefe_local=EN.id_user
+    INNER JOIN usuario RE ON LO.registradoX=RE.id_user
+    ORDER BY nombre";   
+    $list=$procesoDatos->sqlGenericaArreglo($query);
     // crear las filas de la tabla 
     foreach($list as $key => $value){
       $num_datos++;
       $fila.= "<tr>
-      <th scope='row'>".$value["id_local"]."</th>
-      <td>".$value["local_name"]."</td>
-      <td>".$value["jefe_local"]."</td>
-      <td>".$value["fecha_regis"]."</td>
-      <td>".$value["registradoX"]."</td>";
+      <th scope='row'>".$value["id"]."</th>
+      <td>".$value["nombre"]."</td>
+      <td>".$value["jefe"]." ".$value['jefeAP']."</td>
+      <td>".$value["fecha"]."</td>
+      <td>".$value["encarNOM"]." ".$value['encarAP']."</td>";
       if($_SESSION["datos"][$_COOKIE["id"]][5]==1){
       if($value["estatus"] == 1){
       
-      $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"].",".$value['local_name']."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>
-               <td><button type='button' value='".$value['id_local']."' id='btn_detalle' class='btn btn-primary'>Detalle</button></td>
-               <td><button type='button' value='".$value['id_local']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
+      $fila.="<td><button type='button' value='".$value["id"].",".$value["estatus"].",".$value['nombre']."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>
+               <td><button type='button' value='".$value['id']."' id='btn_detalle' class='btn btn-primary'>Detalle</button></td>
+               <td><button type='button' value='".$value['id']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
 
       }else{
-      $fila.="<td><button type='button' value='".$value["id_local"].",".$value["estatus"].",".$value['local_name']."' id='btn-statu' class='btn btn-success'>Activar</button></td>
-              <td><button type='button' value='".$value['id_local']."' id='btn_detalle' class='btn btn-primary'>Detalle</button></td>
-              <td><button type='button' value='".$value['id_local']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
+      $fila.="<td><button type='button' value='".$value["id"].",".$value["estatus"].",".$value['nombre']."' id='btn-statu' class='btn btn-success'>Activar</button></td>
+              <td><button type='button' value='".$value['id']."' id='btn_detalle' class='btn btn-primary'>Detalle</button></td>
+              <td><button type='button' value='".$value['id']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
             
       }
     }
@@ -150,7 +154,7 @@ if(isset($_POST["accion"])){
     $Respuestas = [
       "paginacion"=> $paginacion,
       "estado"=> "exito",
-      "fila"=> $fila,
+      "fila"=> $list,
     ];
     echo json_encode($Respuestas);
 
