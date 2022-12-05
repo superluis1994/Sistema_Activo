@@ -55,11 +55,14 @@ if($_POST['accion'] == "lista"){
             if($value["estatus"] == 1){
             
             $fila.="<td><button type='button' value='".$value["id"].",".$value["estatus"].",".$value["nombre"]."' id='btn-statu' class='btn btn-danger'>Desactivar</button></td>
-                     <td><button type='button' value='".$value['id']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
+                     <td><button type='button' value='".$value['id']."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>
+                     <td><a class='btn btn-danger' href='reportes/reporte_local_unitario.php?id=".$value['id']."'>Reporte</a></td>";
+                     
       
             }else{
             $fila.="<td><button type='button' value='".$value["id"].",".$value["estatus"].",".$value["nombre"]."' id='btn-statu' class='btn btn-success'>Activar</button></td>
-                    <td><button type='button' value='".$value["id"]."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>";
+                    <td><button type='button' value='".$value["id"]."' id='btn_update' class='btn btn-primary'>Actualizar</button></td>
+                    <td><a class='btn btn-danger' href='reportes/reporte_local_unitario.php?id=".$value['id']."'>Reporte</a></td>";
                   
             }
           }
