@@ -224,7 +224,7 @@ if(isset($_POST["accion"])){
      if ($getrow < 3) {
       $btn_report="<button class='btn btn-danger disabled'>Reporte General</button>";
       }else{
-       $btn_report="<a href='reportes/recporte_completo_activo.php?requireFeed=".$inicio.",".$fin.",". $campo."' class='btn btn-danger'>Reporte General</a>";
+       $btn_report="<a href='areadereporte/prueba.php?requireFeed=".$inicio.",".$fin.",". $campo."' class='btn btn-danger'>Reporte General</a>";
     
       }
 
