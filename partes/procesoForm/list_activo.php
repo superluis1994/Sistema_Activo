@@ -1,4 +1,6 @@
 <?php
+
+
 $resl="";
 session_start();
 require_once "../conexion/sql.php";
@@ -36,7 +38,7 @@ if(isset($_POST["accion"])){
      if ($getrow < 3) {
       $btn_report="<button class='btn btn-danger disabled'>Reporte General</button>";
       }else{
-       $btn_report="<a href='reportes/recporte_completo_activo.php?requireFeed=".$inicio.",".$fin."' class='btn btn-danger'>Reporte General</a>";
+       $btn_report="<a href='areadereporte/reporte_generalactivo.php?requireFeed=".$inicio.",".$fin."' class='btn btn-danger'>Reporte General</a>";
     
       }
 
@@ -84,7 +86,7 @@ if(isset($_POST["accion"])){
 
         $filas.=" <td><button type='button' id='detalleActi' value='".$value["id_activo"]."' class='btn btn-primary'>Detalles</button></td>
          <td><button type='button' id='update'  value='".$value["id_activo"]."' class='btn btn-primary'>Actualizar</button></td>
-         <td><a class='btn btn-danger' href='reportes/reporte_general_activo.php?url=".$value['id_activo']."'>Reporte</a></td>";
+         <td><a class='btn btn-danger' href='areadereporte/process_moviento.php?url=".$value['id_activo']."'>Reporte</a></td>";
       }
        $filas.="</tr>";
      }      
@@ -224,7 +226,7 @@ if(isset($_POST["accion"])){
      if ($getrow < 3) {
       $btn_report="<button class='btn btn-danger disabled'>Reporte General</button>";
       }else{
-       $btn_report="<a href='reportes/recporte_completo_activo.php?requireFeed=".$inicio.",".$fin.",". $campo."' class='btn btn-danger'>Reporte General</a>";
+    $btn_report="<a href='areadereporte/reporte_generalactivo.php?requireFeed=".$inicio.",".$fin.",". $campo."' class='btn btn-danger'>Reporte</a>";
     
       }
 
@@ -270,7 +272,7 @@ if(isset($_POST["accion"])){
 
        $filas.=" <td><button type='button' id='detalleActi' value='".$value["id_activo"]."' class='btn btn-primary'>Detalles</button></td>
         <td><button type='button' id='update'  value='".$value["id_activo"]."' class='btn btn-primary'>Actualizar</button></td><td>
-        <td><a class='btn btn-danger' href='reportes/reporte_general_activo.php?url=".$value['id_activo']."'>Reporte</a></td>";
+        <td><a class='btn btn-danger' href='areadereporte/process_activo.php?requireFeed=".$value['id_activo']."'>Reporte 1</a></td>";
      }
       $filas.="</tr>";
     }  

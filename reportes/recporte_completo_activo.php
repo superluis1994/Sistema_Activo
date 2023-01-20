@@ -1,6 +1,5 @@
 <?php
 require_once "../partes/conexion/sqlRepor.php";
-require('fpd/fpdf.php');
 $procesoDatos= new sqlReg ();
 
 //recupero los valores para la busqueda
