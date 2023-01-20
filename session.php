@@ -6,7 +6,7 @@
 
 session_start();
 // // echo'<pre>';
-var_dump($_SESSION['datos']);
+// var_dump($_SESSION['datos']);
 // unset($_SESSION['datos'][$_COOKIE['id']]);
     // var_dump($_SESSION['datos'][$_COOKIE['id']][0]);
     // if(isset($_SESSION['datos'][$_COOKIE['id']])){

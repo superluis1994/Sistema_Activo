@@ -106,10 +106,10 @@ if($_POST["accion"]=='buscarUser'){
     // aqui comienzo a trabjar la paginacion para la tabla locales
     $num_paginas=0;
     // aqui determino si el numero de datos es inferior al numero de datos que quiero mostrar
-    if($numUser<7){
+    if($numUser<10){
       $num_paginas=1;
     }else{
-      $num_paginas=ceil($numUser/7);
+      $num_paginas=floor($numUser/10);
     }
 
     // $res="";
@@ -123,7 +123,7 @@ if($_POST["accion"]=='buscarUser'){
     </li>";
     for($a=0;$a<$num_paginas;$a++){
       $numero=$a+1;
-      $g=7*$numero;
+      $g=10*$numero;
       $paginacion.="<li class='page-item ' aria-current='page'>
       <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
       </li>";
@@ -147,11 +147,13 @@ if($_POST["accion"]=='buscarUser'){
   
 }
 else if($_POST["accion"]=='btn-paginacion'){
-     $infC=$_POST["cantida"]-7;
-    $sql="usuario INNER JOIN roles ON usuario.rol_id = roles.id_rol limit ".$infC." , ".$_POST["cantida"]."";
+    //  $infC=$_POST["cantida"]-10;
+    $limiteIni=remove_Caracteres($_POST["cantida"]);
+     $canXpagi=remove_Caracteres($_POST["cantItemXpag"]);
+    $sql="usuario INNER JOIN roles ON usuario.rol_id = roles.id_rol LIMIT ".$canXpagi." OFFSET ".$limiteIni."";
      if($_POST["input"]!=""){
 
-      $sql .= " WHERE ".$_POST["tipo"]." = ".$_POST["input"]."";
+      // $sql .= " WHERE ".$_POST["tipo"]." = ".$_POST["input"]."";
 
      }
   $list_userFila=$procesoDatos->ListTipoUsuario($sql);
@@ -217,17 +219,11 @@ else if($_POST["accion"]=='estado'){
 
   }
 
-
-
-
     
-   
-
-
-
-
-
-    
+}  function remove_Caracteres($str)
+{
+    $result = str_replace(array("#", ":","'", ";"), '', $str);
+    return $result;
 }
     
     ?>

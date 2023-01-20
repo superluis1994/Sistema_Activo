@@ -2,7 +2,7 @@
 function list_user(){
     list= new FormData()
     list.append("accion","list_usuario_table")
-    list.append("cantida","7")
+    list.append("cantida","10")
     
     fetch("partes/procesoForm/list_usuario.php",{
       method: 'POST',
@@ -148,6 +148,7 @@ $(".pgina").on ("click","#pagUser",function(e)
   list= new FormData()
   list.append("accion","btn-paginacion")
   list.append("cantida",e.target.name)
+  list.append("cantItemXpag","10")
   list.append("input",$("#btn-buscar").val())
   list.append("tipo",fill)
   
