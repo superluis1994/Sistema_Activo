@@ -109,7 +109,7 @@ if($_POST["accion"]=='buscarUser'){
     if($numUser<10){
       $num_paginas=1;
     }else{
-      $num_paginas=floor($numUser/10);
+      $num_paginas=ceil($numUser/10);
     }
 
     // $res="";
@@ -123,10 +123,11 @@ if($_POST["accion"]=='buscarUser'){
     </li>";
     for($a=0;$a<$num_paginas;$a++){
       $numero=$a+1;
-      $g=10*$numero;
+      $g=(10*$numero)-10;
       $paginacion.="<li class='page-item ' aria-current='page'>
       <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
       </li>";
+    
     }
     
     $paginacion.="<li class='page-item'>

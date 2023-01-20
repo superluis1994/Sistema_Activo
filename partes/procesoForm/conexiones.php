@@ -41,10 +41,10 @@ if(isset($_POST["accion"])){
       if($_POST["cantida"]!=20){
         $cantidad =$_POST["cantida"];
         $inferior=$cantidad-20;
-        $limited.=" LIMIT ".$inferior.",".$cantidad."";
+        $limited.=" LIMIT ".$cantidad." ".$inferior."";
       }
 
-      $listConex=$procesoDatos->ListGenerica("conexiones  WHERE id_user = ".$_POST["bsqueda"]." ".$limited);
+      $listConex=$procesoDatos->ListGenerica("conexiones  WHERE id_user = ".$_POST["bsqueda"]." OFFSET".$limited);
 
       $resp=GenerarListConexiones($listConex,1);
       $numUser=count($listConex);
