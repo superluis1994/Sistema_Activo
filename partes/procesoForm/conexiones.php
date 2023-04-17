@@ -1,6 +1,7 @@
 <?php
 // require_once "../credenciale/datos.php";
 require_once "../conexion/sql.php";
+require_once "Class/paginacion-class.php";
 date_default_timezone_set('america/el_salvador');
 $procesoDatos= new sqlReg ();
 session_start();
@@ -44,11 +45,11 @@ if(isset($_POST["accion"])){
         $limited.=" LIMIT ".$cantidad." ".$inferior."";
       }
 
-      $listConex=$procesoDatos->ListGenerica("conexiones  WHERE id_user = ".$_POST["bsqueda"]." OFFSET".$limited);
+      $listConex=$procesoDatos->ListGenerica("conexiones  WHERE id_user = ".$_POST["bsqueda"]." OFFSET ".$limited);
 
       $resp=GenerarListConexiones($listConex,1);
       $numUser=count($listConex);
-      $paginacion=Paginacion($numUser,$inferior+1,$_POST["pg"]);
+      $paginacion=Paginacion($numUser,$inferior+1,$_POST["pg"],"pagUser");
 
       $Respuestas2 = [
         "paginacion"=> $paginacion,
@@ -84,58 +85,58 @@ function GenerarListConexiones($list,$indice) {
   return $resl;
 }
 
-function Paginacion($numUser,$indice,$pg) {
-  // aqui comienzo a trabjar la paginacion para la tabla locales
-  $num_paginas=0;
-  // aqui determino si el numero de datos es inferior al numero de datos que quiero mostrar
-  if($numUser<20){
-    $num_paginas=1;
-  }else{
-    $num_paginas=ceil($numUser/20);
-  }  
-  $paginacion ="";
-  // aqui creo los registros de paginacion fila por fila siempre y cuando la num pagina sea mayor a 2
-  if($num_paginas >1){
-    // $paginacion.="<li class='page-item disabled'>";
-    // if($indice==1){
-    //   $paginacion.="<li class='page-item disabled'>
-    //   <a class='page-link'  tabindex='-1' aria-disabled='true'>Previous</a>
-    //   </li>";
-    // }else{
-    //   $paginacion.="<li class='page-item '>
-    //   <a class='page-link'  tabindex='-1' aria-disabled='true'>Previous</a>
-    //   </li>";
-    // }
+// function Paginacion($numUser,$indice,$pg) {
+//   // aqui comienzo a trabjar la paginacion para la tabla locales
+//   $num_paginas=0;
+//   // aqui determino si el numero de datos es inferior al numero de datos que quiero mostrar
+//   if($numUser<20){
+//     $num_paginas=1;
+//   }else{
+//     $num_paginas=ceil($numUser/20);
+//   }  
+//   $paginacion ="";
+//   // aqui creo los registros de paginacion fila por fila siempre y cuando la num pagina sea mayor a 2
+//   if($num_paginas >1){
+//     // $paginacion.="<li class='page-item disabled'>";
+//     // if($indice==1){
+//     //   $paginacion.="<li class='page-item disabled'>
+//     //   <a class='page-link'  tabindex='-1' aria-disabled='true'>Previous</a>
+//     //   </li>";
+//     // }else{
+//     //   $paginacion.="<li class='page-item '>
+//     //   <a class='page-link'  tabindex='-1' aria-disabled='true'>Previous</a>
+//     //   </li>";
+//     // }
    
-  for($a=0;$a<$num_paginas;$a++){
-    $numero=$a+1;
-    $g=20*$numero;
-    if($a==$pg-1){
-      $paginacion.="<li class='page-item active' aria-current='page'>
-      <a class='page-link' name='".$g.",".$numero."' id='pagUser' >".$numero."</a>
-      </li>";
-    }else{
-      $paginacion.="<li class='page-item ' aria-current='page'>
-      <a class='page-link' name='".$g.",".$numero."' id='pagUser' >".$numero."</a>
-      </li>";
-    }
-  }
-// if($pg==$num_paginas){
-//   $paginacion.="<li class='page-item disabled'>
-//   <a class='page-link' >Next</a>
-//   </li>";
-// }else{
-//   $paginacion.="<li class='page-item'>
-// <a class='page-link' >Next</a>
-// </li>";
+//   for($a=0;$a<$num_paginas;$a++){
+//     $numero=$a+1;
+//     $g=20*$numero;
+//     if($a==$pg-1){
+//       $paginacion.="<li class='page-item active' aria-current='page'>
+//       <a class='page-link' name='".$g.",".$numero."' id='pagUser' >".$numero."</a>
+//       </li>";
+//     }else{
+//       $paginacion.="<li class='page-item ' aria-current='page'>
+//       <a class='page-link' name='".$g.",".$numero."' id='pagUser' >".$numero."</a>
+//       </li>";
+//     }
+//   }
+// // if($pg==$num_paginas){
+// //   $paginacion.="<li class='page-item disabled'>
+// //   <a class='page-link' >Next</a>
+// //   </li>";
+// // }else{
+// //   $paginacion.="<li class='page-item'>
+// // <a class='page-link' >Next</a>
+// // </li>";
 
+// // }
 // }
-}
 
 
 
-  return $paginacion;
-}
+//   return $paginacion;
+// }
 
 
     ?>

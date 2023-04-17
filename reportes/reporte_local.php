@@ -34,7 +34,7 @@ $query="SELECT id_local AS id,local_name AS nombre,EN.nom AS jefe,EN.apellidos A
     RE.apellidos AS encarAP, estatus FROM LOCAL LO
     INNER JOIN usuario EN ON LO.jefe_local=EN.id_user
     INNER JOIN usuario RE ON LO.registradoX=RE.id_user
-     ".$where." ORDER BY nombre LIMIT ".$inicio.",".$fin;
+     ".$where." ORDER BY nombre ";
 
    $list=$procesoDatos->sqlGenericaArreglo2($query);
 

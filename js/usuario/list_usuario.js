@@ -1,8 +1,9 @@
 // Cargar la lista de usuarios en la tabla con esta funcion
-function list_user(){
+function list_user(pag,num){
     list= new FormData()
     list.append("accion","list_usuario_table")
-    list.append("cantida","10")
+    list.append("cantida",pag)
+    list.append("pg",num)
     
     fetch("partes/procesoForm/list_usuario.php",{
       method: 'POST',
@@ -17,7 +18,7 @@ function list_user(){
 
 }
 
-list_user()
+list_user(20,1)
 
 ///////////area de modificar usuario///////////////////
 $("#list_resul").on ("click","#btn-modificar",function(e)
@@ -126,17 +127,18 @@ fil=document.querySelector('input[name=tipoBus]:checked').value
         //    console.log(data);
          })
     }else{
-        list_user()
+        list_user(20,1)
     }
 })
 
 document.getElementById("btn-tip").addEventListener("click",function(e){
   input=document.getElementById("btn-buscar")
    input.value=""
+   
    if(e.target.value !=undefined){
 
      input.placeholder="Buscar por " + e.target.value
-     list_user()
+     list_user(20,1)
    }
 })
 

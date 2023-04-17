@@ -5,6 +5,7 @@ session_start();
 // echo json_encode("si");
 require_once "../conexion/sql.php";
 $procesoDatos= new sqlReg ();
+require_once "Class/paginacion-class.php";
 
 
 if(isset($_POST["accion"])){
@@ -74,6 +75,8 @@ if($_POST["accion"]=='buscarUser'){
   } else if($_POST["accion"]=='list_usuario_table'){
     $list_user=$procesoDatos->ListTipoUsuario("usuario INNER JOIN roles ON usuario.rol_id = roles.id_rol limit 0,".$_POST["cantida"].";");
     $res="";
+    $cantidad =$_POST["cantida"];
+    $inferior=$cantidad-20;
     foreach($list_user as $key => $value){
       // filas de la tabla
       $res.="<tr>";
@@ -103,37 +106,38 @@ if($_POST["accion"]=='buscarUser'){
     }
     
     $numUser=count($procesoDatos->ListGenerica("usuario"));
-    // aqui comienzo a trabjar la paginacion para la tabla locales
-    $num_paginas=0;
-    // aqui determino si el numero de datos es inferior al numero de datos que quiero mostrar
-    if($numUser<10){
-      $num_paginas=1;
-    }else{
-      $num_paginas=ceil($numUser/10);
-    }
+    $paginacion=Paginacion($numUser,$inferior+1,$_POST["pg"]);
+//     // aqui comienzo a trabjar la paginacion para la tabla locales
+//     $num_paginas=0;
+//     // aqui determino si el numero de datos es inferior al numero de datos que quiero mostrar
+//     if($numUser<10){
+//       $num_paginas=1;
+//     }else{
+//       $num_paginas=ceil($numUser/10);
+//     }
 
-    // $res="";
-    // $_POST["cantida"];
+//     // $res="";
+//     // $_POST["cantida"];
     
-    $paginacion ="";
-    // aqui creo los registros de paginacion fila por fila siempre y cuando la num pagina sea mayor a 2
-    if($num_paginas >1){
-      $paginacion="<li class='page-item disabled'>
-    <a class='page-link'  tabindex='-1' aria-disabled='true'>Previous</a>
-    </li>";
-    for($a=0;$a<$num_paginas;$a++){
-      $numero=$a+1;
-      $g=(10*$numero)-10;
-      $paginacion.="<li class='page-item ' aria-current='page'>
-      <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
-      </li>";
+//     $paginacion ="";
+//     // aqui creo los registros de paginacion fila por fila siempre y cuando la num pagina sea mayor a 2
+//     if($num_paginas >1){
+//       $paginacion="<li class='page-item disabled'>
+//     <a class='page-link'  tabindex='-1' aria-disabled='true'>Previous</a>
+//     </li>";
+//     for($a=0;$a<$num_paginas;$a++){
+//       $numero=$a+1;
+//       $g=(10*$numero)-10;
+//       $paginacion.="<li class='page-item ' aria-current='page'>
+//       <a class='page-link' name='".$g."' id='pagUser' >".$numero."</a>
+//       </li>";
     
-    }
+//     }
     
-    $paginacion.="<li class='page-item'>
- <a class='page-link' >Next</a>
- </li>";
-  }
+//     $paginacion.="<li class='page-item'>
+//  <a class='page-link' >Next</a>
+//  </li>";
+//   }
  
  $Respuestas = [
    "paginacion"=> $paginacion,
@@ -158,6 +162,7 @@ else if($_POST["accion"]=='btn-paginacion'){
 
      }
   $list_userFila=$procesoDatos->ListTipoUsuario($sql);
+  
   $res="";
   foreach($list_userFila as $key => $value){
     // filas de la tabla

@@ -185,4 +185,5 @@ require_once "conexionprueba.php";
 // session_destroy();
 
 echo ucfirst(strtolower("hello wOrld!"));
+
 ?>

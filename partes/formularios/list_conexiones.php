@@ -40,7 +40,7 @@
                                   <thead>
                                       <tr>
                                           <th scope="col">#</th>
-                                <th scope="col">Codigo</th>
+                                <th scope="col">Carnet</th>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Hora</th>
                               
